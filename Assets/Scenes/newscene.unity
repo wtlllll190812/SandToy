@@ -259,7 +259,7 @@ MonoBehaviour:
   noiseParam: 0.1
   offsetX: 0
   offsetZ: 0
-  N: 128
+  N: 4
   vertices: []
   triangles: 
 --- !u!33 &757255077
