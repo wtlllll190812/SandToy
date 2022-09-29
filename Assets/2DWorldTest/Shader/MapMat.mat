@@ -40,21 +40,21 @@ Material:
     m_Floats:
     - _Float1: 0.3
     - _Float2: 0.6
-    - _ForestThreshold: 0.1
-    - _MoutainThreshold: 10
+    - _ForestThreshold: 0.3
+    - _MoutainThreshold: 0.63
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Temperature: 0
-    - _oceanThreshold: -0.1
+    - _oceanThreshold: 0.6
     m_Colors:
     - _Color1: {r: 0.27860448, g: 0.75415516, b: 0.8584906, a: 0}
     - _Color2: {r: 0.9528302, g: 0.8913404, b: 0.5968672, a: 1}
     - _Color3: {r: 0.49345636, g: 0.9245283, b: 0.448309, a: 0}
-    - _ForestColor: {r: 0.5647059, g: 0.29431668, b: 0.14509803, a: 1}
+    - _ForestColor: {r: 0.14509803, g: 0.5647059, b: 0.15473531, a: 1}
     - _GrassColor: {r: 0.20484152, g: 0.7924528, b: 0.28721687, a: 1}
     - _MoutainColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
-    - _OceanColor: {r: 0.4528302, g: 0.371252, b: 0.22385189, a: 1}
-    - _SandColor: {r: 0.8962264, g: 0.8121959, b: 0.22321108, a: 1}
+    - _OceanColor: {r: 0.26165894, g: 0.7629729, b: 0.9433962, a: 1}
+    - _SandColor: {r: 0.83040833, g: 0.8396226, b: 0.4467426, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1721330123087496686
 MonoBehaviour:

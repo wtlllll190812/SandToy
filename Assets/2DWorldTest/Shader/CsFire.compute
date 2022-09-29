@@ -11,7 +11,7 @@ float thunder;
 
 float Rand(uint3 id)
 {
-    return frac(sin(id.x * id.y + seed) * 10000.0);
+    return frac(sin(id.x + id.y+id.x*id.y + seed) * 10000.0);
 }
 
 int Kind(float x)
@@ -39,14 +39,9 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     }
     else
     {
-        bool res = false;
-        res = res || (Kind(Result[float2(id.x + 1, id.y)].r) == 1);
-        res = res || (Kind(Result[float2(id.x - 1, id.y)].r) == 1);
-        res = res || (Kind(Result[float2(id.x, id.y + 1)].r) == 1);
-        res = res || (Kind(Result[float2(id.x, id.y - 1)].r) == 1);
-    
-        if (res)
+        if ((Kind(Result[float2(id.x + 1, id.y)].r) == 1) || (Kind(Result[float2(id.x - 1, id.y)].r) == 1) || (Kind(Result[float2(id.x, id.y + 1)].r) == 1) || (Kind(Result[float2(id.x, id.y - 1)].r) == 1))
         {
+            if (Rand(id)<burn)
                 Result[id.xy] = 1;
             return;
         }
@@ -55,6 +50,5 @@ void CSMain (uint3 id : SV_DispatchThreadID)
             Result[id.xy] = 1;
             return;
         }
-        Result[id.xy] = Result[id.xy];
     }
 }

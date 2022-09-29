@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MainMap : SerializedMonoBehaviour
 {
+    public GenNoise gennoise;
     public List<EvoluteLayer> layers;
     public float updateTime=1;
 
@@ -25,13 +26,12 @@ public class MainMap : SerializedMonoBehaviour
     void Start()
     {
         mainMaterial = GetComponent<SpriteRenderer>().material;
-        mainMaterial.SetTexture("_MapTex",Plan1GameManager.instance.mainTexture);
+        mainMaterial.SetTexture("_MapTex",gennoise.renderTexture);
         foreach (var item in layers)
             item.Init();
         StartCoroutine(OnChange());
     }
 
-    [Button("Change")]
     public IEnumerator OnChange()
     {
         while(true)
@@ -39,9 +39,9 @@ public class MainMap : SerializedMonoBehaviour
             foreach (var item in layers)
             {
                 if(item.isActive)
-                    item.Excute(Plan1GameManager.instance.mainTexture, this);
+                    item.Excute(gennoise.renderTexture, this);
             }
-            mainMaterial.SetTexture("_MapTex", Plan1GameManager.instance.mainTexture);
+            mainMaterial.SetTexture("_MapTex", gennoise.renderTexture);
             yield return new WaitForSeconds(updateTime);
         }
     }

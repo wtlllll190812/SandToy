@@ -186,6 +186,6 @@ void GenNoise(uint3 id : SV_DispatchThreadID)
         r = 1 - r;
     } 
     //r = round(r * 10)/10;
-    Texture[id.xy] = 0;
+    Texture[id.xy] = r;
 }
 
