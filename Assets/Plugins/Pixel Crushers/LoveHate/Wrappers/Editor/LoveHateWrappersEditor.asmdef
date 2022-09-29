@@ -1,0 +1,14 @@
+{
+    "name": "LoveHateWrappersEditor",
+    "references": [
+        "LoveHate",
+        "PixelCrushers",
+        "PixelCrushersEditor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

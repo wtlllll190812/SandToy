@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireSimMat
+  m_Shader: {fileID: 4800000, guid: f7332f66380af3a4390fbd209bd8f94e, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MapTex:
+        m_Texture: {fileID: 2800000, guid: ad407356e4f2a414eb9ca3bb80378f2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _FrieColor: {r: 0.8773585, g: 0.4014265, b: 0.1688501, a: 1}
+    - _GroundColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    - _PlanetColor: {r: 0.31526273, g: 0.9056604, b: 0.2426486, a: 1}
+  m_BuildTextureStacks: []
