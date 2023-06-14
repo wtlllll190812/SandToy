@@ -1,7 +1,6 @@
 #ifndef UTILS_HLSL
 #define UTILS_HLSL
 
-
 #define ELE_EMPTY 0
 #define ELE_SAND 1
 
