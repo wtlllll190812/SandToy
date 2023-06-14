@@ -49,7 +49,7 @@ Shader "Custom/MainMap"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed color = tex2D(_MapTex, i.uv);
-                color=color-fmod(color.x,1/32);
+                color=(color*128-frac(color*128))/128;
                 // if(kind>=1)
                 //     return _SandColor;
                 return color;

@@ -1,0 +1,16 @@
+#include "Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+int seed;
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    uint kind=value2Kind(Result[id.xy]);
+    if(kind==ELE_SAND&&isEmpty(Result[down(id)]))
+    {
+        Result[down(id)]=kind2Value(kind);
+        Result[id.xy]=ELE_EMPTY;
+    }
+}
