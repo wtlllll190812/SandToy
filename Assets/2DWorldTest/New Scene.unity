@@ -156,11 +156,11 @@ MonoBehaviour:
   noiseType: 0
   generation: 0
   format: 0
-  size: 64
+  size: 512
   scale: 37.99
   seed: 202
   path: Assets/2DWorldTest/MainMap.tga
-  renderTexture: {fileID: 1199110677}
+  renderTexture: {fileID: 949131304}
 --- !u!4 &458656155
 Transform:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1199110677
+--- !u!84 &949131304
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,19 +397,22 @@ MonoBehaviour:
       Data: 1|EvoFire, Assembly-CSharp
     - Name: isActive
       Entry: 5
-      Data: false
+      Data: true
     - Name: computeShader
       Entry: 10
       Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1024
     - Name: burn
       Entry: 4
-      Data: 0.6
+      Data: 0.1
     - Name: grow
       Entry: 4
-      Data: 0.0001
+      Data: 0.1
     - Name: thunder
       Entry: 4
-      Data: 1E-06
+      Data: 1E-20
     - Name: 
       Entry: 8
       Data: 
@@ -418,7 +421,7 @@ MonoBehaviour:
       Data: 2|EvoAir, Assembly-CSharp
     - Name: isActive
       Entry: 5
-      Data: true
+      Data: false
     - Name: computeShader
       Entry: 10
       Data: 1
@@ -435,7 +438,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   gennoise: {fileID: 458656154}
-  updateTime: 0.2
+  updateTime: 0.1
 --- !u!212 &2133715384
 SpriteRenderer:
   m_ObjectHideFlags: 0

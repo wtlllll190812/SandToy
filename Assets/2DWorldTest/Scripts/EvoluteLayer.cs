@@ -12,5 +12,5 @@ public abstract class EvoluteLayer
 
     public abstract void Init();
 
-    public abstract void Excute(RenderTexture texture, MainMap map);
+    public abstract void Execute(RenderTexture texture, MainMap map);
 }

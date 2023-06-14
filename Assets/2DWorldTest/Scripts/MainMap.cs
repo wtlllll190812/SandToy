@@ -6,8 +6,10 @@ using System.Collections.Generic;
 public class MainMap : SerializedMonoBehaviour
 {
     public GenNoise gennoise;
+    public int size;
     public List<EvoluteLayer> layers;
     public float updateTime=1;
+
 
     private Material mainMaterial;
     public float _temperature
@@ -39,7 +41,7 @@ public class MainMap : SerializedMonoBehaviour
             foreach (var item in layers)
             {
                 if(item.isActive)
-                    item.Excute(gennoise.renderTexture, this);
+                    item.Execute(gennoise.renderTexture, this);
             }
             mainMaterial.SetTexture("_MapTex", gennoise.renderTexture);
             yield return new WaitForSeconds(updateTime);

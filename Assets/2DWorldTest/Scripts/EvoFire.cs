@@ -4,22 +4,22 @@ using System.Collections.Generic;
 
 public class EvoFire : EvoluteLayer
 {
-    public float burn;
-    public float grow;
-    public float thunder;
+    [SerializeField] private readonly float burn = 0.7f;
+    [SerializeField] private readonly float grow = 0.01f;
+    [SerializeField] private readonly float thunder = 1e-6f;
 
     public override void Init()
     {
         kernel = computeShader.FindKernel("CSMain");
     }
 
-    public override void Excute(RenderTexture renderTexture, MainMap map)
+    public override void Execute(RenderTexture renderTexture, MainMap map)
     {
         computeShader.SetTexture(kernel, "Result", renderTexture);
         computeShader.SetFloat("burn", burn);
         computeShader.SetFloat("grow", grow);
         computeShader.SetFloat("thunder", thunder);
-        computeShader.SetInt("seed", Random.Range(0,1000));
-        computeShader.Dispatch(kernel, (int)64 / 8, (int)64 / 8, 1);
+        computeShader.SetInt("seed", Random.Range(0, 1000));
+        computeShader.Dispatch(kernel, renderTexture.width / 8, renderTexture.height / 8, 1);
     }
 }

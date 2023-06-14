@@ -9,7 +9,7 @@ public class EvoDesert : EvoluteLayer
         kernel  = computeShader.FindKernel("CSMain");
     }
 
-    public override void Excute(RenderTexture renderTexture, MainMap map)
+    public override void Execute(RenderTexture renderTexture, MainMap map)
     {
         computeShader.SetTexture(kernel, "Result", renderTexture);
         computeShader.Dispatch(kernel, (int)256 / 8, (int)256 / 8, 1);
