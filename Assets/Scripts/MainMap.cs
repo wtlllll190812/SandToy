@@ -29,7 +29,7 @@ public class MainMap : SerializedMonoBehaviour
         while (layers.Count > 0)
         {
             int seed = Random.Range(0, 10000);
-            foreach (var item in layers.Where(item => item.Enabled))
+            foreach (var item in layers.Where(item => item.enabled))
             {
                 item.Execute(noiseGenerator.renderTexture, this, seed);
             }

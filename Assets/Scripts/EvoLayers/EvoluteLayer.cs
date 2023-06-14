@@ -5,13 +5,10 @@ using System.Collections.Generic;
 using UnityEngine.Serialization;
 
 [System.Serializable]
-public abstract class EvoluteLayer
+public abstract class EvoluteLayer : MonoBehaviour
 {
-    [SerializeField] private bool enabled;
     [SerializeField] protected ComputeShader computeShader;
     protected int kernel;
-
-    public bool Enabled => enabled;
 
     public virtual void Init()
     {
