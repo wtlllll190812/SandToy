@@ -1,5 +1,5 @@
 public enum Species
 {
-    Empty,
-    Sand,
+    Empty = 0,
+    Sand = 1,
 }

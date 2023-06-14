@@ -6,13 +6,22 @@
             "id": "9a3b9ae4-5d09-420d-a374-424e0cc8eb09",
             "actions": [
                 {
-                    "name": "Paint",
+                    "name": "StartPaint",
                     "type": "Button",
                     "id": "331cc312-a54a-46a3-9caa-c4fd790d6e72",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Paint",
+                    "type": "Value",
+                    "id": "5b68c169-f08d-4d3d-8845-59b5870b6663",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -20,7 +29,29 @@
                     "name": "",
                     "id": "245b693d-1c80-43a4-8369-b880b5fc8814",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPaint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2645a74d-1bf0-4b51-8016-4d508e02ba17",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPaint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e4d65e0-1371-491d-99bd-829ccd176170",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Paint",
@@ -29,7 +60,7 @@
                 },
                 {
                     "name": "",
-                    "id": "2645a74d-1bf0-4b51-8016-4d508e02ba17",
+                    "id": "d3fea8a7-e1bc-48cb-b41f-c3ae7d00f36c",
                     "path": "<Touchscreen>/position",
                     "interactions": "",
                     "processors": "",

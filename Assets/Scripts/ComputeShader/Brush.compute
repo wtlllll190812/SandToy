@@ -4,9 +4,13 @@
 RWTexture2D<float4> Result;
 int seed;
 
+uint kind;
+uint2 pos;
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    if(distance(id,pos)<10)
+        Result[id.xy]=kind2Value(kind);
 }
 

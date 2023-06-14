@@ -6,7 +6,7 @@ public class EvoFire : EvoluteLayer
     [SerializeField] private readonly float grow = 0.01f;
     [SerializeField] private readonly float thunder = 1e-6f;
 
-    public override void Execute(RenderTexture texture, MainMap map, int seed)
+    public override void Execute(Texture texture, MainMap map, int seed)
     {
         computeShader.SetFloat("burn", burn);
         computeShader.SetFloat("grow", grow);
