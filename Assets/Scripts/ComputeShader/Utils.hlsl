@@ -11,11 +11,11 @@ float rand(uint3 id,int seed)
 
 uint value2Kind(const float4 f)
 {
-    return f.x*255%255;
+    return f.x*32%32;
 }
 
 float kind2Value(const uint kind)
 {
-    return (float)(kind+1)/255;
+    return (float)kind/32;
 }
 #endif

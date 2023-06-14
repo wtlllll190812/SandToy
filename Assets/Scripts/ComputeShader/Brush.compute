@@ -13,4 +13,3 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(distance(id,pos)<10)
         Result[id.xy]=kind2Value(kind);
 }
-

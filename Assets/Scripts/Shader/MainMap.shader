@@ -48,11 +48,11 @@ Shader "Custom/MainMap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float height = tex2D(_MapTex, i.uv).x;
-
-                if(height*255%255==1)
-                    return _SandColor;
-                return _EmptyColor;
+                fixed color = tex2D(_MapTex, i.uv);
+                color=color-fmod(color.x,1/32);
+                // if(kind>=1)
+                //     return _SandColor;
+                return color;
             }
             ENDCG
         }
