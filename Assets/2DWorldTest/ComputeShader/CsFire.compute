@@ -1,19 +1,15 @@
+#include "Utils.hlsl"
 #pragma kernel CSMain
+
+#define FIRE 2
+#define PLANT 1
+#define GROUND 0
 
 RWTexture2D<float4> Result;
 int seed;
 float burn;
 float grow;
 float thunder;
-
-#define FIRE 2
-#define PLANT 1
-#define GROUND 0
-
-float Rand(uint3 id)
-{
-    return frac(sin(id.x + id.y+id.x*id.y + seed) * 232143.231231);
-}
 
 int Kind(float x)
 {
@@ -28,14 +24,14 @@ int Kind(float x)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    int kind = Kind(Result[id.xy].a);
+    uint kind = Kind(Result[id.xy].a);
     
-    int fireNum = (Kind(Result[float2(id.x + 1, id.y)].a) == FIRE)
+    uint fireNum = (Kind(Result[float2(id.x + 1, id.y)].a) == FIRE)
                 + (Kind(Result[float2(id.x - 1, id.y)].a) == FIRE)
                 + (Kind(Result[float2(id.x, id.y + 1)].a) == FIRE)
                 + (Kind(Result[float2(id.x, id.y - 1)].a) == FIRE);
     
-    int plantNum= (Kind(Result[float2(id.x + 1, id.y)].a) == PLANT)
+    uint plantNum= (Kind(Result[float2(id.x + 1, id.y)].a) == PLANT)
                 + (Kind(Result[float2(id.x - 1, id.y)].a) == PLANT)
                 + (Kind(Result[float2(id.x, id.y + 1)].a) == PLANT)
                 + (Kind(Result[float2(id.x, id.y - 1)].a) == PLANT);
@@ -46,13 +42,13 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         Result[id.xy] = 0;
         break;
     case PLANT:
-        if (fireNum&&Rand(id)<burn)
+        if (fireNum&&rand(id,seed)<burn)
             Result[id.xy] = 1;
-        else if (Rand(id)<thunder)
+        else if (rand(id,seed)<thunder)
             Result[id.xy] = 1;
         break;
     case GROUND:
-        if(Rand(id)<grow&&plantNum>0)
+        if(rand(id,seed)<grow&&plantNum>0)
             Result[id.xy] = 0.5f;
         break;
     default:

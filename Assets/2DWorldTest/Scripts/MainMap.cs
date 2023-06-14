@@ -2,48 +2,39 @@ using UnityEngine;
 using System.Collections;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MainMap : SerializedMonoBehaviour
 {
-    public GenNoise gennoise;
-    public int size;
-    public List<EvoluteLayer> layers;
-    public float updateTime=1;
+    [SerializeField] private GenNoise noiseGenerator;
+    [SerializeField] private float updateTime = 1;
+    [SerializeField] private List<EvoluteLayer> layers;
 
 
+    private static readonly int MapTex = Shader.PropertyToID("_MapTex");
     private Material mainMaterial;
-    public float _temperature
-    {
-        set
-        {
-            if(value<1&&value>0)
-                mainMaterial.SetFloat("_MoutainThreshold", value);
-        }
-        get
-        {
-            return mainMaterial.GetFloat("_MoutainThreshold");
-        }
-    }
 
-    void Start()
+    private void Start()
     {
         mainMaterial = GetComponent<SpriteRenderer>().material;
-        mainMaterial.SetTexture("_MapTex",gennoise.renderTexture);
+        mainMaterial.SetTexture(MapTex, noiseGenerator.renderTexture);
         foreach (var item in layers)
             item.Init();
-        StartCoroutine(OnChange());
+
+        StartCoroutine(Evolute());
     }
 
-    public IEnumerator OnChange()
+    private IEnumerator Evolute()
     {
-        while(true)
+        while (layers.Count > 0)
         {
-            foreach (var item in layers)
+            int seed = Random.Range(0, 10000);
+            foreach (var item in layers.Where(item => item.Enabled))
             {
-                if(item.isActive)
-                    item.Execute(gennoise.renderTexture, this);
+                item.Execute(noiseGenerator.renderTexture, this, seed);
             }
-            mainMaterial.SetTexture("_MapTex", gennoise.renderTexture);
+
+            mainMaterial.SetTexture(MapTex, noiseGenerator.renderTexture);
             yield return new WaitForSeconds(updateTime);
         }
     }

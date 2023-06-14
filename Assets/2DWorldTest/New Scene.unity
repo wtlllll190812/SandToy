@@ -156,7 +156,7 @@ MonoBehaviour:
   noiseType: 0
   generation: 0
   format: 0
-  size: 512
+  size: 256
   scale: 37.99
   seed: 202
   path: Assets/2DWorldTest/MainMap.tga
@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 2133715385}
   - component: {fileID: 2133715383}
   - component: {fileID: 2133715384}
+  - component: {fileID: 2133715386}
   m_Layer: 0
   m_Name: MainMap
   m_TagString: Untagged
@@ -378,8 +379,6 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 7200000, guid: 35f73c0967cfaff49aeb82b12000bbcd, type: 3}
-    - {fileID: 7200000, guid: 4a8061a843a4ab249b3125c3be043a12, type: 3}
-    - {fileID: 2800000, guid: 67a84a9c7340ff141ada36ac1b461762, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -391,19 +390,16 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 1|EvoFire, Assembly-CSharp
-    - Name: isActive
+    - Name: enabled
       Entry: 5
       Data: true
     - Name: computeShader
       Entry: 10
       Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1024
     - Name: burn
       Entry: 4
       Data: 0.1
@@ -417,27 +413,12 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 7
-      Data: 2|EvoAir, Assembly-CSharp
-    - Name: isActive
-      Entry: 5
-      Data: false
-    - Name: computeShader
-      Entry: 10
-      Data: 1
-    - Name: flowMap
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  gennoise: {fileID: 458656154}
+  noiseGenerator: {fileID: 458656154}
   updateTime: 0.1
 --- !u!212 &2133715384
 SpriteRenderer:
@@ -506,3 +487,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2133715386
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133715382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 2.56}
+  m_EdgeRadius: 0
