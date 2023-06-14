@@ -14,13 +14,11 @@ public class MainMap : SerializedMonoBehaviour
     private GenNoise noiseGenerator;
 
     [SerializeField] [ShowIf("@useNoiseGenerator==false")]
-    private RenderTexture texture;
-
-    [SerializeField] [ShowIf("@useNoiseGenerator==false")]
     private int size;
 
     private static readonly int MapTex = Shader.PropertyToID("_MapTex");
     private Material mainMaterial;
+    private RenderTexture texture;
 
     private RenderTexture StartTexture
     {

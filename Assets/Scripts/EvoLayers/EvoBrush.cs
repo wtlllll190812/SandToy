@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 public class EvoBrush : EvoluteLayer
 {
@@ -27,11 +25,12 @@ public class EvoBrush : EvoluteLayer
         pressed = !pressed;
     }
 
-    public override void Execute(Texture texture, MainMap map, int seed)
+    public override void Execute(RenderTexture texture, MainMap map, int seed)
     {
         if (!pressed) return;
 
         var pixelId = GetPixelID(texture.texelSize, texture.width, texture.height);
+        Debug.Log(pixelId + "pixelId" + specie);
         computeShader.SetInt("kind", (int) specie);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
         base.Execute(texture, map, seed);

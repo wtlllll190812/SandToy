@@ -16,6 +16,6 @@ uint value2Kind(const float4 f)
 
 float kind2Value(const uint kind)
 {
-    return (float)kind/255;
+    return (float)(kind+1)/255;
 }
 #endif

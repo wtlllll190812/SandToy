@@ -15,7 +15,7 @@ public abstract class EvoluteLayer : MonoBehaviour
         kernel = computeShader.FindKernel("CSMain");
     }
 
-    public virtual void Execute(Texture texture, MainMap map, int seed)
+    public virtual void Execute(RenderTexture texture, MainMap map, int seed)
     {
         computeShader.SetInt("seed", seed);
         computeShader.SetTexture(kernel, "Result", texture);
