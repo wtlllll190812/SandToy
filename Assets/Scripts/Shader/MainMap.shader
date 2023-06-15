@@ -3,9 +3,7 @@ Shader "Custom/MainMap"
     Properties
     {
         _MapTex ("MapTex", 2D) = "white" {}
-        
-        _EmptyColor("EmptyColor",Color)=(1,1,1,1)
-        _SandColor("SandColor",Color)=(1,1,1,1)
+        _ColorTex ("ColorTex", 2D) = "white" {}
     }	
     SubShader
     {
@@ -32,11 +30,9 @@ Shader "Custom/MainMap"
             };
 
             sampler2D _MapTex;
+            sampler2D _ColorTex;
             float4 _MapTex_ST;
             float4 _MapTex_TexelSize;
-
-            float4 _EmptyColor;
-            float4 _SandColor;
 
             v2f vert (appdata v)
             {
@@ -48,11 +44,9 @@ Shader "Custom/MainMap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float4 color=tex2D(_MapTex, i.uv);
-                uint kind=floor(sqrt(color.x)*32);
-                if(kind==2)
-                    return _SandColor;
-                return _EmptyColor;
+                float kind=sqrt(tex2D(_MapTex, i.uv).r);
+                float4 color=tex2D(_ColorTex, float2(kind+1/128.0,kind));
+                return color;
             }
             ENDCG
         }

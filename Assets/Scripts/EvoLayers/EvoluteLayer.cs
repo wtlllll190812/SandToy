@@ -27,7 +27,7 @@ public abstract class EvoluteLayer : MonoBehaviour
 
     public virtual void Execute(RenderTexture texture, MainMap map, int seed)
     {
-        computeShader.SetInt("seed", 1);
+        computeShader.SetInt("seed", seed);
         computeShader.Dispatch(kernel, texture.width / 8, texture.height / 8, 1);
     }
 }

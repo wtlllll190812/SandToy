@@ -8,7 +8,7 @@ public static class RenderTextureUtils
         {
             enableRandomWrite = true,
             filterMode = FilterMode.Point,
-            wrapMode = TextureWrapMode.Repeat
+            wrapMode = TextureWrapMode.Clamp,
         };
         renderTexture.Create();
         return renderTexture;

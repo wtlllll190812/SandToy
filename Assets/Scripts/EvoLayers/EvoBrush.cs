@@ -17,20 +17,24 @@ public class EvoBrush : EvoluteLayer
     private bool clear;
     private int kernelClear;
 
-    private void Start()
+    public override void Init(RenderTexture texture)
     {
         col = GetComponent<Collider2D>();
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
         inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
-    
         kernelClear = computeShader.FindKernel("Clear");
+        computeShader.SetTexture(kernelClear, "Result", texture);
+        base.Init(texture);
     }
-
 
     public override void Execute(RenderTexture texture, MainMap map, int seed)
     {
-        
+        if (clear)
+        {
+            computeShader.Dispatch(kernelClear, texture.width / 8, texture.height / 8, 1);
+            clear = false;
+        }
         if (!pressed) return;
 
         var pixelId = GetPixelID(texture.width, texture.height);
@@ -38,10 +42,6 @@ public class EvoBrush : EvoluteLayer
         computeShader.SetInt("size", brushSize);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
         base.Execute(texture, map, seed);
-        
-        if (!clear) return;
-        computeShader.Dispatch(kernelClear, texture.width / 8, texture.height / 8, 1);
-        clear = false;
     }
 
     /// <summary>
