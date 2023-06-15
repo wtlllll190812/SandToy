@@ -4,9 +4,9 @@
 RWTexture2D<float4> Result;
 int seed;
 
-float4 updateSand(uint3 id);
-float4 updateGas(uint3 id);
-float4 updateWater(uint3 id);
+void updateSand(uint3 id);
+void updateGas(uint3 id);
+void updateWater(uint3 id);
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
@@ -14,103 +14,81 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     uint kind=value2Kind(Result[id.xy]);
     switch (kind)
     {
-    case ELE_SAND:Result[id.xy]=updateSand(id); break;
-    case ELE_GAS: Result[id.xy]=updateGas(id); break;
-    case ELE_WATER: Result[id.xy]=updateWater(id); break;
+    case ELE_SAND:  updateSand(id);  break;
+    case ELE_GAS:   updateGas(id);   break;
+    case ELE_WATER: updateWater(id); break;
     default: break;
     }
 }
 
-float4 updateSand(uint3 id)
+void updateSand(uint3 id)
 {
-    float4 ret=Result[id.xy];
+    float4 ori=Result[id.xy];
     float4 nbr=Result[down(id)];
     //重力
     if(isEmpty(nbr))
     {
-        Result[down(id)]=float4(kind2Value(ELE_SAND),UNIT,ret.z,ret.w);
-        ret.x=ELE_EMPTY;
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]= float4(kind2Value(ELE_SAND),ori.yzw);
     }
-    return ret;
+    else if(isLiquid(nbr))
+    {
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]=float4(kind2Value(ELE_SAND),nbr.yzw);
+    }
 }
 
-float4 updateGas(uint3 id)
+void updateGas(uint3 id)
 {
-    float4 ret=Result[id.xy];
-    // 漂浮
+    //漂浮
+    float4 ori=Result[id.xy];
     uint2 vec=randVector(id,seed);
     float4 nbr=Result[vec];
-    if(isEmpty(nbr))
+    if(canPass(nbr))
     {
-        Result[vec]=float4(kind2Value(ELE_GAS),UNIT,ret.z,ret.w);
-        if(ret.y>ZERO)
-            ret.y-=UNIT;
-        else
+        if(rand(id,seed)>0.01f)
         {
-            ret.x=ELE_EMPTY;
-            ret.y=ZERO;
-        }   
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+        }
+        Result[vec]=float4(kind2Value(ELE_GAS),nbr.yzw);
     }
-    
-    return ret;
 }
 
-float4 updateWater(uint3 id)
+void updateWater(uint3 id)
 {
-    float4 ret=Result[id.xy];
+    float4 ori=Result[id.xy];
+    float4 nbr=Result[down(id)];
+    
     //重力
-    if(isEmpty(Result[down(id)]))
+    if(isAir(nbr))
     {
-        Result[down(id)]=float4(kind2Value(ELE_WATER),UNIT,ret.z,ret.w);
-        ret.x=ELE_EMPTY;
-        return ret;
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        return;
     }
     
-    // 流体
-    if(isEmpty(Result[left(id)])&&isEmpty(Result[right(id)]))
-    {
-        if(rand(id,seed)>0.5f)
-        {
-            Result[left(id)]=float4(kind2Value(ELE_WATER),UNIT,ret.z,ret.w);
-        }
-        else
-        {
-            Result[right(id)]=float4(kind2Value(ELE_WATER),UNIT,ret.z,ret.w);
-        }
-        if(ret.y>ZERO)
-            ret.y-=UNIT;
-        else
-        {
-            ret.x=ELE_EMPTY;
-            ret.y=ZERO;
-        }
-        return ret;
-    }
+    //流体
+    if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
+        return;
     
-    if(isEmpty(Result[left(id)]))
+    nbr=Result[left(id)];
+    if(isAir(nbr))
     {
-        Result[left(id)]=float4(kind2Value(ELE_WATER),UNIT,ret.z,ret.w);
-        if(ret.y>ZERO)
-            ret.y-=UNIT;
-        else
+        if(rand(id,seed)>0.4f)
         {
-            ret.x=ELE_EMPTY;
-            ret.y=ZERO;
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+            Result[left(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
         }
-        return ret;
+        return;
     }
-    if(isEmpty(Result[right(id)]))
+    nbr=Result[right(id)];
+    if(isAir(nbr))
     {
-        Result[right(id)]=float4(kind2Value(ELE_WATER),UNIT,ret.z,ret.w);
-        if(ret.y>ZERO)
-            ret.y-=UNIT;
-        else
+        if(rand(id,seed)>0.4f)
         {
-            ret.x=ELE_EMPTY;
-            ret.y=ZERO;
-        }
-        return ret;
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+            Result[right(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        }        
+        return;
     }
-
-    return ret;
 }
