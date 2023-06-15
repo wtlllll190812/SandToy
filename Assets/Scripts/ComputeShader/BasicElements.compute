@@ -14,8 +14,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     uint kind=value2Kind(Result[id.xy]);
     switch (kind)
     {
-    case ELE_SAND:updateSand(id); break;
-    case ELE_GAS: updateGas(id); break;
+    case ELE_SAND:  updateSand(id);  break;
+    case ELE_GAS:   updateGas(id);   break;
     case ELE_WATER: updateWater(id); break;
     default: break;
     }
@@ -23,58 +23,72 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
 void updateSand(uint3 id)
 {
+    float4 ori=Result[id.xy];
+    float4 nbr=Result[down(id)];
     //重力
-    if(isEmpty(Result[down(id)]))
+    if(isEmpty(nbr))
     {
-        Result[down(id)]=kind2Value(ELE_SAND);
-        Result[id.xy]=ELE_EMPTY;
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]= float4(kind2Value(ELE_SAND),ori.yzw);
+    }
+    else if(isLiquid(nbr))
+    {
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]=float4(kind2Value(ELE_SAND),nbr.yzw);
     }
 }
 
 void updateGas(uint3 id)
 {
     //漂浮
+    float4 ori=Result[id.xy];
     uint2 vec=randVector(id,seed);
-    if(isEmpty(Result[vec]))
+    float4 nbr=Result[vec];
+    if(canPass(nbr))
     {
-        Result[vec]=kind2Value(ELE_GAS);
-        Result[id.xy]=ELE_EMPTY;
+        if(rand(id,seed)>0.01f)
+        {
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+        }
+        Result[vec]=float4(kind2Value(ELE_GAS),nbr.yzw);
     }
 }
 
 void updateWater(uint3 id)
 {
-    if(rand(id,seed)<0.5f)
+    float4 ori=Result[id.xy];
+    float4 nbr=Result[down(id)];
+    
+    //重力
+    if(isAir(nbr))
     {
-        Result[left(id)]=kind2Value(ELE_WATER);
-        Result[id.xy]=ELE_EMPTY;
-    }
-    else
-    {
-        Result[right(id)]=kind2Value(ELE_WATER);
-        Result[id.xy]=ELE_EMPTY;
+        Result[id.xy]=float4(nbr.x,ori.yzw);
+        Result[down(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        return;
     }
     
-    // //重力
-    // if(isEmpty(Result[down(id)]))
-    // {
-    //     Result[down(id)]=kind2Value(ELE_WATER);
-    //     Result[id.xy]=ELE_EMPTY;
-    //     return;
-    // }
-    //
-    // //流体
-    // if(isEmpty(Result[left(id)])&&isEmpty(Result[right(id)]))
-    //     return;
-    //
-    // if(isEmpty(Result[left(id)]))
-    // {
-    //     Result[left(id)]=kind2Value(ELE_WATER);
-    //     Result[id.xy]=ELE_EMPTY;
-    // }
-    // else if(isEmpty(Result[right(id)]))
-    // {
-    //     Result[right(id)]=kind2Value(ELE_WATER);
-    //     Result[id.xy]=ELE_EMPTY;
-    // }
+    //流体
+    if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
+        return;
+    
+    nbr=Result[left(id)];
+    if(isAir(nbr))
+    {
+        if(rand(id,seed)>0.4f)
+        {
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+            Result[left(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        }
+        return;
+    }
+    nbr=Result[right(id)];
+    if(isAir(nbr))
+    {
+        if(rand(id,seed)>0.4f)
+        {
+            Result[id.xy]=float4(nbr.x,ori.yzw);
+            Result[right(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        }        
+        return;
+    }
 }

@@ -37,6 +37,33 @@ bool isEmpty(const float4 value)
     return value2Kind(value)==ELE_EMPTY;
 }
 
+bool isLiquid(const float4 value)
+{
+    uint kind=value2Kind(value);
+    return kind==ELE_GAS
+            ||kind==ELE_WATER;
+}
+
+bool isGas(const float4 value)
+{
+    return value2Kind(value)==ELE_GAS;
+}
+
+bool isAir(const float4 value)
+{
+    uint kind=value2Kind(value);
+    return kind==ELE_EMPTY
+            ||kind==ELE_GAS;
+}
+
+bool canPass(const float4 value)
+{
+    uint kind=value2Kind(value);
+    return kind==ELE_EMPTY
+        ||kind==ELE_SAND
+        ||kind==ELE_WATER;
+}
+
 uint2 randVector(uint3 id,int seed)
 {
     uint value= floor(rand(id,seed)*5);
