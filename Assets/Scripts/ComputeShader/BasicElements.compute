@@ -4,13 +4,77 @@
 RWTexture2D<float4> Result;
 int seed;
 
+void updateSand(uint3 id);
+void updateGas(uint3 id);
+void updateWater(uint3 id);
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     uint kind=value2Kind(Result[id.xy]);
-    if(kind==ELE_SAND&&isEmpty(Result[down(id)]))
+    switch (kind)
     {
-        Result[down(id)]=kind2Value(kind);
+    case ELE_SAND:updateSand(id); break;
+    case ELE_GAS: updateGas(id); break;
+    case ELE_WATER: updateWater(id); break;
+    default: break;
+    }
+}
+
+void updateSand(uint3 id)
+{
+    //重力
+    if(isEmpty(Result[down(id)]))
+    {
+        Result[down(id)]=kind2Value(ELE_SAND);
         Result[id.xy]=ELE_EMPTY;
     }
+}
+
+void updateGas(uint3 id)
+{
+    //漂浮
+    uint2 vec=randVector(id,seed);
+    if(isEmpty(Result[vec]))
+    {
+        Result[vec]=kind2Value(ELE_GAS);
+        Result[id.xy]=ELE_EMPTY;
+    }
+}
+
+void updateWater(uint3 id)
+{
+    if(rand(id,seed)<0.5f)
+    {
+        Result[left(id)]=kind2Value(ELE_WATER);
+        Result[id.xy]=ELE_EMPTY;
+    }
+    else
+    {
+        Result[right(id)]=kind2Value(ELE_WATER);
+        Result[id.xy]=ELE_EMPTY;
+    }
+    
+    // //重力
+    // if(isEmpty(Result[down(id)]))
+    // {
+    //     Result[down(id)]=kind2Value(ELE_WATER);
+    //     Result[id.xy]=ELE_EMPTY;
+    //     return;
+    // }
+    //
+    // //流体
+    // if(isEmpty(Result[left(id)])&&isEmpty(Result[right(id)]))
+    //     return;
+    //
+    // if(isEmpty(Result[left(id)]))
+    // {
+    //     Result[left(id)]=kind2Value(ELE_WATER);
+    //     Result[id.xy]=ELE_EMPTY;
+    // }
+    // else if(isEmpty(Result[right(id)]))
+    // {
+    //     Result[right(id)]=kind2Value(ELE_WATER);
+    //     Result[id.xy]=ELE_EMPTY;
+    // }
 }
