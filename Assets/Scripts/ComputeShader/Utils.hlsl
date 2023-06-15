@@ -1,6 +1,12 @@
 #ifndef UTILS_HLSL
 #define UTILS_HLSL
 
+
+#define UNIT 1/10
+#define ZERO 0
+//rgba中，r表示种类，g表示当前格子中的数量
+
+
 #define ELE_EMPTY 0
 #define ELE_WALL 1
 #define ELE_SAND 2
@@ -32,12 +38,34 @@ float kind2Value(const uint kind)
     return (float)kind/32;
 }
 
+uint getNum(const float4 value)
+{
+    return value.y*10;
+}
+
+float setNum(const uint num)
+{
+    return (float)num/10;
+}
+
+float4 leaveCell(const float4 cell)
+{
+    if(getNum(cell)>0)
+    {
+        return float4(cell.x,setNum(getNum(cell)-1),cell.z,cell.w);
+    }
+    else
+    {
+        return float4(ELE_EMPTY,setNum(0),0,0);
+    }
+}
+
 bool isEmpty(const float4 value)
 {
     return value2Kind(value)==ELE_EMPTY;
 }
 
-uint2 randVector(uint3 id,int seed)
+uint2 randVector(const uint3 id, const int seed)
 {
     uint value= floor(rand(id,seed)*5);
     switch (value)
