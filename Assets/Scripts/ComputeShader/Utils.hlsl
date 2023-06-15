@@ -7,7 +7,6 @@
 #define ELE_GAS 3
 #define ELE_WATER 4
 
-
 uint2 left(const uint3 id){return id.xy+uint2(-1,0);}
 uint2 right(const uint3 id){return id.xy+uint2(1,0);}
 uint2 left_2(const uint3 id){return id.xy+uint2(-2,0);}

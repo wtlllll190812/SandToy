@@ -1,8 +1,6 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using UnityEngine.U2D;
 
 public class EvoBrush : EvoluteLayer
 {
@@ -11,31 +9,55 @@ public class EvoBrush : EvoluteLayer
     [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private Species currentSpecie;
     [SerializeField] private Vector2 brushOffset;
+    [SerializeField] private int brushSize;
+    
     private InputAction paint;
-    private InputAction startPaint;
     private Collider2D col;
     private bool pressed;
+    private bool clear;
+    private int kernelClear;
 
     private void Start()
     {
         col = GetComponent<Collider2D>();
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
-        startPaint = inputSetting.FindActionMap("Player").FindAction("StartPaint");
-        startPaint.performed += OnPaint;
+        inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
+        inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
+    
+        kernelClear = computeShader.FindKernel("Clear");
     }
 
-    public void OnPaint(InputAction.CallbackContext context)
-    {
-        pressed = !pressed;
-    }
 
     public override void Execute(RenderTexture texture, MainMap map, int seed)
     {
+        
         if (!pressed) return;
+
         var pixelId = GetPixelID(texture.width, texture.height);
         computeShader.SetInt("kind", (int) currentSpecie);
+        computeShader.SetInt("size", brushSize);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
         base.Execute(texture, map, seed);
+        
+        if (!clear) return;
+        computeShader.Dispatch(kernelClear, texture.width / 8, texture.height / 8, 1);
+        clear = false;
+    }
+
+    /// <summary>
+    /// 清屏
+    /// </summary>
+    private void OnClear(InputAction.CallbackContext context)
+    {
+        clear = true;
+    }
+    
+    /// <summary>
+    /// 开始绘画
+    /// </summary>
+    public void OnPaint(InputAction.CallbackContext context)
+    {
+        pressed = !pressed;
     }
 
     /// <summary>

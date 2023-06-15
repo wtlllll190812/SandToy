@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Linq;
 public class MainMap : SerializedMonoBehaviour
 {
     [SerializeField] private bool useNoiseGenerator;
-    [SerializeField] private float updateTime = 1;
     [SerializeField] private List<EvoluteLayer> layers;
 
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
@@ -35,23 +33,16 @@ public class MainMap : SerializedMonoBehaviour
         mainMaterial = GetComponent<SpriteRenderer>().material;
         mainMaterial.SetTexture(MapTex, StartTexture);
         foreach (var item in layers)
-            item.Init();
-
-        StartCoroutine(Evolute());
+            item.Init(StartTexture);
     }
 
-    private IEnumerator Evolute()
+    private void Update()
     {
-        while (layers.Count > 0)
+        var seed = Random.Range(0, 10000);
+        foreach (var item in layers.Where(item => item.enabled))
         {
-            int seed = Random.Range(0, 10000);
-            foreach (var item in layers.Where(item => item.enabled))
-            {
-                item.Execute(StartTexture, this, seed);
-            }
-
-            mainMaterial.SetTexture(MapTex, StartTexture);
-            yield return new WaitForSeconds(updateTime);
+            if (!item.ready) continue;
+            item.Execute(StartTexture, this, seed);
         }
     }
 }

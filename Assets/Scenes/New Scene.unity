@@ -472,7 +472,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   useNoiseGenerator: 0
-  updateTime: 0.01
   layers:
   - {fileID: 2133715387}
   - {fileID: 2133715388}
@@ -604,12 +603,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: b84255fdd502413796ef7243e0bed45d, type: 3}
+  fps: 60
   ppu: 100
   cam: {fileID: 1818669416}
   inputSetting: {fileID: -944628639613478452, guid: 36f39149ed9f30045849d0434e2b30ef,
     type: 3}
   currentSpecie: 2
   brushOffset: {x: 0, y: 0}
+  brushSize: 10
 --- !u!114 &2133715388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,3 +624,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 09a50d962af342a4ad8159bf7c7c803b, type: 3}
+  fps: 30

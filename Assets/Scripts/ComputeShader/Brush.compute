@@ -1,16 +1,23 @@
 #include "Utils.hlsl"
 #pragma kernel CSMain
+#pragma kernel Clear
 
 RWTexture2D<float4> Result;
 int seed;
 
+uint size;
 uint kind;
 uint2 pos;
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // Result[id.xy]=(float)id.x/256;
-    if(distance(id,pos)<10)
+  if(distance(id.xy,pos)<size)
         Result[id.xy]=kind2Value(kind);
+}
+
+[numthreads(8,8,1)]
+void Clear(uint3 id : SV_DispatchThreadID)
+{
+    Result[id.xy]=0;
 }
