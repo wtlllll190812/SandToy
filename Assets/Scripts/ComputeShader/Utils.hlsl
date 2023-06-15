@@ -10,6 +10,8 @@
 
 uint2 left(const uint3 id){return id.xy+uint2(-1,0);}
 uint2 right(const uint3 id){return id.xy+uint2(1,0);}
+uint2 left_2(const uint3 id){return id.xy+uint2(-2,0);}
+uint2 right_2(const uint3 id){return id.xy+uint2(2,0);}
 uint2 up(const uint3 id){return id.xy+uint2(0,1);}
 uint2 down(const uint3 id){return id.xy+uint2(0,-1);}
 uint2 leftUp(const uint3 id){return id.xy+uint2(-1,1);}
@@ -64,16 +66,16 @@ bool canPass(const float4 value)
         ||kind==ELE_WATER;
 }
 
-uint2 randVector(uint3 id,int seed)
+uint2 randDir(uint3 id,int seed)
 {
     uint value= floor(rand(id,seed)*5);
     switch (value)
     {
-    case 0:return left(id);
-    case 1:return right(id);
-    case 2:return up(id);
-    case 3:return down(id);
-    default:return up(id);
+    case 0:return uint2(0,1);
+    case 1:return uint2(1,0);
+    case 2:return uint2(-1,0);
+    case 3:return uint2(0,-1);
+    default: return uint2(0,1);
     }
 }
 #endif

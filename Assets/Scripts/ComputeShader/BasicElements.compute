@@ -4,53 +4,44 @@
 RWTexture2D<float4> Result;
 int seed;
 
-void updateSand(uint3 id);
-void updateGas(uint3 id);
-void updateWater(uint3 id);
-
-[numthreads(8,8,1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
+bool checkKind(uint2 id,uint kind)
 {
-    uint kind=value2Kind(Result[id.xy]);
-    switch (kind)
-    {
-    case ELE_SAND:  updateSand(id);  break;
-    case ELE_GAS:   updateGas(id);   break;
-    case ELE_WATER: updateWater(id); break;
-    default: break;
-    }
+    return value2Kind(Result[id.xy])==kind;
+}
+
+void exchange(uint2 id,uint2 nbrId)
+{
+    float temp=Result[id.xy].x;
+    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
+    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(kind2Value(kind),ori.yzw);
 }
 
 void updateSand(uint3 id)
 {
-    float4 ori=Result[id.xy];
-    float4 nbr=Result[down(id)];
     //重力
-    if(isEmpty(nbr))
+    if(isEmpty(Result[down(id)]))
     {
-        Result[id.xy]=float4(nbr.x,ori.yzw);
-        Result[down(id)]= float4(kind2Value(ELE_SAND),ori.yzw);
+        exchange(id.xy,down(id));
     }
-    else if(isLiquid(nbr))
+    else if(isLiquid(Result[down(id)]))
     {
-        Result[id.xy]=float4(nbr.x,ori.yzw);
-        Result[down(id)]=float4(kind2Value(ELE_SAND),nbr.yzw);
+        exchange(id.xy,down(id));
     }
 }
 
 void updateGas(uint3 id)
 {
-    //漂浮
-    float4 ori=Result[id.xy];
-    uint2 vec=randVector(id,seed);
-    float4 nbr=Result[vec];
-    if(canPass(nbr))
+    //随机游动
+    uint2 vec=randDir(id,seed);
+    if(canPass(Result[(id.xy+vec)])&&!checkKind(id.xy+vec*2,ELE_GAS))
     {
-        if(rand(id,seed)>0.01f)
-        {
-            Result[id.xy]=float4(nbr.x,ori.yzw);
-        }
-        Result[vec]=float4(kind2Value(ELE_GAS),nbr.yzw);
+        exchange(id.xy,id.xy+vec);
     }
 }
 
@@ -62,33 +53,47 @@ void updateWater(uint3 id)
     //重力
     if(isAir(nbr))
     {
-        Result[id.xy]=float4(nbr.x,ori.yzw);
-        Result[down(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
+        exchange(id.xy,down(id));
+        return;
+    }
+    if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
+    {
+        if(rand(id,seed)>0.5f&&!checkKind(left_2(id),ELE_WATER))
+        {
+            exchange(id.xy,left(id));
+        }
+        else if(!checkKind(right_2(id),ELE_WATER))
+        {
+            exchange(id.xy,right(id));
+        }
+        
         return;
     }
     
-    //流体
-    if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
-        return;
-    
+    //扩散
     nbr=Result[left(id)];
-    if(isAir(nbr))
+    if(isAir(nbr)&&!checkKind(left_2(id),ELE_WATER))
     {
-        if(rand(id,seed)>0.4f)
-        {
-            Result[id.xy]=float4(nbr.x,ori.yzw);
-            Result[left(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
-        }
+        exchange(id.xy,left(id));
         return;
     }
     nbr=Result[right(id)];
-    if(isAir(nbr))
+    if(isAir(nbr)&&!checkKind(right_2(id),ELE_WATER))
     {
-        if(rand(id,seed)>0.4f)
-        {
-            Result[id.xy]=float4(nbr.x,ori.yzw);
-            Result[right(id)]=float4(kind2Value(ELE_WATER),nbr.yzw);
-        }        
+        exchange(id.xy,right(id));
         return;
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    uint kind=value2Kind(Result[id.xy]);
+    switch (kind)
+    {
+    case ELE_SAND:  updateSand(id);  break;
+    case ELE_GAS:   updateGas(id);   break;
+    case ELE_WATER: updateWater(id); break;
+    default: break;
     }
 }
