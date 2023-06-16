@@ -24,8 +24,9 @@ public class EvoBrush : EvoluteLayer
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
         inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
-        computeShader.SetTexture(kernelClear, "Result", texture);
         kernelClear = computeShader.FindKernel("Clear");
+        computeShader.SetTexture(kernelClear, "Result", texture);
+        
         BrushBinder.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
         BrushBinder.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
         base.Init(texture);

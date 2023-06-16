@@ -3,6 +3,7 @@
 
 RWTexture2D<float4> Result;
 int seed;
+int mode;
 
 bool checkKind(uint2 id,uint kind)
 {
@@ -39,7 +40,7 @@ void updateGas(uint3 id)
 {
     //随机游动
     uint2 vec=randDir(id,seed);
-    if(canPass(Result[(id.xy+vec)])&&!checkKind(id.xy+vec*2,ELE_GAS))
+    if(canPass(Result[(id.xy+vec)]))
     {
         exchange(id.xy,id.xy+vec);
     }
@@ -58,11 +59,11 @@ void updateWater(uint3 id)
     }
     if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
     {
-        if(rand(id,seed)>0.5f&&!checkKind(left_2(id),ELE_WATER))
+        if(rand(id,seed)>0.5f)
         {
             exchange(id.xy,left(id));
         }
-        else if(!checkKind(right_2(id),ELE_WATER))
+        else
         {
             exchange(id.xy,right(id));
         }
@@ -72,13 +73,13 @@ void updateWater(uint3 id)
     
     //扩散
     nbr=Result[left(id)];
-    if(isAir(nbr)&&!checkKind(left_2(id),ELE_WATER))
+    if(isAir(nbr))
     {
         exchange(id.xy,left(id));
         return;
     }
     nbr=Result[right(id)];
-    if(isAir(nbr)&&!checkKind(right_2(id),ELE_WATER))
+    if(isAir(nbr))
     {
         exchange(id.xy,right(id));
         return;
@@ -86,14 +87,22 @@ void updateWater(uint3 id)
 }
 
 [numthreads(8,8,1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
+void CSMain (uint3 id : SV_DispatchThreadID,
+             uint3 gId: SV_GroupThreadID)
 {
-    uint kind=value2Kind(Result[id.xy]);
-    switch (kind)
+    uint x=mode%3;
+    uint y=mode/3;
+
+    if((gId.x==x||gId.x==1+x||gId.x==4+x||gId.x==5+x)
+        &&(gId.y==y||gId.y==1+y||gId.y==4+y||gId.y==5+y))
     {
-    case ELE_SAND:  updateSand(id);  break;
-    case ELE_GAS:   updateGas(id);   break;
-    case ELE_WATER: updateWater(id); break;
-    default: break;
+        uint kind=value2Kind(Result[id.xy]);
+        switch (kind)
+        {
+        case ELE_SAND:  updateSand(id);  break;
+        case ELE_GAS:   updateGas(id);   break;
+        case ELE_WATER: updateWater(id); break;
+        default: break;
+        }
     }
 }
