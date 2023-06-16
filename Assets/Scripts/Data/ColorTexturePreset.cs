@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ColorTexturePreset : SerializedScriptableObject
 {
+    [ColorUsage(true, true)]
     [SerializeField] private List<Color> colors;
     [SerializeField] private int maxElementNum = 32;
 

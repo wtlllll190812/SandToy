@@ -5,7 +5,7 @@
 RWTexture2D<float4> Result;
 int seed;
 
-uint size;
+int size;
 uint kind;
 uint2 pos;
 
