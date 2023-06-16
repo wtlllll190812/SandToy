@@ -5,8 +5,6 @@ using System.Linq;
 
 public class MainMap : SerializedMonoBehaviour
 {
-    
-
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
     private GenNoise noiseGenerator;
@@ -14,12 +12,12 @@ public class MainMap : SerializedMonoBehaviour
     private int size;
     
     [SerializeField] private ColorTexturePreset colorTexturePreset;
-    [SerializeField] private List<EvoluteLayer> layers;
     
     private static readonly int MapTex = Shader.PropertyToID("_MapTex");
     private static readonly int ColorTex = Shader.PropertyToID("_ColorTex");
     private Material mainMaterial;
     private RenderTexture texture;
+    private List<EvoluteLayer> layers;
 
     private RenderTexture StartTexture
     {
@@ -36,6 +34,7 @@ public class MainMap : SerializedMonoBehaviour
         mainMaterial = GetComponent<SpriteRenderer>().material;
         mainMaterial.SetTexture(MapTex, StartTexture);
         mainMaterial.SetTexture(ColorTex, colorTexturePreset.GetTexture());
+        layers = GetComponents<EvoluteLayer>().ToList();
         foreach (var item in layers)
             item.Init(StartTexture);
     }

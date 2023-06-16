@@ -40,10 +40,20 @@ void setW(uint2 id,uint value)
     Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
 }
 
+void updateGas(uint3 id)
+{
+    //随机游动
+    uint2 vec=randDir(id,seed);
+    if(canPass(Result[(id.xy+vec)])&&canPass(Result[(id.xy+vec*2)]))
+    {
+        move(id.xy,id.xy+vec);
+    }
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // if(checkKind(id.xy,ELE_SAND))
-    //     updateSand(id);
+    if(checkKind(id.xy,ELE_GAS))
+        updateGas(id);
 }
 

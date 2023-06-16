@@ -40,10 +40,23 @@ void setW(uint2 id,uint value)
     Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
 }
 
+void updateSand(uint3 id)
+{
+    //重力
+    if(isEmpty(Result[down(id)]))
+    {
+        move(id.xy,down(id));
+    }
+    else if(isLiquid(Result[down(id)]))
+    {
+        move(id.xy,down(id));
+    }
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // if(checkKind(id.xy,ELE_SAND))
-    //     updateSand(id);
+    if(checkKind(id.xy,ELE_SAND))
+        updateSand(id);
 }
 

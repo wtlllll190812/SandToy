@@ -1,0 +1,94 @@
+#include "Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+int seed;
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy])==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float temp=Result[id.xy].x;
+    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
+    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}
+
+void updateWater(uint3 id)
+{
+    float4 ori=Result[id.xy];
+    
+    //重力
+    if(isAir(Result[down(id)]))
+    {
+        setY(id.xy,DIR_KEEP);
+        move(id.xy,down(id));
+    }
+    else if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
+    {
+        uint dir=float2int(ori.y);
+        bool moveLeft=dir==0?rand(id,seed)<0.5f:dir==1;
+        
+        if(moveLeft&&isAir(Result[left_2(id)])&&isAir(Result[leftUp(id)]))
+        {
+            setY(id.xy,DIR_LEFT);
+            move(id.xy,left(id));
+        }
+        else if(isAir(Result[right_2(id)])&&isAir(Result[rightUp(id)]))
+        {
+            setY(id.xy,DIR_RIGHT);
+            move(id.xy,right(id));
+        }
+        else
+        {
+            setY(id.xy,DIR_KEEP);
+        }
+    }
+    else if(isAir(Result[left(id)])&&isAir(Result[left_2(id)])&&isAir(Result[leftUp(id)]))
+    {
+        setY(id.xy,DIR_LEFT);
+        move(id.xy,left(id));
+    }
+    else if(isAir(Result[right(id)])&&isAir(Result[right_2(id)])&&isAir(Result[rightUp(id)]))
+    {
+        setY(id.xy,DIR_RIGHT);
+        move(id.xy,right(id));
+    }
+    else
+    {
+        setY(id.xy,DIR_KEEP);
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,ELE_WATER))
+        updateWater(id);
+}

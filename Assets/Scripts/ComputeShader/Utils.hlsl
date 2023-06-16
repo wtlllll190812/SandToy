@@ -1,6 +1,12 @@
 #ifndef UTILS_HLSL
 #define UTILS_HLSL
 
+#define DIR_KEEP 0
+#define DIR_LEFT 1
+#define DIR_RIGHT 2
+#define DIR_UP 3
+#define DIR_DOWN 4
+
 #define ELE_EMPTY 0
 #define ELE_WALL 1
 #define ELE_SAND 2
@@ -23,43 +29,43 @@ float rand(const uint3 id,int seed)
     return frac(sin(id.x + id.y+id.x*id.y + seed) * 210143.231231);
 }
 
-uint value2Kind(const float4 f)
+uint float2int(const float4 f)
 {
     return f.x*32;
 }
 
-float kind2Value(const uint kind)
+float int2float(const uint kind)
 {
     return (float)kind/32;
 }
 
 bool isEmpty(const float4 value)
 {
-    return value2Kind(value)==ELE_EMPTY;
+    return float2int(value)==ELE_EMPTY;
 }
 
 bool isLiquid(const float4 value)
 {
-    uint kind=value2Kind(value);
+    uint kind=float2int(value);
     return kind==ELE_GAS
             ||kind==ELE_WATER;
 }
 
 bool isGas(const float4 value)
 {
-    return value2Kind(value)==ELE_GAS;
+    return float2int(value)==ELE_GAS;
 }
 
 bool isAir(const float4 value)
 {
-    uint kind=value2Kind(value);
+    uint kind=float2int(value);
     return kind==ELE_EMPTY
             ||kind==ELE_GAS;
 }
 
 bool canPass(const float4 value)
 {
-    uint kind=value2Kind(value);
+    uint kind=float2int(value);
     return kind==ELE_EMPTY
         ||kind==ELE_SAND
         ||kind==ELE_WATER;
