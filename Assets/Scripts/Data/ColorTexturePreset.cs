@@ -8,16 +8,16 @@ public class ColorTexturePreset : SerializedScriptableObject
 {
     [SerializeField] private List<Color> colors;
     [SerializeField] private int maxElementNum = 32;
-    
+
     private void Reset()
     {
         colors = new List<Color>();
-        for (var i = 0; i < maxElementNum; i++)
+        for (var i = 0; i < maxElementNum - colors.Count; i++)
         {
             colors.Add(Color.white);
         }
     }
-    
+
     public Texture2D GetTexture()
     {
         var colorTex = new Texture2D(maxElementNum, 1)

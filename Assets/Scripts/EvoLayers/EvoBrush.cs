@@ -7,10 +7,11 @@ public class EvoBrush : EvoluteLayer
     [SerializeField] private int ppu = 100;
     [SerializeField] private Camera cam;
     [SerializeField] private InputActionAsset inputSetting;
-    [SerializeField] private Species currentSpecie;
     [SerializeField] private Vector2 brushOffset;
-    [SerializeField] private int brushSize;
+    [SerializeField] private int maxBrushSize;
     
+    private int brushSize;
+    private Species currentSpecie;
     private InputAction paint;
     private Collider2D col;
     private bool pressed;
@@ -23,8 +24,10 @@ public class EvoBrush : EvoluteLayer
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
         inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
-        kernelClear = computeShader.FindKernel("Clear");
         computeShader.SetTexture(kernelClear, "Result", texture);
+        kernelClear = computeShader.FindKernel("Clear");
+        BrushBinder.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
+        BrushBinder.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
         base.Init(texture);
     }
 
@@ -81,6 +84,5 @@ public class EvoBrush : EvoluteLayer
         var pixelId = new Vector2Int(width / 2 + (int) (hitPoint.x * ppu),
             height / 2 + (int) (hitPoint.y * ppu));
         return pixelId;
-
     }
 }
