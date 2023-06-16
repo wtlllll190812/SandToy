@@ -53,35 +53,42 @@ void updateWater(uint3 id)
     //重力
     if(isAir(nbr))
     {
+        Result[id.xy]=float4(ori.x,kind2Value(0),Result[id.xy].zw);
         exchange(id.xy,down(id));
-        return;
     }
-    if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
+    else if(isAir(Result[left(id)])&&isAir(Result[right(id)]))
     {
-        if(rand(id,seed)>0.5f&&!checkKind(left_2(id),ELE_WATER))
+        uint dir=value2Kind(ori.y);
+        bool moveLeft=dir==0?rand(id,seed)<0.5f:dir==1;
+        
+        if(moveLeft&&!checkKind(left_2(id),ELE_WATER))
         {
+            Result[id.xy]=float4(ori.x,kind2Value(1),Result[id.xy].zw);
             exchange(id.xy,left(id));
         }
         else if(!checkKind(right_2(id),ELE_WATER))
         {
+            Result[id.xy]=float4(ori.x,kind2Value(2),Result[id.xy].zw);
             exchange(id.xy,right(id));
         }
-        
-        return;
+        else
+        {
+            Result[id.xy]=float4(ori.x,kind2Value(0),Result[id.xy].zw);
+        }
     }
-    
-    //扩散
-    nbr=Result[left(id)];
-    if(isAir(nbr)&&!checkKind(left_2(id),ELE_WATER))
+    else if(isAir(Result[left(id)])&&!checkKind(left_2(id),ELE_WATER))
     {
+        Result[id.xy]=float4(ori.x,kind2Value(1),Result[id.xy].zw);
         exchange(id.xy,left(id));
-        return;
     }
-    nbr=Result[right(id)];
-    if(isAir(nbr)&&!checkKind(right_2(id),ELE_WATER))
+    else if(isAir(Result[right(id)])&&!checkKind(right_2(id),ELE_WATER))
     {
+        Result[id.xy]=float4(ori.x,kind2Value(2),Result[id.xy].zw);
         exchange(id.xy,right(id));
-        return;
+    }
+    else
+    {
+        Result[id.xy]=float4(ori.x,kind2Value(0),Result[id.xy].zw);
     }
 }
 
