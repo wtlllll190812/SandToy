@@ -6,22 +6,22 @@ RWTexture2D<float4> Result;
 int seed;
 
 //浸润
-void soak(uint3 id)
+void soak(uint3 id,uint kind)
 {
     uint2 vec=randDir(id,seed);
     uint2 nbrId=id.xy+vec;
     if(checkKind(nbrId,WATER))
     {
         // y表示潮湿度
-        setKind(id.xy,WET_SAND);
+        setKind(id.xy,kind);
         setY(id.xy,SOAKDISTANCE);
     }
-    else if(checkKind(nbrId,WET_SAND))
+    else if(checkKind(nbrId,kind))
     {
         uint wet=Result[nbrId].y*ELEMENT_NUMBER;
         if(wet>0)
         {
-            setKind(id.xy,WET_SAND);
+            setKind(id.xy,kind);
             setY(id.xy,wet-1);
         }
     }
@@ -40,8 +40,13 @@ void updateSand(uint3 id)
     }
     else 
     {
-        soak(id);
+        soak(id,WET_SAND);
     }
+}
+
+void updateMud(uint3 id)
+{
+    soak(id,WET_SAND);
 }
 
 [numthreads(8,8,1)]
@@ -49,6 +54,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 {
     if(checkKind(id.xy,SAND))
         updateSand(id);
+    else if(checkKind(id.xy,MUD))
+        updateMud(id);
 }
 
 
