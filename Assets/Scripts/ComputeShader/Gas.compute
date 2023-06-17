@@ -21,9 +21,18 @@ void updateGas(uint3 id)
 {
     //随机游动
     uint2 vec=randDirUp(id,seed);
-    if(canPass(Result[(id.xy+vec)])&&canPass(Result[(id.xy+vec*2)]))
+    uint2 nbrId=id.xy+vec;
+    if(canPass(Result[nbrId]))
     {
-        move(id.xy,id.xy+vec);
+        setKind(nbrId,GAS);
+        uint number=Result[nbrId].y*ELEMENT_NUMBER;
+        setY(nbrId,number+1);
+        number=Result[id.xy].y*ELEMENT_NUMBER;
+        setY(id.xy,number-1);            
+        if(number<=1)
+        {
+            setKind(id.xy,EMPTY);
+        }
     }
 }
 
