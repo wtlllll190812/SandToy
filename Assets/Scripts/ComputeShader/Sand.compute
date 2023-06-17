@@ -1,12 +1,60 @@
 #include "Utils.hlsl"
 #pragma kernel CSMain
 
+#define SOAKDISTANCE 10
 RWTexture2D<float4> Result;
 int seed;
 
+//浸润
+void soak(uint3 id)
+{
+    uint2 vec=randDir(id,seed);
+    uint2 nbrId=id.xy+vec;
+    if(checkKind(nbrId,WATER))
+    {
+        // y表示潮湿度
+        setKind(id.xy,WET_SAND);
+        setY(id.xy,SOAKDISTANCE);
+    }
+    else if(checkKind(nbrId,WET_SAND))
+    {
+        uint wet=Result[nbrId].y*ELEMENT_NUMBER;
+        if(wet>0)
+        {
+            setKind(id.xy,WET_SAND);
+            setY(id.xy,wet-1);
+        }
+    }
+}
+
+void updateSand(uint3 id)
+{
+    //重力
+    if(isEmpty(Result[down(id)]))
+    {
+        move(id.xy,down(id));
+    }
+    else if(isLiquid(Result[down(id)]))
+    {
+        move(id.xy,down(id));
+    }
+    else 
+    {
+        soak(id);
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,SAND))
+        updateSand(id);
+}
+
+
 bool checkKind(uint2 id,uint kind)
 {
-    return float2int(Result[id.xy])==kind;
+    return float2int(Result[id.xy].x)==kind;
 }
 
 void move(uint2 id,uint2 nbrId)
@@ -39,24 +87,3 @@ void setW(uint2 id,uint value)
     float4 ori=Result[id.xy];
     Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
 }
-
-void updateSand(uint3 id)
-{
-    //重力
-    if(isEmpty(Result[down(id)]))
-    {
-        move(id.xy,down(id));
-    }
-    else if(isLiquid(Result[down(id)]))
-    {
-        move(id.xy,down(id));
-    }
-}
-
-[numthreads(8,8,1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
-{
-    if(checkKind(id.xy,SAND))
-        updateSand(id);
-}
-

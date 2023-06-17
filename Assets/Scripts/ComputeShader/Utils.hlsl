@@ -51,14 +51,21 @@ uint2 rightUp(const uint3 id){return id.xy+uint2(1,1);}
 uint2 leftDown(const uint3 id){return id.xy+uint2(-1,-1);}
 uint2 rightDown(const uint3 id){return id.xy+uint2(1,-1);}
 
+bool checkKind(uint2 id,uint kind);
+void move(uint2 id,uint2 nbrId);
+void setKind(uint2 id,uint kind);
+void setY(uint2 id,uint value);
+void setZ(uint2 id,uint value);
+void setW(uint2 id,uint value);
+
 float rand(const uint3 id,int seed)
 {
     return frac(sin(id.x + id.y+id.x*id.y + seed) * 210143.231231);
 }
 
-uint float2int(const float4 f)
+uint float2int(const float f)
 {
-    return f.x*ELEMENT_NUMBER;
+    return f*ELEMENT_NUMBER;
 }
 
 float int2float(const uint kind)
@@ -68,31 +75,31 @@ float int2float(const uint kind)
 
 bool isEmpty(const float4 value)
 {
-    return float2int(value)==EMPTY;
+    return float2int(value.x)==EMPTY;
 }
 
 bool isLiquid(const float4 value)
 {
-    uint kind=float2int(value);
+    uint kind=float2int(value.x);
     return kind==GAS
             ||kind==WATER;
 }
 
 bool isGas(const float4 value)
 {
-    return float2int(value)==GAS;
+    return float2int(value.x)==GAS;
 }
 
 bool isAir(const float4 value)
 {
-    uint kind=float2int(value);
+    uint kind=float2int(value.x);
     return kind==EMPTY
             ||kind==GAS;
 }
 
 bool canPass(const float4 value)
 {
-    uint kind=float2int(value);
+    uint kind=float2int(value.x);
     return kind==EMPTY
         ||kind==SAND
         ||kind==WATER;
@@ -100,14 +107,14 @@ bool canPass(const float4 value)
 
 uint2 randDir(uint3 id,int seed)
 {
-    uint value= floor(rand(id,seed)*5);
+    uint value= floor(rand(id,seed)*4);
     switch (value)
     {
     case 0:return uint2(0,1);
     case 1:return uint2(1,0);
     case 2:return uint2(-1,0);
     case 3:return uint2(0,-1);
-    default: return uint2(0,1);
+    default: return uint2(0,0);
     }
 }
 #endif

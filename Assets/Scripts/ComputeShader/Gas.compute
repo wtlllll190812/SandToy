@@ -4,9 +4,39 @@
 RWTexture2D<float4> Result;
 int seed;
 
+uint2 randDirUp(uint3 id,int seed)
+{
+    uint value= floor(rand(id,seed)*5);
+    switch (value)
+    {
+    case 0:return uint2(0,1);
+    case 1:return uint2(1,0);
+    case 2:return uint2(-1,0);
+    case 3:return uint2(0,-1);
+    default: return uint2(0,1);
+    }
+}
+
+void updateGas(uint3 id)
+{
+    //随机游动
+    uint2 vec=randDirUp(id,seed);
+    if(canPass(Result[(id.xy+vec)])&&canPass(Result[(id.xy+vec*2)]))
+    {
+        move(id.xy,id.xy+vec);
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,GAS))
+        updateGas(id);
+}
+
 bool checkKind(uint2 id,uint kind)
 {
-    return float2int(Result[id.xy])==kind;
+    return float2int(Result[id.xy].x)==kind;
 }
 
 void move(uint2 id,uint2 nbrId)
@@ -39,21 +69,3 @@ void setW(uint2 id,uint value)
     float4 ori=Result[id.xy];
     Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
 }
-
-void updateGas(uint3 id)
-{
-    //随机游动
-    uint2 vec=randDir(id,seed);
-    if(canPass(Result[(id.xy+vec)])&&canPass(Result[(id.xy+vec*2)]))
-    {
-        move(id.xy,id.xy+vec);
-    }
-}
-
-[numthreads(8,8,1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
-{
-    if(checkKind(id.xy,GAS))
-        updateGas(id);
-}
-
