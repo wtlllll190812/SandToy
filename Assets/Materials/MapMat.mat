@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MapMat
-  m_Shader: {fileID: 4800000, guid: f7332f66380af3a4390fbd209bd8f94e, type: 3}
+  m_Shader: {fileID: 4800000, guid: e45e899f35d048f2bc396ff99affd068, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,11 +19,20 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MapTex:
+    - _ColorTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: ad407356e4f2a414eb9ca3bb80378f2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MapTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -50,6 +61,7 @@ Material:
     - _Color1: {r: 0.27860448, g: 0.75415516, b: 0.8584906, a: 0}
     - _Color2: {r: 0.9528302, g: 0.8913404, b: 0.5968672, a: 1}
     - _Color3: {r: 0.49345636, g: 0.9245283, b: 0.448309, a: 0}
+    - _EmptyColor: {r: 0.5754717, g: 0.56678534, b: 0.56678534, a: 1}
     - _ForestColor: {r: 0.14509803, g: 0.5647059, b: 0.15473531, a: 1}
     - _FrieColor: {r: 1, g: 0.5701765, b: 0.19245279, a: 1}
     - _GrassColor: {r: 0.20484152, g: 0.7924528, b: 0.28721687, a: 1}
@@ -57,7 +69,7 @@ Material:
     - _MoutainColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     - _OceanColor: {r: 0.26165894, g: 0.7629729, b: 0.9433962, a: 1}
     - _PlanetColor: {r: 0.3501424, g: 0.7830189, b: 0.43165803, a: 1}
-    - _SandColor: {r: 0.83040833, g: 0.8396226, b: 0.4467426, a: 1}
+    - _SandColor: {r: 0.8396226, g: 0.742969, b: 0.21703447, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1721330123087496686
 MonoBehaviour:
@@ -71,4 +83,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 7

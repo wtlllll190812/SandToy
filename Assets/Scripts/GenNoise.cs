@@ -16,9 +16,9 @@ public class GenNoise : MonoBehaviour
     public TextureSize size = TextureSize.x512;
     public float scale = 10f;
     public int seed;
-    public string path ;
+    public string path;
 
-    [HideInInspector]public RenderTexture renderTexture;
+    [HideInInspector] public RenderTexture renderTexture;
 
     public void Awake()
     {
@@ -27,17 +27,17 @@ public class GenNoise : MonoBehaviour
 
     void Init()
     {
-        if(renderTexture!=null)
+        if (renderTexture != null)
             renderTexture.Release();
-        renderTexture = CreateRT((int)size);
+        renderTexture = RenderTextureUtils.CreateRT((int) size, format);
         int kernel = computeShader.FindKernel("GenNoise");
         computeShader.SetTexture(kernel, "Texture", renderTexture);
-        computeShader.SetInt("size", (int)size);
+        computeShader.SetInt("size", (int) size);
         computeShader.SetFloat("scale", scale * 10f);
-        computeShader.SetFloat("seed", (float)seed/10000);
-        computeShader.SetInt("Type", (int)noiseType);
-        computeShader.SetInt("State", (int)generation);
-        computeShader.Dispatch(kernel, (int)size / 8, (int)size / 8, 1);
+        computeShader.SetFloat("seed", (float) seed / 10000);
+        computeShader.SetInt("Type", (int) noiseType);
+        computeShader.SetInt("State", (int) generation);
+        computeShader.Dispatch(kernel, (int) size / 8, (int) size / 8, 1);
     }
 
     private void OnDisable()
@@ -59,15 +59,5 @@ public class GenNoise : MonoBehaviour
 
         byte[] bytes = texture.EncodeToTGA();
         File.WriteAllBytes(path, bytes);
-    }
-
-    private RenderTexture CreateRT(int size)
-    {
-        RenderTexture renderTexture = new RenderTexture(size, size, 0, format);
-        renderTexture.enableRandomWrite = true;
-        renderTexture.filterMode = FilterMode.Point;
-        renderTexture.wrapMode = TextureWrapMode.Repeat;
-        renderTexture.Create();
-        return renderTexture;
     }
 }

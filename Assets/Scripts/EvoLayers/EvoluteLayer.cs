@@ -1,24 +1,44 @@
 using UnityEngine;
-using System.Collections;
-using Sirenix.OdinInspector;
-using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 [System.Serializable]
 public abstract class EvoluteLayer : MonoBehaviour
 {
     [SerializeField] protected ComputeShader computeShader;
+    [SerializeField] protected int fps = 1;
+    [SerializeField] private bool setOn = true;
+    [SerializeField] private bool onDebug;
     protected int kernel;
+    protected MainMap mainMap;
+    private float currentTime = 0;
 
-    public virtual void Init()
+    public bool ready
     {
-        kernel = computeShader.FindKernel("CSMain");
+        get
+        {
+            currentTime += Time.deltaTime;
+            if (!(currentTime >= 1f / fps)) return false;
+            currentTime = 0;
+            return true && setOn;
+        }
     }
 
-    public virtual void Execute(RenderTexture texture, MainMap map, int seed)
+    public virtual void Init(MainMap map)
     {
+        mainMap = map;
+        kernel = computeShader.FindKernel("CSMain");
+        computeShader.SetTexture(kernel, "Result", map.BasicTexture);
+        computeShader.SetTexture(kernel, "Environment", map.EnvironmentTexture);
+    }
+
+    public virtual void Execute(int seed)
+    {
+        if (onDebug)
+        {
+            computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
+            computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
+        }
+
         computeShader.SetInt("seed", seed);
-        computeShader.SetTexture(kernel, "Result", texture);
-        computeShader.Dispatch(kernel, texture.width / 8, texture.height / 8, 1);
+        computeShader.Dispatch(kernel, mainMap.BasicTexture.width / 8, mainMap.BasicTexture.height / 8, 1);
     }
 }

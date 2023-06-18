@@ -1,0 +1,73 @@
+#include "Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+int seed;
+
+void ramble(uint3 id,uint kind,uint mode)
+{
+    //随机游动
+    uint2 vec=randDir(id,seed,mode);
+    uint2 nbrId=id.xy+vec;
+    
+    if(canPass(Result[nbrId]))
+    {
+        uint tempKind=float2int(Result[nbrId].x);
+        setKind(nbrId,kind);
+        uint number=Result[nbrId].y*ELEMENT_NUMBER;
+        setY(nbrId,number+1);
+        number=Result[id.xy].y*ELEMENT_NUMBER;
+        setY(id.xy,number-1);            
+        if(number<=1)
+        {
+            setKind(id.xy,tempKind);
+        }
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,GAS))
+        ramble(id,GAS,DIR_KEEP);
+    else if(checkKind(id.xy,STEAM))
+        ramble(id,STEAM,DIR_UP);
+    else if(checkKind(id.xy,POISON_GAS))
+        ramble(id,POISON_GAS,DIR_DOWN);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float temp=Result[id.xy].x;
+    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
+    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}

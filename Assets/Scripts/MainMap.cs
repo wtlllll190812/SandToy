@@ -1,41 +1,55 @@
+using System;
 using UnityEngine;
-using System.Collections;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class MainMap : SerializedMonoBehaviour
 {
-    [SerializeField] private GenNoise noiseGenerator;
-    [SerializeField] private float updateTime = 1;
-    [SerializeField] private List<EvoluteLayer> layers;
+    [SerializeField] private Displayer displayer;
+    [SerializeField] private bool useNoiseGenerator;
+    [SerializeField] [ShowIf("@useNoiseGenerator==true")]
+    private GenNoise noiseGenerator;
+    [SerializeField] [ShowIf("@useNoiseGenerator==false")]
+    private int size;
+    
+    private RenderTexture texture;
+    private List<EvoluteLayer> layers;
 
+    public RenderTexture BasicTexture
+    {
+        get
+        {
+            if (!useNoiseGenerator)
+                texture ??= RenderTextureUtils.CreateRT(size);
+            return useNoiseGenerator ? noiseGenerator.renderTexture : texture;
+        }
+    }
 
-    private static readonly int MapTex = Shader.PropertyToID("_MapTex");
-    private Material mainMaterial;
+    public RenderTexture EnvironmentTexture { private set; get; }
+
+    private void Awake()
+    {
+        EnvironmentTexture = RenderTextureUtils.CreateRT(size);
+    }
 
     private void Start()
     {
-        mainMaterial = GetComponent<SpriteRenderer>().material;
-        mainMaterial.SetTexture(MapTex, noiseGenerator.renderTexture);
+        displayer.Init(this);
+        layers = GetComponents<EvoluteLayer>().ToList();
         foreach (var item in layers)
-            item.Init();
-
-        StartCoroutine(Evolute());
+            item.Init(this);
     }
 
-    private IEnumerator Evolute()
+    private void Update()
     {
-        while (layers.Count > 0)
+        var seed = Random.Range(0, 10000);
+        foreach (var item in layers.Where(item => item.enabled))
         {
-            int seed = Random.Range(0, 10000);
-            foreach (var item in layers.Where(item => item.enabled))
-            {
-                item.Execute(noiseGenerator.renderTexture, this, seed);
-            }
-
-            mainMaterial.SetTexture(MapTex, noiseGenerator.renderTexture);
-            yield return new WaitForSeconds(updateTime);
+            if (!item.ready) continue;
+            item.Execute(seed);
         }
     }
 }
