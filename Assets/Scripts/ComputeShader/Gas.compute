@@ -9,8 +9,10 @@ void ramble(uint3 id,uint kind,uint mode)
     //随机游动
     uint2 vec=randDir(id,seed,mode);
     uint2 nbrId=id.xy+vec;
+    
     if(canPass(Result[nbrId]))
     {
+        uint tempKind=float2int(Result[nbrId].x);
         setKind(nbrId,kind);
         uint number=Result[nbrId].y*ELEMENT_NUMBER;
         setY(nbrId,number+1);
@@ -18,7 +20,7 @@ void ramble(uint3 id,uint kind,uint mode)
         setY(id.xy,number-1);            
         if(number<=1)
         {
-            setKind(id.xy,EMPTY);
+            setKind(id.xy,tempKind);
         }
     }
 }
