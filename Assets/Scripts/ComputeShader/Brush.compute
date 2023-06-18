@@ -3,6 +3,7 @@
 #pragma kernel Clear
 
 RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
 int seed;
 
 int size;
@@ -13,7 +14,7 @@ uint2 pos;
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
   if(distance(id.xy,pos)<size)
-        Result[id.xy]=float4(int2float(kind),0,0,0);
+        Environment[id.xy]=float4(int2float(kind),0,0,0);
 }
 
 [numthreads(8,8,1)]

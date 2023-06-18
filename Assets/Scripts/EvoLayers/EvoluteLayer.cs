@@ -5,6 +5,7 @@ public abstract class EvoluteLayer : MonoBehaviour
 {
     [SerializeField] protected ComputeShader computeShader;
     [SerializeField] protected int fps = 1;
+    [SerializeField] private bool setOn = true;
     [SerializeField] private bool onDebug;
     protected int kernel;
     protected MainMap mainMap;
@@ -17,7 +18,7 @@ public abstract class EvoluteLayer : MonoBehaviour
             currentTime += Time.deltaTime;
             if (!(currentTime >= 1f / fps)) return false;
             currentTime = 0;
-            return true;
+            return true && setOn;
         }
     }
 
@@ -34,6 +35,7 @@ public abstract class EvoluteLayer : MonoBehaviour
         if (onDebug)
         {
             computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
+            computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
         }
 
         computeShader.SetInt("seed", seed);

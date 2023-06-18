@@ -2,13 +2,26 @@
 #pragma kernel CSMain
 
 RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
 int seed;
+
+float average(float a,float b,float c,float d);
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // if(checkKind(id.xy,SAND))
-        // updateSand(id);
+    float upT=Environment[up(id)].x;
+    float downT=Environment[down(id)].x;
+    float leftT=Environment[left(id)].x;
+    float rightT=Environment[right(id)].x;
+    
+    Environment[id.xy]=float4(average(upT,downT,leftT,rightT),Result[id.xy].yzw);
+    Environment[uint2(128,128)]=float4(1,0,0,0);
+}
+
+float average(float a,float b,float c,float d)
+{
+    return (a+b+c+d)/4;
 }
 
 bool checkKind(uint2 id,uint kind)

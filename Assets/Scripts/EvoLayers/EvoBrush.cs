@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 public class EvoBrush : EvoluteLayer
 {
     [SerializeField] private int ppu = 100;
-    [SerializeField] private Camera cam;
-    [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private Vector2 brushOffset;
     [SerializeField] private int maxBrushSize;
+    [SerializeField] private InputActionAsset inputSetting;
+    [SerializeField] private Collider2D col;
+    [SerializeField] private Camera cam;
 
     private int brushSize;
     private Species currentSpecie;
     private InputAction paint;
-    private Collider2D col;
     private bool pressed;
     private bool clear;
     private int kernelClear;
@@ -21,7 +21,6 @@ public class EvoBrush : EvoluteLayer
     public override void Init(MainMap map)
     {
         base.Init(map);
-        col = GetComponent<Collider2D>();
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
         inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;

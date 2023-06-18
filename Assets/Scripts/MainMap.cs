@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class MainMap : SerializedMonoBehaviour
 {
@@ -25,12 +27,17 @@ public class MainMap : SerializedMonoBehaviour
             return useNoiseGenerator ? noiseGenerator.renderTexture : texture;
         }
     }
-    public RenderTexture EnvironmentTexture { private set;get; }
+
+    public RenderTexture EnvironmentTexture { private set; get; }
+
+    private void Awake()
+    {
+        EnvironmentTexture = RenderTextureUtils.CreateRT(size);
+    }
 
     private void Start()
     {
         displayer.Init(this);
-        EnvironmentTexture = RenderTextureUtils.CreateRT(size);
         layers = GetComponents<EvoluteLayer>().ToList();
         foreach (var item in layers)
             item.Init(this);

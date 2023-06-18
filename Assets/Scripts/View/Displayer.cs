@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Displayer : MonoBehaviour
@@ -24,9 +25,11 @@ public class Displayer : MonoBehaviour
         mainMaterial.SetTexture(MapTex, mainMap.BasicTexture);
         mainMaterial.SetTexture(ColorTex, colorTexturePreset.GetTexture());
         temperatureMaterial.SetTexture(MapTex, mainMap.EnvironmentTexture);
-        spriteRenderer.material = mainMaterial;
+        // spriteRenderer.material = mainMaterial;
+        spriteRenderer.material = temperatureMaterial;
     }
 
+    [Button]
     public void ChangeDisplayMode(DisplayMode mode)
     {
         switch (mode)
