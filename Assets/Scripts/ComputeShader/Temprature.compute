@@ -6,32 +6,58 @@ RWTexture2D<float4> Environment;
 int seed;
 int maxQ;
 #define K 1
-#define C 8
 #define SQRT2 1.414213
+
+float getHeatAttrK(uint2 id)
+{
+    uint kind=float2int(Result[id.xy].x);
+    if(kind==SAND
+        ||kind==MUD
+        ||kind==WET_SAND
+        ||kind==WET_MUD)
+            return 0.6f;
+
+    if(kind == GAS
+        ||kind==POISON_GAS
+        ||kind==STEAM)
+            return 0.9;
+    
+    if(kind==WATER
+        ||kind==ICE
+        ||kind==ACID
+        ||kind==MAGMA
+        ||kind==OIL)
+            return 0.2f;
+
+    if(kind==BEDROCK)
+        return 0;
+    
+    return 1;
+}
 
 void transferHeat(uint3 id)
 {
     float t=Environment[id.xy].x;
-    float tr=Environment[right(id)].x;
-    float tl=Environment[left(id)].x;
-    float tu=Environment[up(id)].x;
-    float td=Environment[down(id)].x;
-    float tlu=Environment[leftUp(id)].x;
-    float tld=Environment[leftDown(id)].x;
-    float tru=Environment[rightUp(id)].x;
-    float trd=Environment[rightDown(id)].x;
+    float tr=(Environment[right(id)].x-t)*getHeatAttrK(right(id));
+    float tl=(Environment[left(id)].x-t)*getHeatAttrK(left(id));
+    float tu=(Environment[up(id)].x-t)*getHeatAttrK(up(id));
+    float td=(Environment[down(id)].x-t)*getHeatAttrK(down(id));
+    float tlu=(Environment[leftUp(id)].x-t)*getHeatAttrK(leftUp(id))/SQRT2;
+    float tld=(Environment[leftDown(id)].x-t)*getHeatAttrK(leftDown(id))/SQRT2;
+    float tru=(Environment[rightUp(id)].x-t)*getHeatAttrK(rightUp(id))/SQRT2;
+    float trd=(Environment[rightDown(id)].x-t)*getHeatAttrK(rightDown(id))/SQRT2;
     
-    float q=K*(tr+tl+tu+td-4*t)+K/SQRT2*(tlu+tld+tru+trd-4*t);
+    float q=t+(tr+tl+tu+td+tlu+tld+tru+trd)/8*getHeatAttrK(id.xy);
     
-    Environment[id.xy]=float4(t+q/C,0,0,0);
+    Environment[id.xy]=float4(q,0,0,0);
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(id.x==128&&id.y==128)
+    if(id.x%20==0&&id.y%20==0)
     {
-        Environment[id.xy]=float4(5,0,0,0);
+        Environment[id.xy]=float4(1,0,0,0);
     }
     else
     {

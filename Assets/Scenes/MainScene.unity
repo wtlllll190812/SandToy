@@ -3058,7 +3058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: c47fb35617cb4a05897cea6517ff2f1a, type: 3}
-  fps: 10
+  fps: 60
   setOn: 1
   onDebug: 1
   maxQ: 1
