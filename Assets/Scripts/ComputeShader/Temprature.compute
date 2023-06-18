@@ -4,58 +4,40 @@
 RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
+int maxQ;
 
-float average(float a,float b,float c,float d);
+void transferHeat(uint3 id,uint2 nbrId)
+{
+    float4 ori=Environment[id.xy];
+    float4 nbr=Environment[nbrId];
+    
+
+    float delta=ori.x-nbr.x;
+    Environment[nbrId]=float4(nbr.x+delta/2,nbr.yzw);
+    Environment[id.xy]=float4(ori.x-delta/2,ori.yzw);
+
+    // float delta=ori.x-nbr.x;
+    // if(abs(delta)<0.01f)return;
+    // float q=(delta>0 ?int2float(maxQ):-int2float(maxQ))*delta;
+    //
+    // Environment[nbrId]=float4(nbr.x+q,nbr.yzw);
+    // Environment[id.xy]=float4(ori.x-q,ori.yzw);
+}
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    float upT=Environment[up(id)].x;
-    float downT=Environment[down(id)].x;
-    float leftT=Environment[left(id)].x;
-    float rightT=Environment[right(id)].x;
-    
-    Environment[id.xy]=float4(average(upT,downT,leftT,rightT),Result[id.xy].yzw);
-    Environment[uint2(128,128)]=float4(1,0,0,0);
-}
-
-float average(float a,float b,float c,float d)
-{
-    return (a+b+c+d)/4;
-}
-
-bool checkKind(uint2 id,uint kind)
-{
-    return float2int(Result[id.xy].x)==kind;
-}
-
-void move(uint2 id,uint2 nbrId)
-{
-    float temp=Result[id.xy].x;
-    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
-    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
-}
-
-void setKind(uint2 id,uint kind)
-{
-    float4 ori=Result[id.xy];
-    Result[id.xy]=float4(int2float(kind),ori.yzw);
-}
-
-void setY(uint2 id,uint value)
-{
-    float4 ori=Result[id.xy];
-    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
-}
-
-void setZ(uint2 id,uint value)
-{
-    float4 ori=Result[id.xy];
-    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
-}
-
-void setW(uint2 id,uint value)
-{
-    float4 ori=Result[id.xy];
-    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+    if(id.x==128||id.y==128)
+    {
+        Environment[id.xy]=float4(5,0,0,0);
+    }
+    else
+    {
+        float t=Environment[id.xy].x;
+        float t1=Environment[up(id)].x;
+        float t2=Environment[down(id)].x;
+        float t3=Environment[left(id)].x;
+        float t4=Environment[right(id)].x;
+        Environment[id.xy]=float4(t+(t1+t2+t3+t4-4*t)/4,0,0,0);
+    }
 }

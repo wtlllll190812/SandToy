@@ -46,7 +46,7 @@ Shader "Custom/Temperature"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float temp=tex2D(_MapTex, i.uv).r;
+                float temp=sqrt(tex2D(_MapTex, i.uv).r);
                 float4 color=lerp(_LowColor, _HighColor, temp);
                 return color;
             }
