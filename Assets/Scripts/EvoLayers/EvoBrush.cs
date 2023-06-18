@@ -9,7 +9,7 @@ public class EvoBrush : EvoluteLayer
     [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private Vector2 brushOffset;
     [SerializeField] private int maxBrushSize;
-    
+
     private int brushSize;
     private Species currentSpecie;
     private InputAction paint;
@@ -18,34 +18,35 @@ public class EvoBrush : EvoluteLayer
     private bool clear;
     private int kernelClear;
 
-    public override void Init(RenderTexture texture)
+    public override void Init(MainMap map)
     {
+        base.Init(map);
         col = GetComponent<Collider2D>();
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
         inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
         kernelClear = computeShader.FindKernel("Clear");
-        computeShader.SetTexture(kernelClear, "Result", texture);
-        
+        computeShader.SetTexture(kernelClear, "Result", mainMap.BasicTexture);
+
         BrushBinder.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
         BrushBinder.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
-        base.Init(texture);
     }
 
-    public override void Execute(RenderTexture texture, MainMap map, int seed)
+    public override void Execute(int seed)
     {
         if (clear)
         {
-            computeShader.Dispatch(kernelClear, texture.width / 8, texture.height / 8, 1);
+            computeShader.Dispatch(kernelClear, mainMap.BasicTexture.width / 8, mainMap.BasicTexture.height / 8, 1);
             clear = false;
         }
+
         if (!pressed) return;
 
-        var pixelId = GetPixelID(texture.width, texture.height);
+        var pixelId = GetPixelID(mainMap.BasicTexture.width, mainMap.BasicTexture.height);
         computeShader.SetInt("kind", (int) currentSpecie);
         computeShader.SetInt("size", brushSize);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
-        base.Execute(texture, map, seed);
+        base.Execute(seed);
     }
 
     /// <summary>
@@ -55,7 +56,7 @@ public class EvoBrush : EvoluteLayer
     {
         clear = true;
     }
-    
+
     /// <summary>
     /// 开始绘画
     /// </summary>

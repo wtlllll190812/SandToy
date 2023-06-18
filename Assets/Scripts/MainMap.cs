@@ -2,24 +2,21 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class MainMap : SerializedMonoBehaviour
 {
+    [SerializeField] private Displayer displayer;
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
     private GenNoise noiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==false")]
     private int size;
     
-    [SerializeField] private ColorTexturePreset colorTexturePreset;
-    
-    private static readonly int MapTex = Shader.PropertyToID("_MapTex");
-    private static readonly int ColorTex = Shader.PropertyToID("_ColorTex");
-    private Material mainMaterial;
     private RenderTexture texture;
     private List<EvoluteLayer> layers;
 
-    private RenderTexture StartTexture
+    public RenderTexture BasicTexture
     {
         get
         {
@@ -28,15 +25,15 @@ public class MainMap : SerializedMonoBehaviour
             return useNoiseGenerator ? noiseGenerator.renderTexture : texture;
         }
     }
-    
+    public RenderTexture EnvironmentTexture { private set;get; }
+
     private void Start()
     {
-        mainMaterial = GetComponent<SpriteRenderer>().material;
-        mainMaterial.SetTexture(MapTex, StartTexture);
-        mainMaterial.SetTexture(ColorTex, colorTexturePreset.GetTexture());
+        displayer.Init(this);
+        EnvironmentTexture = RenderTextureUtils.CreateRT(size);
         layers = GetComponents<EvoluteLayer>().ToList();
         foreach (var item in layers)
-            item.Init(StartTexture);
+            item.Init(this);
     }
 
     private void Update()
@@ -45,7 +42,7 @@ public class MainMap : SerializedMonoBehaviour
         foreach (var item in layers.Where(item => item.enabled))
         {
             if (!item.ready) continue;
-            item.Execute(StartTexture, this, seed);
+            item.Execute(seed);
         }
     }
 }
