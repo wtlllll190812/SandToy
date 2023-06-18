@@ -2910,7 +2910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 09a50d962af342a4ad8159bf7c7c803b, type: 3}
   fps: 60
-  onDebug: 1
+  onDebug: 0
 --- !u!114 &2133715389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2925,7 +2925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 788b039b5e614287bd6271fd2915fc46, type: 3}
   fps: 60
-  onDebug: 0
+  onDebug: 1
 --- !u!114 &2133715390
 MonoBehaviour:
   m_ObjectHideFlags: 0

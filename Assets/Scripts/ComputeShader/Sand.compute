@@ -8,7 +8,7 @@ int seed;
 //浸润
 void soak(uint3 id,uint kind)
 {
-    uint2 vec=randDir(id,seed);
+    uint2 vec=randDir(id,seed,DIR_UP);
     uint2 nbrId=id.xy+vec;
     if(checkKind(nbrId,WATER))
     {

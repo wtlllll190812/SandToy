@@ -87,7 +87,10 @@ bool isLiquid(const float4 value)
 
 bool isGas(const float4 value)
 {
-    return float2int(value.x)==GAS;
+    uint kind=float2int(value.x);
+    return kind==GAS
+            ||kind==STEAM
+            ||kind==POISON_GAS;
 }
 
 bool isAir(const float4 value)
@@ -105,16 +108,16 @@ bool canPass(const float4 value)
         ||kind==WATER;
 }
 
-uint2 randDir(uint3 id,int seed)
+uint2 randDir(uint3 id,int seed,uint mode)
 {
-    uint value= floor(rand(id,seed)*4);
+    uint value= floor(rand(id,seed)*(mode==DIR_KEEP?4:5));
     switch (value)
     {
     case 0:return uint2(0,1);
     case 1:return uint2(1,0);
     case 2:return uint2(-1,0);
     case 3:return uint2(0,-1);
-    default: return uint2(0,0);
+    default: return mode==DIR_UP?uint2(0,1):uint2(0,-1);
     }
 }
 #endif

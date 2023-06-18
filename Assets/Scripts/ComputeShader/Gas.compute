@@ -4,27 +4,14 @@
 RWTexture2D<float4> Result;
 int seed;
 
-uint2 randDirUp(uint3 id,int seed)
-{
-    uint value= floor(rand(id,seed)*5);
-    switch (value)
-    {
-    case 0:return uint2(0,1);
-    case 1:return uint2(1,0);
-    case 2:return uint2(-1,0);
-    case 3:return uint2(0,-1);
-    default: return uint2(0,1);
-    }
-}
-
-void updateGas(uint3 id)
+void ramble(uint3 id,uint kind,uint mode)
 {
     //随机游动
-    uint2 vec=randDirUp(id,seed);
+    uint2 vec=randDir(id,seed,mode);
     uint2 nbrId=id.xy+vec;
     if(canPass(Result[nbrId]))
     {
-        setKind(nbrId,GAS);
+        setKind(nbrId,kind);
         uint number=Result[nbrId].y*ELEMENT_NUMBER;
         setY(nbrId,number+1);
         number=Result[id.xy].y*ELEMENT_NUMBER;
@@ -40,7 +27,11 @@ void updateGas(uint3 id)
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     if(checkKind(id.xy,GAS))
-        updateGas(id);
+        ramble(id,GAS,DIR_KEEP);
+    else if(checkKind(id.xy,STEAM))
+        ramble(id,STEAM,DIR_UP);
+    else if(checkKind(id.xy,POISON_GAS))
+        ramble(id,POISON_GAS,DIR_DOWN);
 }
 
 bool checkKind(uint2 id,uint kind)
