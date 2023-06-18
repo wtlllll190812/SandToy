@@ -34,6 +34,8 @@
 #define SEED 19
 #define FLOWER 20
 
+#define FIRE_SOURCE 26
+
 #define JIANMU 21
 #define LIHUO 22
 #define XIRANG 23

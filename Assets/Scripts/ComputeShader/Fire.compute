@@ -4,38 +4,22 @@
 RWTexture2D<float4> Result;
 int seed;
 
-void ramble(uint3 id,uint kind,uint mode)
+//y表示剩余火星数量
+void spawnFire(uint3 id)
 {
-    //随机游动
-    uint2 vec=randDir(id,seed,mode);
-    uint2 nbrId=id.xy+vec;
-    
-    if(canPass(Result[nbrId]))
+    float4 nbr=Result[up(id)];
+    if(isEmpty(nbr))
     {
-        uint tempKind=float2int(Result[nbrId].x);
-        setKind(nbrId,kind);
-        uint number=Result[nbrId].y*ELEMENT_NUMBER;
-        setY(nbrId,number+1);
-        number=Result[id.xy].y*ELEMENT_NUMBER;
-        setY(id.xy,number-1);            
-        if(number<=1)
-        {
-            setKind(id.xy,tempKind);
-        }
+        setKind(up(id),FIRE);
+        setY(id,Result[id.xy].y*ELEMENT_NUMBER-1);
     }
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,GAS))
-        ramble(id,GAS,DIR_KEEP);
-    else if(checkKind(id.xy,STEAM))
-        ramble(id,STEAM,DIR_UP);
-    else if(checkKind(id.xy,POISON_GAS))
-        ramble(id,POISON_GAS,DIR_DOWN);
-    else if(checkKind(id.xy,FIRE))
-        ramble(id,FIRE,DIR_UP);
+    if(checkKind(id.xy,FIRE_SOURCE))
+        spawnFire(id);
 }
 
 bool checkKind(uint2 id,uint kind)
