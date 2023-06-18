@@ -5,39 +5,36 @@ RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
 int maxQ;
+#define K 1
+#define C 8
+#define SQRT2 1.414213
 
-void transferHeat(uint3 id,uint2 nbrId)
+void transferHeat(uint3 id)
 {
-    float4 ori=Environment[id.xy];
-    float4 nbr=Environment[nbrId];
+    float t=Environment[id.xy].x;
+    float tr=Environment[right(id)].x;
+    float tl=Environment[left(id)].x;
+    float tu=Environment[up(id)].x;
+    float td=Environment[down(id)].x;
+    float tlu=Environment[leftUp(id)].x;
+    float tld=Environment[leftDown(id)].x;
+    float tru=Environment[rightUp(id)].x;
+    float trd=Environment[rightDown(id)].x;
     
-
-    float delta=ori.x-nbr.x;
-    Environment[nbrId]=float4(nbr.x+delta/2,nbr.yzw);
-    Environment[id.xy]=float4(ori.x-delta/2,ori.yzw);
-
-    // float delta=ori.x-nbr.x;
-    // if(abs(delta)<0.01f)return;
-    // float q=(delta>0 ?int2float(maxQ):-int2float(maxQ))*delta;
-    //
-    // Environment[nbrId]=float4(nbr.x+q,nbr.yzw);
-    // Environment[id.xy]=float4(ori.x-q,ori.yzw);
+    float q=K*(tr+tl+tu+td-4*t)+K/SQRT2*(tlu+tld+tru+trd-4*t);
+    
+    Environment[id.xy]=float4(t+q/C,0,0,0);
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(id.x==128||id.y==128)
+    if(id.x==128&&id.y==128)
     {
         Environment[id.xy]=float4(5,0,0,0);
     }
     else
     {
-        float t=Environment[id.xy].x;
-        float t1=Environment[up(id)].x;
-        float t2=Environment[down(id)].x;
-        float t3=Environment[left(id)].x;
-        float t4=Environment[right(id)].x;
-        Environment[id.xy]=float4(t+(t1+t2+t3+t4-4*t)/4,0,0,0);
+        transferHeat(id);
     }
 }

@@ -44,7 +44,7 @@ Shader "Custom/MainMap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float kind=sqrt(tex2D(_MapTex, i.uv).r);
+                float kind=tex2D(_MapTex, i.uv).r;
                 float4 color=tex2D(_ColorTex, float2(kind+1/128.0,kind));
                 return color;
             }
