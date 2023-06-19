@@ -55,12 +55,5 @@ void transferHeat(uint3 id)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(id.x%20==0&&id.y%20==0)
-    {
-        Environment[id.xy]=float4(1,0,0,0);
-    }
-    else
-    {
-        transferHeat(id);
-    }
+    transferHeat(id);
 }

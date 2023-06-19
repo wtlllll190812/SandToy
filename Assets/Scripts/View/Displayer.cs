@@ -25,8 +25,6 @@ public class Displayer : MonoBehaviour
         mainMaterial.SetTexture(MapTex, mainMap.BasicTexture);
         mainMaterial.SetTexture(ColorTex, colorTexturePreset.GetTexture());
         temperatureMaterial.SetTexture(MapTex, mainMap.EnvironmentTexture);
-        // spriteRenderer.material = mainMaterial;
-        spriteRenderer.material = temperatureMaterial;
     }
 
     [Button]

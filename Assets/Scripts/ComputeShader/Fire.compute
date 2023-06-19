@@ -2,45 +2,60 @@
 #pragma kernel CSMain
 
 RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
 int seed;
 
-
-
-void ramble(uint3 id,uint kind,uint mode)
+void updateFire(uint3 id)
 {
-    //随机游动
-    uint2 vec=randDir(id,seed,mode);
+    setTemperature(id.xy,0.8f);
+    uint2 vec=randDir(id,seed,DIR_UP);
     uint2 nbrId=id.xy+vec;
+    uint number=Result[id.xy].y*ELEMENT_NUMBER;
 
+    if(number==0)
+    {
+        setKind(id.xy,EMPTY);
+    }
+    
     if(canPass(Result[nbrId]))
     {
         move(id.xy,nbrId);
+        setY(nbrId,rand(id,seed)>0.2f?number-1:number);
+        setY(id.xy,0);
     }
-    
-    // if(canPass(Result[nbrId]))
-    // {
-    //     uint tempKind=float2int(Result[nbrId].x);
-    //     setKind(nbrId,kind);
-    //     uint number=Result[nbrId].y*ELEMENT_NUMBER;
-    //     setY(nbrId,number+1);
-    //     number=Result[id.xy].y*ELEMENT_NUMBER;
-    //     setY(id.xy,number-1);            
-    //     if(number<=2)
-    //     {
-    //         setKind(id.xy,tempKind);
-    //     }
-    // }
+}
+
+//y表示剩余火星数量
+void spawnFire(uint3 id)
+{
+    setTemperature(id.xy,0.9f);
+    uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
+    float4 nbr=Result[nbrId];
+    if(isEmpty(nbr))
+    {
+        setKind(nbrId,FIRE);
+        setY(nbrId,20);
+        setY(id.xy,Result[id.xy].y*ELEMENT_NUMBER-1);
+        if(Result[id.xy].y*ELEMENT_NUMBER<=0)
+        {
+            setKind(id.xy,EMPTY);
+        }
+    }
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,GAS))
-        ramble(id,GAS,DIR_KEEP);
-    else if(checkKind(id.xy,STEAM))
-        ramble(id,STEAM,DIR_UP);
-    else if(checkKind(id.xy,POISON_GAS))
-        ramble(id,POISON_GAS,DIR_DOWN);
+    if(checkKind(id.xy,FIRE_SOURCE))
+        spawnFire(id);
+    else if(checkKind(id.xy,FIRE))
+        updateFire(id);
+}
+
+void setTemperature(uint2 id,float value)
+{
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(value,ori.yzw);
 }
 
 bool checkKind(uint2 id,uint kind)

@@ -2,6 +2,7 @@ public enum Species
 {
     Empty = 0,
     BedRock = 1,
+    FireSource =26,
     
     // 固体
     Sand = 2,
