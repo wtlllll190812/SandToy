@@ -779,7 +779,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11b1b3df078a80349b97087d2050084a, type: 2}
+  - {fileID: 2100000, guid: bc4e42e67cae42644abb812a3f07e049, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3075,6 +3075,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 1bae40e11e574cf6991f2276aa1966a3, type: 3}
-  fps: 10
+  fps: 60
   setOn: 1
-  onDebug: 1
+  onDebug: 0

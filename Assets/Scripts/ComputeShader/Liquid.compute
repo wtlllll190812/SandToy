@@ -4,23 +4,23 @@
 RWTexture2D<float4> Result;
 int seed;
 
-void moveLeft(uint3 id)
+void moveLeft(uint3 id,uint kind)
 {
-    if(checkKind(left_2(id),WATER)||checkKind(leftUp(id),WATER))
+    if(checkKind(left_2(id),kind)||checkKind(leftUp(id),kind))
         return;
     setZ(id.xy,DIR_LEFT);
     move(id.xy,left(id));
 }
 
-void moveRight(uint3 id)
+void moveRight(uint3 id,uint kind)
 {
-    if(checkKind(right_2(id),WATER)||checkKind(rightUp(id),WATER))
+    if(checkKind(right_2(id),kind)||checkKind(rightUp(id),kind))
         return;
     setZ(id.xy,DIR_RIGHT);
     move(id.xy,right(id));
 }
 
-void updateWater(uint3 id)
+void updateLiquid(uint3 id,uint kind)
 {
     float4 ori=Result[id.xy];
     
@@ -40,26 +40,44 @@ void updateWater(uint3 id)
         if(l1&&r1)
         {
             if(l2&&!r2)
-                moveLeft(id);
+                moveLeft(id,kind);
             else if(r2&&!l2)
-                moveRight(id);
+                moveRight(id,kind);
             else
             {
                 uint dir=float2int(ori.z);
                 bool mLeft=dir==DIR_KEEP?rand(id,seed)<0.5f:dir==DIR_LEFT;
 
                 if(mLeft)
-                    moveLeft(id);
+                    moveLeft(id,kind);
                 else
-                    moveRight(id);
+                    moveRight(id,kind);
             }
         }
         else if(l1)
-            moveLeft(id);
+            moveLeft(id,kind);
         else if(r1)
-            moveRight(id);
+            moveRight(id,kind);
         else
             setZ(id.xy,DIR_KEEP);
+    }
+}
+
+void updateOil(uint3 id)
+{
+    uint kind1=float2int(Result[left(id)].x);
+    uint kind2=float2int(Result[right(id)].x);
+    uint kind3=float2int(Result[down(id)].x);
+    uint kind4=float2int(Result[up(id)].x);
+
+    bool nearFire=kind1==FIRE||kind2==FIRE||kind3==FIRE||kind4==FIRE;
+    bool nearFireSource=kind1==FIRE_SOURCE||kind2==FIRE_SOURCE||kind3==FIRE_SOURCE||kind4==FIRE_SOURCE;
+    bool nearAir=kind1==EMPTY||kind2==EMPTY||kind3==EMPTY||kind4==EMPTY;
+    
+    if(nearAir&&nearFireSource||nearFire)
+    {
+        setKind(id.xy,FIRE_SOURCE);
+        setY(id.xy,5);
     }
 }
 
@@ -67,7 +85,12 @@ void updateWater(uint3 id)
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     if(checkKind(id.xy,WATER))
-        updateWater(id);
+        updateLiquid(id,WATER);
+    else if(checkKind(id.xy,OIL))
+    {
+        updateLiquid(id,OIL);
+        updateOil(id);
+    }
 }
 
 

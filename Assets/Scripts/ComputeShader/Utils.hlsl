@@ -59,6 +59,7 @@ void setKind(uint2 id,uint kind);
 void setY(uint2 id,uint value);
 void setZ(uint2 id,uint value);
 void setW(uint2 id,uint value);
+void setTemperature(uint2 id,float value);
 
 float rand(const uint3 id,int seed)
 {
