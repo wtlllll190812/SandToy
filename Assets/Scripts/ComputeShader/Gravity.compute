@@ -14,6 +14,7 @@ uint fallPriority(uint2 id)
     case OIL:return 14;
     case ACID:return 16;
     case MAGMA:return 19;
+    case F_FIRE_SOURCE:return 10;
     case POISON_GAS:return 4;
     case STEAM:return 3;
     case GAS:return 1;
