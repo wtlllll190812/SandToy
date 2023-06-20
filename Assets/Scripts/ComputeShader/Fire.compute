@@ -12,9 +12,10 @@ void updateFire(uint3 id)
     uint2 nbrId=id.xy+vec;
     uint number=Result[id.xy].y*ELEMENT_NUMBER;
 
-    if(number==0)
+    if(number==0||checkKind(id.xy,WATER))
     {
         setKind(id.xy,EMPTY);
+        setY(id.xy,0);
     }
     
     if(canPass(Result[nbrId]))
@@ -22,6 +23,21 @@ void updateFire(uint3 id)
         move(id.xy,nbrId);
         setY(nbrId,rand(id,seed)>0.2f?number-1:number);
         setY(id.xy,0);
+    }
+}
+
+void updateFireSource(uint3 id)
+{
+    uint kind1=float2int(Result[left(id)].x);
+    uint kind2=float2int(Result[right(id)].x);
+    uint kind3=float2int(Result[down(id)].x);
+    uint kind4=float2int(Result[up(id)].x);
+
+    bool nearWater=kind1==WATER||kind2==WATER||kind3==WATER||kind4==WATER;
+
+    if(nearWater)
+    {
+        setKind(id.xy,SAND);
     }
 }
 
@@ -46,8 +62,11 @@ void spawnFire(uint3 id)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,FIRE_SOURCE))
+    if(checkKind(id.xy,FIRE_SOURCE)||checkKind(id.xy,F_FIRE_SOURCE))
+    {
+        updateFireSource(id);
         spawnFire(id);
+    }
     else if(checkKind(id.xy,FIRE))
         updateFire(id);
 }

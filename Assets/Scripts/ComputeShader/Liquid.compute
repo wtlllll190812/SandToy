@@ -76,7 +76,7 @@ void updateOil(uint3 id)
     
     if(nearAir&&nearFireSource||nearFire)
     {
-        setKind(id.xy,FIRE_SOURCE);
+        setKind(id.xy,F_FIRE_SOURCE);
         setY(id.xy,5);
     }
 }
@@ -86,6 +86,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 {
     if(checkKind(id.xy,WATER))
         updateLiquid(id,WATER);
+    else if(checkKind(id.xy,F_FIRE_SOURCE))
+        updateLiquid(id,F_FIRE_SOURCE);
     else if(checkKind(id.xy,OIL))
     {
         updateLiquid(id,OIL);

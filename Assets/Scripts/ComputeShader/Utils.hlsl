@@ -35,6 +35,7 @@
 #define FLOWER 20
 
 #define FIRE_SOURCE 26
+#define F_FIRE_SOURCE 27
 
 #define JIANMU 21
 #define LIHUO 22
