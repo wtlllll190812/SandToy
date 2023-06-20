@@ -2922,6 +2922,7 @@ GameObject:
   - component: {fileID: 2133715383}
   - component: {fileID: 2133715387}
   - component: {fileID: 2133715391}
+  - component: {fileID: 2133715393}
   - component: {fileID: 2133715388}
   - component: {fileID: 2133715390}
   - component: {fileID: 2133715389}
@@ -3011,7 +3012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 09a50d962af342a4ad8159bf7c7c803b, type: 3}
-  fps: 60
+  fps: 120
   setOn: 1
   onDebug: 0
 --- !u!114 &2133715389
@@ -3075,6 +3076,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 1bae40e11e574cf6991f2276aa1966a3, type: 3}
+  fps: 60
+  setOn: 1
+  onDebug: 0
+--- !u!114 &2133715393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133715382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01a504399ee45c1ac50e69f6791b7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  computeShader: {fileID: 7200000, guid: 9bf8a701971f4142bcc82dfc2d66c94b, type: 3}
   fps: 60
   setOn: 1
   onDebug: 0

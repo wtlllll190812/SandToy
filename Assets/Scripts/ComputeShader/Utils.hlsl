@@ -43,6 +43,7 @@
 #define XUANTIE 24
 #define RUOSHUI 25
 
+
 uint2 left(const uint3 id){return id.xy+uint2(-1,0);}
 uint2 right(const uint3 id){return id.xy+uint2(1,0);}
 uint2 left_2(const uint3 id){return id.xy+uint2(-2,0);}
@@ -82,13 +83,6 @@ bool isEmpty(const float4 value)
     return float2int(value.x)==EMPTY;
 }
 
-bool isLiquid(const float4 value)
-{
-    uint kind=float2int(value.x);
-    return kind==GAS
-            ||kind==WATER;
-}
-
 bool isGas(const float4 value)
 {
     uint kind=float2int(value.x);
@@ -124,4 +118,6 @@ uint2 randDir(uint3 id,int seed,uint mode)
     default: return mode==DIR_UP?uint2(0,1):uint2(0,-1);
     }
 }
+
+
 #endif

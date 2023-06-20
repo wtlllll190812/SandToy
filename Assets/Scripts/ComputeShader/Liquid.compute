@@ -4,6 +4,25 @@
 RWTexture2D<float4> Result;
 int seed;
 
+bool isLiquid(uint kind)
+{
+    return kind==WATER
+        ||kind==OIL
+        ||kind==ACID
+        ||kind==MAGMA;
+}
+
+bool canMove(uint2 id,uint mKind)
+{
+    uint kind=float2int(Result[id].x);
+    return (kind==EMPTY
+            ||kind==OIL
+            ||kind==EMPTY
+            ||kind==ACID
+            ||kind==WATER)
+            &&kind!=mKind;
+}
+
 void moveLeft(uint3 id,uint kind)
 {
     if(checkKind(left_2(id),kind)||checkKind(leftUp(id),kind))
@@ -28,14 +47,13 @@ void updateLiquid(uint3 id,uint kind)
     if(isAir(Result[down(id)]))
     {
         setZ(id.xy,DIR_KEEP);
-        move(id.xy,down(id));
     }
     else
     {
-        bool l1=isAir(Result[left(id)]);
-        bool r1=isAir(Result[right(id)]);
-        bool l2=isAir(Result[left_2(id)]);
-        bool r2=isAir(Result[right_2(id)]);
+        bool l1=canMove(left(id),kind);
+        bool r1=canMove(right(id),kind);
+        bool l2=canMove(left_2(id),kind);
+        bool r2=canMove(right_2(id),kind);
 
         if(l1&&r1)
         {
@@ -84,13 +102,12 @@ void updateOil(uint3 id)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,WATER))
-        updateLiquid(id,WATER);
-    else if(checkKind(id.xy,F_FIRE_SOURCE))
-        updateLiquid(id,F_FIRE_SOURCE);
-    else if(checkKind(id.xy,OIL))
+    uint kind=float2int(Result[id.xy].x);
+
+    if(isLiquid(kind))
+        updateLiquid(id,kind);
+    if(checkKind(id.xy,OIL))
     {
-        updateLiquid(id,OIL);
         updateOil(id);
     }
 }
