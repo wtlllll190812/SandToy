@@ -1,41 +1,48 @@
 #include "Utils.hlsl"
 #pragma kernel CSMain
 
-#define SOAKDISTANCE 10
 RWTexture2D<float4> Result;
 int seed;
 
-//浸润
-void soak(uint3 id,uint kind)
+uint fallPriority(uint2 id)
 {
-    uint2 vec=randDir(id,seed,DIR_UP);
-    uint2 nbrId=id.xy+vec;
-    if(checkKind(nbrId,WATER))
+    uint kind=float2int(Result[id].x);
+    switch (kind)
     {
-        // y表示潮湿度
-        setKind(id.xy,kind);
-        setY(id.xy,SOAKDISTANCE);
+    case SAND:return 25;
+    case WATER:return 15;
+    case OIL:return 14;
+    case ACID:return 16;
+    case MAGMA:return 19;
+    case F_FIRE_SOURCE:return 10;
+    case POISON_GAS:return 4;
+    case STEAM:return 3;
+    case GAS:return 1;
+    case EMPTY:return 0;
+    default:return 30;
     }
-    else if(checkKind(nbrId,kind))
-    {
-        uint wet=Result[nbrId].y*ELEMENT_NUMBER;
-        if(wet>0)
-        {
-            setKind(id.xy,kind);
-            setY(id.xy,wet-1);
-        }
-    }
+}
+
+bool canFall(uint3 id)
+{
+    uint kind=float2int(Result[id.xy].x);
+    return kind==SAND
+    ||kind==WATER
+    ||kind==OIL
+    ||kind==F_FIRE_SOURCE
+    ||kind==ACID
+    ||kind==MAGMA
+    ||kind==RUOSHUI;
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,SAND))
-        soak(id,WET_SAND);
-    else if(checkKind(id.xy,MUD))
-        soak(id,WET_MUD);
+    if(canFall(id)&&(fallPriority(id.xy))>fallPriority(down(id)))
+    {
+        move(id.xy,down(id));
+    }
 }
-
 
 bool checkKind(uint2 id,uint kind)
 {
