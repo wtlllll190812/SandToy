@@ -50,7 +50,7 @@ void spawnFire(uint3 id)
     if(isEmpty(nbr))
     {
         setKind(nbrId,FIRE);
-        setY(nbrId,20);
+        setY(nbrId,30);
         setY(id.xy,Result[id.xy].y*ELEMENT_NUMBER-1);
         if(Result[id.xy].y*ELEMENT_NUMBER<=0)
         {

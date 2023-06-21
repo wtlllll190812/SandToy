@@ -12,24 +12,25 @@ void ramble(uint3 id,uint kind,uint mode)
     uint2 vec=randDir(id,seed,mode);
     uint2 nbrId=id.xy+vec;
 
-    if(canPass(Result[nbrId]))
-    {
-        move(id.xy,nbrId);
-    }
-    
     // if(canPass(Result[nbrId]))
     // {
-    //     uint tempKind=float2int(Result[nbrId].x);
-    //     setKind(nbrId,kind);
-    //     uint number=Result[nbrId].y*ELEMENT_NUMBER;
-    //     setY(nbrId,number+1);
-    //     number=Result[id.xy].y*ELEMENT_NUMBER;
-    //     setY(id.xy,number-1);            
-    //     if(number<=2)
-    //     {
-    //         setKind(id.xy,tempKind);
-    //     }
+    //     move(id.xy,nbrId);
     // }
+    
+    if(canPass(Result[nbrId]))
+    {
+        uint tempKind=float2int(Result[nbrId].x);
+        setKind(nbrId,kind);
+        uint number=Result[nbrId].y*ELEMENT_NUMBER;
+        setY(nbrId,number+1);
+        number=Result[id.xy].y*ELEMENT_NUMBER;
+        setY(id.xy,number-1);            
+        if(number<=2)
+        {
+            setKind(id.xy,tempKind);
+            setY(id.xy,0);            
+        }
+    }
 }
 
 [numthreads(8,8,1)]

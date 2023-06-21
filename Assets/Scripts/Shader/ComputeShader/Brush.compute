@@ -21,5 +21,5 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 void Clear(uint3 id : SV_DispatchThreadID)
 {
     Result[id.xy]=0;
-    Environment[id.xy]=0;
+    Environment[id.xy]=0.5f;
 }

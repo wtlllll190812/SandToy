@@ -2,6 +2,7 @@
 #pragma kernel CSMain
 
 RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
 int seed;
 
 bool isLiquid(uint kind)
@@ -9,7 +10,8 @@ bool isLiquid(uint kind)
     return kind==WATER
         ||kind==OIL
         ||kind==ACID
-        ||kind==MAGMA;
+        ||kind==MAGMA
+        ||kind==F_FIRE_SOURCE;
 }
 
 bool canMove(uint2 id,uint mKind)
@@ -91,11 +93,12 @@ void updateOil(uint3 id)
     bool nearFire=kind1==FIRE||kind2==FIRE||kind3==FIRE||kind4==FIRE;
     bool nearFireSource=kind1==FIRE_SOURCE||kind2==FIRE_SOURCE||kind3==FIRE_SOURCE||kind4==FIRE_SOURCE;
     bool nearAir=kind1==EMPTY||kind2==EMPTY||kind3==EMPTY||kind4==EMPTY;
+    uint temp=float2int(Environment[id.xy].x);
     
-    if(nearAir&&nearFireSource||nearFire)
+    if(nearAir&&(nearFireSource||nearFire||temp>=25))
     {
         setKind(id.xy,F_FIRE_SOURCE);
-        setY(id.xy,5);
+        setY(id.xy,40);
     }
 }
 
