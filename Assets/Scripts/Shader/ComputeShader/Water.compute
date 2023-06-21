@@ -1,0 +1,111 @@
+#include "Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
+int seed;
+
+void updateWater(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint temp=float2int(Environment[id.xy].x);
+    uint nbr=float2int(Result[(id.xy+vec)].x);
+    
+    if(temp<5&&(nbr!=WATER||nbr==ICE))
+    {
+        init(id);
+        setKind(id.xy,ICE);
+        setTemperature(id,int2float(temp+1));
+    }
+    else if(nbr!=WATER&&rand(id,seed)<((float)temp-10)/20)
+    {
+        init(id);
+        setKind(id.xy,STEAM);
+        setTemperature(id,int2float(temp-1));
+    }
+}
+
+
+
+void updateSteam(uint3 id)
+{
+    uint temp=float2int(Environment[id.xy].x);
+    if(rand(id,seed)<(20.0f-temp)/100.0f)
+    {
+        init(id);
+        setKind(id.xy,WATER);
+        setTemperature(id,int2float(temp+1));
+    }
+}
+
+void updateIce(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint temp=float2int(Environment[id.xy].x);
+    uint nbr=float2int(Result[(id.xy+vec)].x);
+
+    if(temp>5&&nbr!=ICE)
+    {
+        init(id);
+        setKind(id.xy,WATER);
+        setTemperature(id,int2float(temp-1));
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,WATER))
+        updateWater(id);
+    else if(checkKind(id.xy,STEAM))
+        updateSteam(id);
+    else if(checkKind(id.xy,ICE))
+        updateIce(id);
+}
+
+void setTemperature(uint2 id,float value)
+{
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(value,ori.yzw);
+}
+
+void init(uint3 id)
+{
+    Result[id.xy]=0;
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float temp=Result[id.xy].x;
+    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
+    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}

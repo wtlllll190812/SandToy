@@ -62,13 +62,14 @@ void setY(uint2 id,uint value);
 void setZ(uint2 id,uint value);
 void setW(uint2 id,uint value);
 void setTemperature(uint2 id,float value);
+void init(uint3 id);
 
 float rand(const uint3 id,int seed)
 {
     return frac(sin(id.x + id.y+id.x*id.y + seed) * 210143.231231);
 }
 
-uint float2int(const float f)
+uint float2int(float f)
 {
     return f*ELEMENT_NUMBER;
 }

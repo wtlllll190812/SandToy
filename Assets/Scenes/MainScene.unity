@@ -2927,6 +2927,7 @@ GameObject:
   - component: {fileID: 2133715390}
   - component: {fileID: 2133715389}
   - component: {fileID: 2133715392}
+  - component: {fileID: 2133715394}
   m_Layer: 0
   m_Name: MainMap
   m_TagString: Untagged
@@ -3095,3 +3096,19 @@ MonoBehaviour:
   fps: 60
   setOn: 1
   onDebug: 0
+--- !u!114 &2133715394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133715382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01a504399ee45c1ac50e69f6791b7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  computeShader: {fileID: 7200000, guid: 0c85632bf45246e0844d722b571dd5bf, type: 3}
+  fps: 30
+  setOn: 1
+  onDebug: 1
