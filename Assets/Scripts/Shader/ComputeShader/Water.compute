@@ -17,7 +17,7 @@ void updateWater(uint3 id)
         setKind(id.xy,ICE);
         setTemperature(id,int2float(temp+1));
     }
-    else if(nbr!=WATER&&rand(id,seed)<((float)temp-10)/20)
+    else if(nbr!=WATER&&rand(id,seed)<((float)temp-16)/17)
     {
         init(id);
         setKind(id.xy,STEAM);
