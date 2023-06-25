@@ -51,9 +51,9 @@ bool checkKind(uint2 id,uint kind)
 
 void move(uint2 id,uint2 nbrId)
 {
-    float temp=Result[id.xy].x;
-    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
-    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
 }
 
 void setKind(uint2 id,uint kind)
