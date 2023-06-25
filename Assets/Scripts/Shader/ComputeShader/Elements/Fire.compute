@@ -44,17 +44,26 @@ void updateFireSource(uint3 id)
 //y表示剩余火星数量
 void spawnFire(uint3 id)
 {
-    setTemperature(id.xy,int2float(31));
+    setTemperature(id.xy,int2float(32));
     uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
     float4 nbr=Result[nbrId];
+    uint number=float2int(Result[id.xy].y);
     if(isEmpty(nbr))
     {
         setKind(nbrId,FIRE);
-        setY(nbrId,30);
-        setY(id.xy,Result[id.xy].y*ELEMENT_NUMBER-1);
-        if(Result[id.xy].y*ELEMENT_NUMBER<=0)
+        setY(nbrId,40);
+        setY(id.xy,number-1);
+        if(number<=1)
         {
-            setKind(id.xy,EMPTY);
+            setKind(id.xy,FIRE);
+        }
+    }
+    else if(rand(seed,id)>0.5f)
+    {
+        setY(id.xy,number-1);
+        if(number<=1)
+        {
+            setKind(id.xy,FIRE);
         }
     }
 }
@@ -84,9 +93,9 @@ bool checkKind(uint2 id,uint kind)
 
 void move(uint2 id,uint2 nbrId)
 {
-    float temp=Result[id.xy].x;
-    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
-    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
 }
 
 void setKind(uint2 id,uint kind)

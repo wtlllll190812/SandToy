@@ -6,27 +6,27 @@ RWTexture2D<float4> Environment;
 int seed;
 int liquidKind;
 
-bool isLiquid(uint kind)
-{
-    return kind==WATER
-        ||kind==OIL
-        ||kind==ACID
-        ||kind==MAGMA
-        ||kind==F_FIRE_SOURCE;
-}
+// bool isLiquid(uint kind)
+// {
+//     return kind==WATER
+//         ||kind==OIL
+//         ||kind==ACID
+//         ||kind==MAGMA
+//         ||kind==F_FIRE_SOURCE;
+// }
 
-uint movePriority(uint kind)
-{
-    switch (kind)
-    {
-    case F_FIRE_SOURCE:return 6;
-    case OIL:return 7;
-    case ACID:return 8;
-    case MAGMA:return 9;
-    case WATER:return 10;
-    default:return 0;
-    }
-}
+// uint movePriority(uint kind)
+// {
+//     switch (kind)
+//     {
+//     case F_FIRE_SOURCE:return 6;
+//     case OIL:return 7;
+//     case ACID:return 8;
+//     case MAGMA:return 9;
+//     case WATER:return 10;
+//     default:return 0;
+//     }
+// }
 
 bool canMove(uint2 id,uint mKind)
 {
@@ -64,13 +64,26 @@ void moveRight(uint3 id)
 void updateLiquid(uint3 id,float viscosity)
 {
     float4 ori=Result[id.xy];
-    
+    uint dir=float2int(ori.z);
+
     //重力
     if(isAir(Result[down(id)]))
     {
-        setZ(id.xy,DIR_KEEP);
+        if(dir!=DIR_KEEP)
+        {
+            if(rand(seed,id)>0.9f)
+            {
+                setZ(id.xy,DIR_KEEP);
+                return;
+            }
+        }
+        else
+        {
+            return;
+        }
     }
-    else if(rand(id,seed)<viscosity)
+
+    if(rand(id,seed)<viscosity)
     {
         bool l1=canMove(left(id),liquidKind);
         bool r1=canMove(right(id),liquidKind);
@@ -85,9 +98,12 @@ void updateLiquid(uint3 id,float viscosity)
                 moveRight(id);
             else
             {
-                uint dir=float2int(ori.z);
-                bool mLeft=dir==DIR_KEEP?rand(id,seed)<0.5f:dir==DIR_LEFT;
-
+                bool mLeft;
+                if(dir==DIR_KEEP)
+                    mLeft=rand(id,seed)>0.5f;
+                else
+                    mLeft=dir==DIR_LEFT;
+                
                 if(mLeft)
                     moveLeft(id);
                 else
@@ -118,7 +134,7 @@ void updateOil(uint3 id)
     if(nearAir&&(nearFireSource||nearFire||temp>=25))
     {
         setKind(id.xy,F_FIRE_SOURCE);
-        setY(id.xy,40);
+        setY(id.xy,30);
     }
 }
 
@@ -164,9 +180,9 @@ bool checkKind(uint2 id,uint kind)
 
 void move(uint2 id,uint2 nbrId)
 {
-    float temp=Result[id.xy].x;
-    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
-    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
 }
 
 void setKind(uint2 id,uint kind)

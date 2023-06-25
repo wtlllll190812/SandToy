@@ -2,8 +2,11 @@ Shader "Custom/MainMap"
 {
     Properties
     {
-        _MapTex ("MapTex", 2D) = "white" {}
-        _ColorTex ("ColorTex", 2D) = "white" {}
+        _MapTex ("MapTex", 2D) = "black" {}
+        _ColorTex ("ColorTex", 2D) = "black" {}
+        [Toggle(_True)]_debugY("debugY", float) = 0
+        [Toggle(_True)]_debugZ("debugZ", float) = 0
+        [Toggle(_True)]_debugW("debugW", float) = 0
     }	
     SubShader
     {
@@ -33,7 +36,10 @@ Shader "Custom/MainMap"
             sampler2D _ColorTex;
             float4 _MapTex_ST;
             float4 _MapTex_TexelSize;
-
+            bool _debugY;
+            bool _debugZ;
+            bool _debugW;
+            
             v2f vert (appdata v)
             {
                 v2f o;
@@ -44,7 +50,13 @@ Shader "Custom/MainMap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float kind=tex2D(_MapTex, i.uv).r;
+                float kind=tex2D(_MapTex, i.uv).x;
+                if(_debugY)
+                    kind=tex2D(_MapTex, i.uv).y;
+                else if(_debugZ)
+                    kind=tex2D(_MapTex, i.uv).z;
+                else if(_debugW)
+                    kind=tex2D(_MapTex, i.uv).w;
                 float4 color=tex2D(_ColorTex, float2(kind+1/128.0,kind));
                 return color;
             }
