@@ -4,6 +4,7 @@
 RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
+int liquidKind;
 
 bool isLiquid(uint kind)
 {
@@ -40,17 +41,17 @@ bool canMove(uint2 id,uint mKind)
             &&movePriority(mKind)>movePriority(kind);
 }
 
-void moveLeft(uint3 id,uint kind)
+void moveLeft(uint3 id)
 {
-    if(checkKind(left_2(id),kind)||checkKind(leftUp(id),kind))
+    if(checkKind(left_2(id),liquidKind)||checkKind(leftUp(id),liquidKind))
         return;
     setZ(id.xy,DIR_LEFT);
     move(id.xy,left(id));
 }
 
-void moveRight(uint3 id,uint kind)
+void moveRight(uint3 id)
 {
-    if(checkKind(right_2(id),kind)||checkKind(rightUp(id),kind))
+    if(checkKind(right_2(id),liquidKind)||checkKind(rightUp(id),liquidKind))
         return;
     setZ(id.xy,DIR_RIGHT);
     move(id.xy,right(id));
@@ -59,10 +60,9 @@ void moveRight(uint3 id,uint kind)
 /**
  * \brief 
  * \param id 位置ID
- * \param kind 流体种类
  * \param viscosity 流体粘稠度（1最大，0最小）
  */
-void updateLiquid(uint3 id,uint kind,float viscosity)
+void updateLiquid(uint3 id,float viscosity)
 {
     float4 ori=Result[id.xy];
     
@@ -73,32 +73,32 @@ void updateLiquid(uint3 id,uint kind,float viscosity)
     }
     else if(rand(id,seed)<viscosity)
     {
-        bool l1=canMove(left(id),kind);
-        bool r1=canMove(right(id),kind);
-        bool l2=canMove(left_2(id),kind);
-        bool r2=canMove(right_2(id),kind);
+        bool l1=canMove(left(id),liquidKind);
+        bool r1=canMove(right(id),liquidKind);
+        bool l2=canMove(left_2(id),liquidKind);
+        bool r2=canMove(right_2(id),liquidKind);
 
         if(l1&&r1)
         {
             if(l2&&!r2)
-                moveLeft(id,kind);
+                moveLeft(id);
             else if(r2&&!l2)
-                moveRight(id,kind);
+                moveRight(id);
             else
             {
                 uint dir=float2int(ori.z);
                 bool mLeft=dir==DIR_KEEP?rand(id,seed)<0.5f:dir==DIR_LEFT;
 
                 if(mLeft)
-                    moveLeft(id,kind);
+                    moveLeft(id);
                 else
-                    moveRight(id,kind);
+                    moveRight(id);
             }
         }
         else if(l1)
-            moveLeft(id,kind);
+            moveLeft(id);
         else if(r1)
-            moveRight(id,kind);
+            moveRight(id);
         else
             setZ(id.xy,DIR_KEEP);
     }
@@ -143,11 +143,11 @@ float getViscosity(uint kind)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    uint kind=float2int(Result[id.xy].x);
-    float viscosity=getViscosity(kind);
-    
-    if(isLiquid(kind))
-        updateLiquid(id,kind,viscosity);
+    if(checkKind(id.xy,liquidKind))
+    {
+        float viscosity=getViscosity(liquidKind);
+        updateLiquid(id,viscosity);
+    }
     if(checkKind(id.xy,OIL))
         updateOil(id);
 }

@@ -1,22 +1,20 @@
-using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class MainMap : SerializedMonoBehaviour
 {
+    public static bool OnDebug;
+    [SerializeField] private bool onDebug;
     [SerializeField] private Displayer displayer;
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
     private GenNoise noiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==false")]
     private int size;
-    
+    [SerializeField][TableList] private List<IEvoluteLayer> layers;
     private RenderTexture texture;
-    private List<IEvoluteLayer> layers;
 
     public RenderTexture BasicTexture
     {
@@ -33,12 +31,14 @@ public class MainMap : SerializedMonoBehaviour
     private void Awake()
     {
         EnvironmentTexture = RenderTextureUtils.CreateRT(size);
+        OnDebug = onDebug;
     }
 
     private void Start()
     {
         displayer.Init(this);
-        layers = GetComponents<IEvoluteLayer>().ToList();
+        var monoLayers = GetComponentsInChildren<IEvoluteLayer>().ToList();
+        layers = layers.Union(monoLayers).ToList();
         foreach (var item in layers)
             item.Init(this);
     }
