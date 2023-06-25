@@ -25,7 +25,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
   speciesUiItems:
-  - icon: {fileID: 0}
+  - icon: {fileID: -542228647, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 0
     name:
@@ -46,7 +46,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -2043335056, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 1
     name:
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -283209064, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 2
     name:
@@ -88,7 +88,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -860308341, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 3
     name:
@@ -109,7 +109,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1488329191, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 4
     name:
@@ -130,7 +130,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1989296637, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 5
     name:
@@ -151,7 +151,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1948049279, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 6
     name:
@@ -172,7 +172,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -2036852089, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 7
     name:
@@ -193,7 +193,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -2132823494, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 8
     name:
@@ -214,7 +214,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -85352807, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 9
     name:
@@ -235,7 +235,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 1637161185, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 10
     name:
@@ -256,7 +256,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 1787408544, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 11
     name:
@@ -277,7 +277,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1487554553, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 12
     name:
@@ -298,7 +298,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1526715357, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 13
     name:
@@ -319,7 +319,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 671457767, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 14
     name:
@@ -340,7 +340,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1783916439, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 15
     name:
@@ -361,7 +361,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 726788738, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 16
     name:
@@ -382,7 +382,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -705924645, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 17
     name:
@@ -403,7 +403,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -1046706212, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 18
     name:
@@ -424,7 +424,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 1905713090, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 19
     name:
@@ -445,7 +445,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: -670156873, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 20
     name:
@@ -466,8 +466,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
-    show: 1
+  - icon: {fileID: 798487962, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
     kind: 21
     name:
       m_TableReference:
@@ -487,8 +487,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
-    show: 1
+  - icon: {fileID: 1839267598, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
     kind: 22
     name:
       m_TableReference:
@@ -508,8 +508,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
-    show: 1
+  - icon: {fileID: -1153576680, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
     kind: 23
     name:
       m_TableReference:
@@ -529,8 +529,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
-    show: 1
+  - icon: {fileID: -608498392, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
     kind: 24
     name:
       m_TableReference:
@@ -550,8 +550,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
-    show: 1
+  - icon: {fileID: 738811724, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
     kind: 25
     name:
       m_TableReference:
@@ -571,7 +571,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 723686337, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 26
     name:
@@ -592,7 +592,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: 0}
+  - icon: {fileID: 738843098, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 27
     name:
