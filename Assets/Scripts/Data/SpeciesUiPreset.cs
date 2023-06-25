@@ -11,14 +11,16 @@ public class SpeciesUiItem
     [PreviewField(Alignment = ObjectFieldAlignment.Center)] [SerializeField]
     private Sprite icon;
 
+    [SerializeField] private bool show;
     [SerializeField] private Species kind;
     [SerializeField] private LocalizedString name;
     [SerializeField] private LocalizedString description;
     public Sprite Icon => icon;
     public Species Kind => kind;
-    public string Name => name.GetLocalizedString();
-    public string Description => description.GetLocalizedString();
-
+    public LocalizedString Name => name;
+    public LocalizedString Description => description;
+    public bool Show => show;
+    
     public SpeciesUiItem(Sprite icon, Species kind, LocalizedString name, LocalizedString description)
     {
         this.icon = icon;

@@ -239,10 +239,6 @@ MonoBehaviour:
     m_Key: XuanTie_Description
     m_Metadata:
       m_Items: []
-  - m_Id: 20892353466368
-    m_Key: MainScene/Canvas/SpeciesButton/Text (TMP)
-    m_Metadata:
-      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

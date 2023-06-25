@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BrushSelectUi : MonoBehaviour
 {
@@ -13,20 +12,20 @@ public class BrushSelectUi : MonoBehaviour
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
     [SerializeField] private SpeciesUiPreset speciesUiItems;
-    
+
     private void Awake()
     {
-        for(int i = 1; i <= sizeLevel; i++)
+        for (var i = 1; i <= sizeLevel; i++)
         {
             var obj = Instantiate(brushSizeButtonPref, brushSize);
-            obj.GetComponent<UiItem>().Init(i, OnBrushSizeChange);
+            obj.GetComponent<UiItem>().Init(i, OnBrushSizeChange, null);
         }
 
         foreach (var item in speciesUiItems.SpeciesUiItems)
         {
+            if (!item.Show) continue;
             var obj = Instantiate(brushTypeButtonPref, brushType);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = item.Name;
-            obj.GetComponent<UiItem>().Init((int)item.Kind, OnBrushTypeChange);
+            obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
         }
     }
 
@@ -40,12 +39,12 @@ public class BrushSelectUi : MonoBehaviour
         OnBrushTypeChangeAction += action;
     }
 
-    public void OnBrushSizeChange(int index)
+    private void OnBrushSizeChange(int index)
     {
-        OnBrushSizeChangeAction?.Invoke((float)index/sizeLevel);
+        OnBrushSizeChangeAction?.Invoke((float) index / sizeLevel);
     }
 
-    public void OnBrushTypeChange(int index)
+    private void OnBrushTypeChange(int index)
     {
         OnBrushTypeChangeAction?.Invoke(index);
     }
