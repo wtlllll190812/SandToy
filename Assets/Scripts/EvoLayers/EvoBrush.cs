@@ -19,8 +19,8 @@ public class EvoBrush : MonoEvoLayer
 
     private void Awake()
     {
-        BrushSelectUi.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
-        BrushSelectUi.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
+        LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
+        LeftSidePanel.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
     }
 
     public override void Init(MainMap map)
@@ -32,6 +32,7 @@ public class EvoBrush : MonoEvoLayer
         kernelClear = computeShader.FindKernel("Clear");
         computeShader.SetTexture(kernelClear, "Result", mainMap.BasicTexture);
         computeShader.SetTexture(kernelClear, "Environment", mainMap.EnvironmentTexture);
+        computeShader.Dispatch(kernelClear, mainMap.BasicTexture.width / 8, mainMap.BasicTexture.height / 8, 1);
     }
 
     public override void Execute(int seed)

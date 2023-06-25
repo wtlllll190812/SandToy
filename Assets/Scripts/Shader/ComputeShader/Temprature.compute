@@ -36,21 +36,28 @@ float getHeatAttrK(uint2 id)
     return 1;
 }
 
+float getTemperature(uint2 id,float t)
+{
+    if(id.x==0||id.x>255||id.y==0||id.y>255)
+        return 0;
+    return Environment[id].x-t;
+}
+
 void transferHeat(uint3 id)
 {
     float t=Environment[id.xy].x;
-    float tr=(Environment[right(id)].x-t)*getHeatAttrK(right(id));
-    float tl=(Environment[left(id)].x-t)*getHeatAttrK(left(id));
-    float tu=(Environment[up(id)].x-t)*getHeatAttrK(up(id));
-    float td=(Environment[down(id)].x-t)*getHeatAttrK(down(id));
-    float tlu=(Environment[leftUp(id)].x-t)*getHeatAttrK(leftUp(id))/SQRT2;
-    float tld=(Environment[leftDown(id)].x-t)*getHeatAttrK(leftDown(id))/SQRT2;
-    float tru=(Environment[rightUp(id)].x-t)*getHeatAttrK(rightUp(id))/SQRT2;
-    float trd=(Environment[rightDown(id)].x-t)*getHeatAttrK(rightDown(id))/SQRT2;
+    float tr=getTemperature(right(id),t)*getHeatAttrK(right(id));
+    float tl=getTemperature(left(id),t)*getHeatAttrK(left(id));
+    float tu=getTemperature(up(id),t)*getHeatAttrK(up(id));
+    float td=getTemperature(down(id),t)*getHeatAttrK(down(id));
+    float tlu=getTemperature(leftUp(id),t)*getHeatAttrK(leftUp(id))/SQRT2;
+    float tld=getTemperature(leftDown(id),t)*getHeatAttrK(leftDown(id))/SQRT2;
+    float tru=getTemperature(rightUp(id),t)*getHeatAttrK(rightUp(id))/SQRT2;
+    float trd=getTemperature(rightDown(id),t)*getHeatAttrK(rightDown(id))/SQRT2;
     
     float q=t+(tr+tl+tu+td+tlu+tld+tru+trd)/8*getHeatAttrK(id.xy);
-    
-    Environment[id.xy]=float4(q,0,0,0);
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(q,ori.yzw);
 }
 
 [numthreads(8,8,1)]

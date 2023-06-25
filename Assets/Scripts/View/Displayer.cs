@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ public class Displayer : MonoBehaviour
 
     private MainMap mainMap;
 
+    private void Awake()
+    {
+        LeftSidePanel.RegisterOnViewModeChange(ChangeDisplayMode);
+    }
+
     public void Init(MainMap map)
     {
         mainMap = map;
@@ -28,9 +34,9 @@ public class Displayer : MonoBehaviour
     }
 
     [Button]
-    public void ChangeDisplayMode(DisplayMode mode)
+    public void ChangeDisplayMode(int mode)
     {
-        switch (mode)
+        switch ((DisplayMode)mode)
         {
             case DisplayMode.Basic:
                 spriteRenderer.material = mainMaterial;
