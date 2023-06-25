@@ -1,0 +1,67 @@
+Date : 2023-06-25 20:07:11
+Directory : d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts
+Total : 29 files,  1644 codes, 61 comments, 275 blanks, all 1980 lines
+
+Languages
++-----------+------------+------------+------------+------------+------------+
+| language  | files      | code       | comment    | blank      | total      |
++-----------+------------+------------+------------+------------+------------+
+| HLSL      |         12 |      1,010 |         41 |        178 |      1,229 |
+| C#        |         14 |        431 |         20 |         71 |        522 |
+| ShaderLab |          3 |        203 |          0 |         26 |        229 |
++-----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                               | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                  |         29 |      1,644 |         61 |        275 |      1,980 |
+| . (Files)                                                                                          |          2 |         78 |          6 |         13 |         97 |
+| Common                                                                                             |          2 |         70 |          0 |          9 |         79 |
+| Data                                                                                               |          1 |         37 |          0 |          4 |         41 |
+| EvoLayers                                                                                          |          7 |        172 |         14 |         31 |        217 |
+| Shader                                                                                             |         15 |      1,213 |         41 |        204 |      1,458 |
+| Shader (Files)                                                                                     |          3 |        203 |          0 |         26 |        229 |
+| Shader\ComputeShader                                                                               |         12 |      1,010 |         41 |        178 |      1,229 |
+| Shader\ComputeShader (Files)                                                                       |          3 |        309 |          5 |         62 |        376 |
+| Shader\ComputeShader\Elements                                                                      |          9 |        701 |         36 |        116 |        853 |
+| View                                                                                               |          2 |         74 |          0 |         14 |         88 |
+| View (Files)                                                                                       |          1 |         39 |          0 |          7 |         46 |
+| View\Binder                                                                                        |          1 |         35 |          0 |          7 |         42 |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------+-----------+------------+------------+------------+------------+
+| filename                                                                                           | language  | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+-----------+------------+------------+------------+------------+
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Common\GenNoise.cs                             | C#        |         55 |          0 |          8 |         63 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Common\RenderTextureUtils.cs                   | C#        |         15 |          0 |          1 |         16 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Data\ColorTexturePreset.cs                     | C#        |         37 |          0 |          4 |         41 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoBasicElements.cs                  | C#        |         37 |          0 |          6 |         43 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoBrush.cs                          | C#        |         67 |         12 |         11 |         90 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoLiquid.cs                         | C#        |         11 |          0 |          3 |         14 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoNoiseGenerator.cs                 | C#        |         10 |          2 |          1 |         13 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoTempSim.cs                        | C#        |          4 |          0 |          2 |          6 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\IEvoluteLayer.cs                     | C#        |          7 |          0 |          3 |         10 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\MonoEvoLayer.cs                      | C#        |         36 |          0 |          5 |         41 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\MainMap.cs                                     | C#        |         47 |          0 |          6 |         53 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Brush.compute    | HLSL      |         41 |          0 |          5 |         46 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Fire.compute     | HLSL      |        106 |          1 |         16 |        123 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Gas.compute      | HLSL      |         63 |          5 |         13 |         81 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Gravity.compute  | HLSL      |         72 |          0 |         10 |         82 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Liquid.compute   | HLSL      |        161 |         26 |         24 |        211 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Magma.compute    | HLSL      |         63 |          0 |         12 |         75 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Soild.compute    | HLSL      |         62 |          2 |         11 |         75 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Template.compute | HLSL      |         39 |          2 |          9 |         50 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Water.compute    | HLSL      |         94 |          0 |         16 |        110 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\GenNoise.compute          | HLSL      |        156 |          5 |         31 |        192 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Temprature.compute        | HLSL      |         50 |          0 |         10 |         60 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Utils.hlsl                | HLSL      |        103 |          0 |         21 |        124 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\MainMap.shader                          | ShaderLab |         60 |          0 |          6 |         66 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\MapShader.shader                        | ShaderLab |         93 |          0 |         14 |        107 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\Temperature.shader                      | ShaderLab |         50 |          0 |          6 |         56 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Species.cs                                     | C#        |         31 |          6 |          7 |         44 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\Binder\BrushBinder.cs                     | C#        |         35 |          0 |          7 |         42 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\Displayer.cs                              | C#        |         39 |          0 |          7 |         46 |
+| Total                                                                                              |           |      1,644 |         61 |        275 |      1,980 |
++----------------------------------------------------------------------------------------------------+-----------+------------+------------+------------+------------+

@@ -1,0 +1,618 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388616d1c82b412aa0066f3896784997, type: 3}
+  m_Name: Species Ui Preset
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  tableReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+  speciesUiItems:
+  - icon: {fileID: 0}
+    show: 1
+    kind: 0
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Empty
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Empty_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 1
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: BedRock
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: BedRock_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 2
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Sand
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Sand_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 3
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: WetSand
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: WetSand_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 4
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Mud
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Mud_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 5
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: WetMud
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: WetMud_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 6
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Rock
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Rock_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 7
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Ice
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Ice_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 8
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Water
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Water_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 9
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Steam
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Steam_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 10
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Gas
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Gas_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 11
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: PoisonGas
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: PoisonGas_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 12
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Fire
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Fire_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 13
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Oil
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Oil_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 14
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Acid
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Acid_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 15
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Magma
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Magma_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 16
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Root
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Root_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 17
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Plant
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Plant_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 18
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Wood
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Wood_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 19
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Seed
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Seed_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 20
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Flower
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Flower_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 21
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: JianMu
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: JianMu_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 22
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: LiHuo
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: LiHuo_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 23
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: XiRang
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: XiRang_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 24
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: XuanTie
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: XuanTie_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 25
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: RuoShui
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: RuoShui_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 26
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: FireSource
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: FireSource_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 0}
+    show: 1
+    kind: 27
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: FlowingFireSource
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: FlowingFireSource_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

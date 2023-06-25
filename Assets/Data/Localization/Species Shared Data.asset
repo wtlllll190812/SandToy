@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Species Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Species
+  m_TableCollectionNameGuidString: 13f6967a8a51ad94b875157d081ffbbe
+  m_Entries:
+  - m_Id: 14798612762652
+    m_Key: Acid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762653
+    m_Key: Acid_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762626
+    m_Key: BedRock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762627
+    m_Key: BedRock_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762624
+    m_Key: Empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762625
+    m_Key: Empty_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762648
+    m_Key: Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762649
+    m_Key: Fire_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956939
+    m_Key: FireSource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956940
+    m_Key: FireSource_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762664
+    m_Key: Flower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956928
+    m_Key: Flower_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956941
+    m_Key: FlowingFireSource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956942
+    m_Key: FlowingFireSource_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762644
+    m_Key: Gas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762645
+    m_Key: Gas_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762638
+    m_Key: Ice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762639
+    m_Key: Ice_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956929
+    m_Key: JianMu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956930
+    m_Key: JianMu_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956931
+    m_Key: LiHuo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956932
+    m_Key: LiHuo_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762654
+    m_Key: Magma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762655
+    m_Key: Magma_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762632
+    m_Key: Mud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762633
+    m_Key: Mud_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762650
+    m_Key: Oil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762651
+    m_Key: Oil_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762658
+    m_Key: Plant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762659
+    m_Key: Plant_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762646
+    m_Key: PoisonGas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762647
+    m_Key: PoisonGas_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762636
+    m_Key: Rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762637
+    m_Key: Rock_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762656
+    m_Key: Root
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762657
+    m_Key: Root_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956937
+    m_Key: RuoShui
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956938
+    m_Key: RuoShui_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762628
+    m_Key: Sand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762629
+    m_Key: Sand_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762662
+    m_Key: Seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762663
+    m_Key: Seed_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762642
+    m_Key: Steam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762643
+    m_Key: Steam_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762640
+    m_Key: Water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762641
+    m_Key: Water_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762634
+    m_Key: WetMud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762635
+    m_Key: WetMud_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762630
+    m_Key: WetSand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762631
+    m_Key: WetSand_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762660
+    m_Key: Wood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798612762661
+    m_Key: Wood_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956933
+    m_Key: XiRang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956934
+    m_Key: XiRang_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956935
+    m_Key: XuanTie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14798616956936
+    m_Key: XuanTie_Description
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 9037229694278172755
+  references:
+    version: 2
+    RefIds:
+    - rid: 9037229694278172755
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1687697686704
