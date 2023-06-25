@@ -1,0 +1,66 @@
+#include "Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
+int seed;
+
+void updateMagma(uint3 id)
+{
+    uint kind1=float2int(Result[left(id)].x);
+    uint kind2=float2int(Result[right(id)].x);
+    uint kind3=float2int(Result[down(id)].x);
+    uint kind4=float2int(Result[up(id)].x);
+
+    bool nearWater=kind1==WATER||kind2==WATER||kind3==WATER||kind4==WATER;
+    uint temp=float2int(Environment[id.xy].x);
+    
+    if(nearWater||temp<28)
+    {
+        setKind(id.xy,ROCK);
+        setTemperature(id,int2float(temp+2));
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,MAGMA))
+        updateMagma(id);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float temp=Result[id.xy].x;
+    Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
+    Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}

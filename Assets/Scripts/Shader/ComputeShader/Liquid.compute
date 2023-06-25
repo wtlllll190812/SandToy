@@ -110,11 +110,14 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(isLiquid(kind))
         updateLiquid(id,kind);
     if(checkKind(id.xy,OIL))
-    {
         updateOil(id);
-    }
 }
 
+void setTemperature(uint2 id,float value)
+{
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(value,ori.yzw);
+}
 
 bool checkKind(uint2 id,uint kind)
 {
