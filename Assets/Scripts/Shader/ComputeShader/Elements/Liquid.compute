@@ -37,8 +37,7 @@ bool canMove(uint2 id,uint mKind)
             ||kind==WATER
             ||kind==MAGMA
             ||kind==F_FIRE_SOURCE)
-            &&kind!=mKind
-            &&movePriority(mKind)>movePriority(kind);
+            &&kind!=mKind;
 }
 
 void moveLeft(uint3 id)

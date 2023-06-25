@@ -29,7 +29,7 @@ public class MonoEvoLayer : SerializedMonoBehaviour, IEvoluteLayer
 
     public virtual void Execute(int seed)
     {
-        if (MainMap.OnDebug)
+        if (mainMap.onDebug)
         {
             computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
             computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);

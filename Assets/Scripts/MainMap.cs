@@ -5,8 +5,7 @@ using System.Linq;
 
 public class MainMap : SerializedMonoBehaviour
 {
-    public static bool OnDebug;
-    [SerializeField] private bool onDebug;
+    public bool onDebug;
     [SerializeField] private Displayer displayer;
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
@@ -31,7 +30,6 @@ public class MainMap : SerializedMonoBehaviour
     private void Awake()
     {
         EnvironmentTexture = RenderTextureUtils.CreateRT(size);
-        OnDebug = onDebug;
     }
 
     private void Start()
