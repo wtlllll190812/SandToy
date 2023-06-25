@@ -19,8 +19,8 @@ public class EvoBrush : MonoEvoLayer
 
     private void Awake()
     {
-        BrushSelectUi.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
-        BrushSelectUi.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
+        LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
+        LeftSidePanel.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
     }
 
     public override void Init(MainMap map)

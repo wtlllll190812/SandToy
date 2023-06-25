@@ -2,23 +2,31 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class BrushSelectUi : MonoBehaviour
+public class LeftSidePanel : MonoBehaviour
 {
     private static Action<float> OnBrushSizeChangeAction;
     private static Action<int> OnBrushTypeChangeAction;
+    private static Action<int> OnViewModeChangeAction;
     [SerializeField] private int sizeLevel;
     [SerializeField] private RectTransform brushSize;
     [SerializeField] private RectTransform brushType;
+    [SerializeField] private RectTransform displayerMode;
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
     [SerializeField] private SpeciesUiPreset speciesUiItems;
-
+    
     private void Awake()
     {
+        foreach (int mode in Enum.GetValues(typeof(Displayer.DisplayMode)))
+        {
+            var obj = Instantiate(brushSizeButtonPref, displayerMode);
+            obj.GetComponent<UiItem>().Init(mode, OnViewModeChange);
+        }
+        
         for (var i = 1; i <= sizeLevel; i++)
         {
             var obj = Instantiate(brushSizeButtonPref, brushSize);
-            obj.GetComponent<UiItem>().Init(i, OnBrushSizeChange, null);
+            obj.GetComponent<UiItem>().Init(i, OnBrushSizeChange);
         }
 
         foreach (var item in speciesUiItems.SpeciesUiItems)
@@ -45,6 +53,11 @@ public class BrushSelectUi : MonoBehaviour
         OnBrushTypeChangeAction += action;
     }
 
+    public static void RegisterOnViewModeChange(Action<int> action)
+    {
+        OnViewModeChangeAction += action;
+    }
+    
     private void OnBrushSizeChange(int index)
     {
         OnBrushSizeChangeAction?.Invoke((float) index / sizeLevel);
@@ -53,5 +66,10 @@ public class BrushSelectUi : MonoBehaviour
     private void OnBrushTypeChange(int index)
     {
         OnBrushTypeChangeAction?.Invoke(index);
+    }
+    
+    private void OnViewModeChange(int index)
+    {
+        OnViewModeChangeAction?.Invoke(index);
     }
 }

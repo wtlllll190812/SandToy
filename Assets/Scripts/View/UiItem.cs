@@ -10,8 +10,7 @@ public class UiItem : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private LocalizeStringEvent mText;
     [SerializeField] private Image iconImage;
-
-    private int index;
+    [SerializeField] private int index;
     private Action<int> action;
 
     public void Init(int id, Action<int> onClick, Sprite icon, LocalizedString text)
