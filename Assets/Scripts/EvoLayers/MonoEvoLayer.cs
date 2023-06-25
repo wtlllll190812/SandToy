@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[System.Serializable]
-public abstract class EvoluteLayer : MonoBehaviour
+public class MonoEvoLayer : MonoBehaviour, IEvoluteLayer
 {
     [SerializeField] protected ComputeShader computeShader;
     [SerializeField] protected int fps = 1;
@@ -11,15 +10,13 @@ public abstract class EvoluteLayer : MonoBehaviour
     protected MainMap mainMap;
     private float currentTime = 0;
 
-    public bool ready
+    public virtual bool IsReady()
     {
-        get
-        {
-            currentTime += Time.deltaTime;
-            if (!(currentTime >= 1f / fps)) return false;
-            currentTime = 0;
-            return true && setOn;
-        }
+        currentTime += Time.deltaTime;
+        if (!(currentTime >= 1f / fps))
+            return false;
+        currentTime = 0;
+        return setOn && enabled;
     }
 
     public virtual void Init(MainMap map)

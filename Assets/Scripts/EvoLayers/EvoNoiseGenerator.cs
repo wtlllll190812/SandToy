@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 
 namespace EvoLayers
 {
-    public class EvoNoiseGenerator: EvoluteLayer
+    public class EvoNoiseGenerator: MonoEvoLayer
     {
         [Button] public void GenNoise()
         {

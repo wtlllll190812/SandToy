@@ -16,7 +16,7 @@ public class MainMap : SerializedMonoBehaviour
     private int size;
     
     private RenderTexture texture;
-    private List<EvoluteLayer> layers;
+    private List<IEvoluteLayer> layers;
 
     public RenderTexture BasicTexture
     {
@@ -38,7 +38,7 @@ public class MainMap : SerializedMonoBehaviour
     private void Start()
     {
         displayer.Init(this);
-        layers = GetComponents<EvoluteLayer>().ToList();
+        layers = GetComponents<IEvoluteLayer>().ToList();
         foreach (var item in layers)
             item.Init(this);
     }
@@ -46,9 +46,9 @@ public class MainMap : SerializedMonoBehaviour
     private void Update()
     {
         var seed = Random.Range(0, 10000);
-        foreach (var item in layers.Where(item => item.enabled))
+        foreach (var item in layers)
         {
-            if (!item.ready) continue;
+            if (!item.IsReady()) continue;
             item.Execute(seed);
         }
     }

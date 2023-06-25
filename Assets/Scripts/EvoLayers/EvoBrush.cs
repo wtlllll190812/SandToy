@@ -2,16 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EvoBrush : EvoluteLayer
+public class EvoBrush : MonoEvoLayer
 {
     [SerializeField] private int ppu = 100;
     [SerializeField] private Vector2 brushOffset;
     [SerializeField] private int maxBrushSize;
+    [SerializeField] private int brushSize;
     [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private Collider2D col;
     [SerializeField] private Camera cam;
 
-    private int brushSize;
     private Species currentSpecie;
     private InputAction paint;
     private bool pressed;
