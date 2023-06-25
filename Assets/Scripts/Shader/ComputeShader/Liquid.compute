@@ -14,15 +14,30 @@ bool isLiquid(uint kind)
         ||kind==F_FIRE_SOURCE;
 }
 
+uint movePriority(uint kind)
+{
+    switch (kind)
+    {
+    case F_FIRE_SOURCE:return 6;
+    case OIL:return 7;
+    case ACID:return 8;
+    case MAGMA:return 9;
+    case WATER:return 10;
+    default:return 0;
+    }
+}
+
 bool canMove(uint2 id,uint mKind)
 {
     uint kind=float2int(Result[id].x);
     return (kind==EMPTY
             ||kind==OIL
-            ||kind==EMPTY
             ||kind==ACID
-            ||kind==WATER)
-            &&kind!=mKind;
+            ||kind==WATER
+            ||kind==MAGMA
+            ||kind==F_FIRE_SOURCE)
+            &&kind!=mKind
+            &&movePriority(mKind)>movePriority(kind);
 }
 
 void moveLeft(uint3 id,uint kind)
