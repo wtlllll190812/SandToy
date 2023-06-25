@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +17,12 @@ public class EvoBrush : MonoEvoLayer
     private bool clear;
     private int kernelClear;
 
+    private void Awake()
+    {
+        BrushSelectUi.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
+        BrushSelectUi.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
+    }
+
     public override void Init(MainMap map)
     {
         base.Init(map);
@@ -27,9 +32,6 @@ public class EvoBrush : MonoEvoLayer
         kernelClear = computeShader.FindKernel("Clear");
         computeShader.SetTexture(kernelClear, "Result", mainMap.BasicTexture);
         computeShader.SetTexture(kernelClear, "Environment", mainMap.EnvironmentTexture);
-
-        BrushBinder.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
-        BrushBinder.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
     }
 
     public override void Execute(int seed)
