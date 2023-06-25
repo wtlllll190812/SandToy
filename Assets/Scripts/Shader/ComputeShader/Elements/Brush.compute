@@ -1,4 +1,4 @@
-#include "Utils.hlsl"
+#include "../Utils.hlsl"
 #pragma kernel CSMain
 #pragma kernel Clear
 
