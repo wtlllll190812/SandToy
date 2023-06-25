@@ -1,9 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-items: stretch; align-self: auto;">
-        <ui:VisualElement name="Left" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0);" />
-        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; width: 0; border-left-color: rgb(38, 38, 38); border-right-color: rgb(38, 38, 38); border-top-color: rgb(38, 38, 38); border-bottom-color: rgb(38, 38, 38); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-wrap: nowrap; flex-direction: column; visibility: visible; opacity: 1; flex-basis: 0;" />
-        <ui:VisualElement name="Right" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0);">
-            <ui:EnumField label="Enum" type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" value="Center" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>
