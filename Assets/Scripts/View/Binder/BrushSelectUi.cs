@@ -29,6 +29,12 @@ public class BrushSelectUi : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OnBrushSizeChange(2);
+        OnBrushTypeChange((int) Species.Sand);
+    }
+
     public static void RegisterOnBrushSizeChange(Action<float> action)
     {
         OnBrushSizeChangeAction += action;
