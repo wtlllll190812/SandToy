@@ -18,6 +18,7 @@ uint fallPriority(uint2 id)
     case POISON_GAS:return 4;
     case STEAM:return 3;
     case GAS:return 1;
+    case FIRE:return 1;
     case EMPTY:return 0;
     default:return 30;
     }

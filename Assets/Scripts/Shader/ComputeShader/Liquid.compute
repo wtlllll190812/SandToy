@@ -41,7 +41,13 @@ void moveRight(uint3 id,uint kind)
     move(id.xy,right(id));
 }
 
-void updateLiquid(uint3 id,uint kind)
+/**
+ * \brief 
+ * \param id 位置ID
+ * \param kind 流体种类
+ * \param viscosity 流体粘稠度（1最大，0最小）
+ */
+void updateLiquid(uint3 id,uint kind,float viscosity)
 {
     float4 ori=Result[id.xy];
     
@@ -50,7 +56,7 @@ void updateLiquid(uint3 id,uint kind)
     {
         setZ(id.xy,DIR_KEEP);
     }
-    else
+    else if(rand(id,seed)<viscosity)
     {
         bool l1=canMove(left(id),kind);
         bool r1=canMove(right(id),kind);
@@ -102,13 +108,31 @@ void updateOil(uint3 id)
     }
 }
 
+float getViscosity(uint kind)
+{
+    switch (kind)
+    {
+    case WATER:
+        return 1;
+    case OIL:
+        return 0.7f;
+    case ACID:
+        return 1;
+    case MAGMA:
+        return 0.3f;
+    default:
+        return 1;
+    }
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     uint kind=float2int(Result[id.xy].x);
-
+    float viscosity=getViscosity(kind);
+    
     if(isLiquid(kind))
-        updateLiquid(id,kind);
+        updateLiquid(id,kind,viscosity);
     if(checkKind(id.xy,OIL))
         updateOil(id);
 }

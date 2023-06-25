@@ -14,20 +14,21 @@ float getHeatAttrK(uint2 id)
     if(kind==SAND
         ||kind==MUD
         ||kind==WET_SAND
-        ||kind==WET_MUD)
-            return 0.6f;
+        ||kind==WET_MUD
+        ||kind==ROCK
+        ||kind==MAGMA
+        ||kind==OIL)
+            return 0.4f;
 
     if(kind == GAS
         ||kind==POISON_GAS
         ||kind==STEAM)
-            return 0.9;
+            return 1;
     
     if(kind==WATER
         ||kind==ICE
-        ||kind==ACID
-        ||kind==MAGMA
-        ||kind==OIL)
-            return 0.2f;
+        ||kind==ACID)
+            return 0.5f;
 
     if(kind==BEDROCK)
         return 0;
