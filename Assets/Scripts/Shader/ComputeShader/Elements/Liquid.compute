@@ -117,7 +117,7 @@ void updateOil(uint3 id)
     if(nearAir&&(nearFireSource||nearFire||temp>=25))
     {
         setKind(id.xy,F_FIRE_SOURCE);
-        setY(id.xy,40);
+        setZ(id.xy,40);
     }
 }
 
@@ -163,7 +163,7 @@ bool checkKind(uint2 id,uint kind)
 
 void move(uint2 id,uint2 nbrId)
 {
-    float temp=Result[id.xy].x;
+    float temp=Result[id.xy];
     Result[id.xy]=float4(Result[nbrId].x,Result[id.xy].yzw);
     Result[nbrId]=float4(temp.x,Result[nbrId].yzw);
 }
