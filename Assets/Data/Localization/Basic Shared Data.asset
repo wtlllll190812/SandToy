@@ -14,20 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Basic
   m_TableCollectionNameGuidString: 6998a857d91214242b7e40ea2dcc31f4
-  m_Entries:
-  - m_Id: 2628990701568
-    m_Key: 
-    m_Metadata:
-      m_Items: []
+  m_Entries: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 9037229694278172721
+    rid: 9037229694278172756
   references:
     version: 2
     RefIds:
-    - rid: 9037229694278172721
+    - rid: 9037229694278172756
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1687696208084
+        m_CustomEpoch: 1687697702062

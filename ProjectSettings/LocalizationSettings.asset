@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringTable:
     m_TableReference:
-      m_TableCollectionName: GUID:6998a857d91214242b7e40ea2dcc31f4
+      m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
   m_AssetTable:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:6998a857d91214242b7e40ea2dcc31f4
   m_TrackingChanges: 1

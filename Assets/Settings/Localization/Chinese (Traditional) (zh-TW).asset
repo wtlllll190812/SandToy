@@ -16,7 +16,7 @@ MonoBehaviour:
     m_Code: zh-TW
   m_Metadata:
     m_Items:
-    - rid: 9037229694278172720
+    - rid: 9037229694278172754
   m_LocaleName: Chinese (Traditional) (zh-TW)
   m_CustomFormatCultureCode: 
   m_UseCustomFormatter: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9037229694278172720
+    - rid: 9037229694278172754
       type: {class: FallbackLocale, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Locale: {fileID: 0}

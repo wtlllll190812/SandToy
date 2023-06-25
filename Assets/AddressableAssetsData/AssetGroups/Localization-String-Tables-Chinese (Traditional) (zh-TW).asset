@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ac61313a805acc545ac8393fb1041974
   m_SerializeEntries:
-  - m_GUID: 7642d2932b0331e4fbf8c209aedd8d45
-    m_Address: Basic_zh-TW
+  - m_GUID: 1c90bb0573c796847b406da14ab86d17
+    m_Address: Species_zh-TW
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-TW
