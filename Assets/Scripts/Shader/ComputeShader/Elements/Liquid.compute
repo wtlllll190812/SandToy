@@ -66,11 +66,10 @@ void updateLiquid(uint3 id,float viscosity)
     float4 ori=Result[id.xy];
     
     //重力
-    if(isAir(Result[down(id)]))
-    {
-        setZ(id.xy,DIR_KEEP);
-    }
-    else if(rand(id,seed)<viscosity)
+    if(isAir(Result[down(id)])&&float2int(Result[id.xy].z)==DIR_KEEP)
+        return;
+
+    if(rand(id,seed)<viscosity)
     {
         bool l1=canMove(left(id),liquidKind);
         bool r1=canMove(right(id),liquidKind);

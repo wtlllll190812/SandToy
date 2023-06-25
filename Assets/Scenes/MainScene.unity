@@ -3017,7 +3017,7 @@ MonoBehaviour:
       Data: 3
     - Name: fps
       Entry: 3
-      Data: 60
+      Data: 30
     - Name: setOn
       Entry: 5
       Data: true
@@ -3080,7 +3080,7 @@ MonoBehaviour:
       Data: 6
     - Name: fps
       Entry: 3
-      Data: 120
+      Data: 80
     - Name: setOn
       Entry: 5
       Data: true
@@ -3098,7 +3098,7 @@ MonoBehaviour:
       Data: 6
     - Name: fps
       Entry: 3
-      Data: 120
+      Data: 80
     - Name: setOn
       Entry: 5
       Data: true
@@ -3116,7 +3116,7 @@ MonoBehaviour:
       Data: 6
     - Name: fps
       Entry: 3
-      Data: 120
+      Data: 80
     - Name: setOn
       Entry: 5
       Data: true
@@ -3134,7 +3134,7 @@ MonoBehaviour:
       Data: 6
     - Name: fps
       Entry: 3
-      Data: 120
+      Data: 80
     - Name: setOn
       Entry: 5
       Data: true
@@ -3150,9 +3150,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  onDebug: 0
-  displayer: {fileID: 684775896}
+  onDebug: 1
   useNoiseGenerator: 0
+  displayer: {fileID: 684775896}
   noiseGenerator: {fileID: 1304901912}
   size: 256
 --- !u!4 &2133715385

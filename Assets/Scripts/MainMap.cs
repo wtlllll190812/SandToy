@@ -6,8 +6,8 @@ using System.Linq;
 public class MainMap : SerializedMonoBehaviour
 {
     public bool onDebug;
-    [SerializeField] private Displayer displayer;
     [SerializeField] private bool useNoiseGenerator;
+    [SerializeField] private Displayer displayer;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
     private GenNoise noiseGenerator;
     [SerializeField] [ShowIf("@useNoiseGenerator==false")]
