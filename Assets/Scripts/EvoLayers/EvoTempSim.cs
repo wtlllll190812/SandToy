@@ -1,9 +1,5 @@
 using UnityEngine;
 
-public class EvoTempSim: EvoluteLayer
+public class EvoTempSim: MonoEvoLayer
 {
-    public override void Execute(int seed)
-    {
-        base.Execute(seed);
-    }
 }

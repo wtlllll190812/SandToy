@@ -1,25 +1,22 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class EvoluteLayer : MonoBehaviour
+public class MonoEvoLayer : SerializedMonoBehaviour, IEvoluteLayer
 {
     [SerializeField] protected ComputeShader computeShader;
     [SerializeField] protected int fps = 1;
     [SerializeField] private bool setOn = true;
-    [SerializeField] private bool onDebug;
     protected int kernel;
     protected MainMap mainMap;
     private float currentTime = 0;
 
-    public bool ready
+    public virtual bool IsReady()
     {
-        get
-        {
-            currentTime += Time.deltaTime;
-            if (!(currentTime >= 1f / fps)) return false;
-            currentTime = 0;
-            return true && setOn;
-        }
+        currentTime += Time.deltaTime;
+        if (!(currentTime >= 1f / fps))
+            return false;
+        currentTime = 0;
+        return setOn && enabled;
     }
 
     public virtual void Init(MainMap map)
@@ -32,7 +29,7 @@ public abstract class EvoluteLayer : MonoBehaviour
 
     public virtual void Execute(int seed)
     {
-        if (onDebug)
+        if (mainMap.onDebug)
         {
             computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
             computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);

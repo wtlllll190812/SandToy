@@ -1,4 +1,4 @@
-#include "Utils.hlsl"
+#include "../Utils.hlsl"
 #pragma kernel CSMain
 
 RWTexture2D<float4> Result;
@@ -7,7 +7,7 @@ int seed;
 
 void updateFire(uint3 id)
 {
-    setTemperature(id.xy,0.8f);
+    setTemperature(id.xy,int2float(31));
     uint2 vec=randDir(id,seed,DIR_UP);
     uint2 nbrId=id.xy+vec;
     uint number=Result[id.xy].y*ELEMENT_NUMBER;
@@ -44,7 +44,7 @@ void updateFireSource(uint3 id)
 //y表示剩余火星数量
 void spawnFire(uint3 id)
 {
-    setTemperature(id.xy,0.9f);
+    setTemperature(id.xy,int2float(31));
     uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
     float4 nbr=Result[nbrId];
     if(isEmpty(nbr))
