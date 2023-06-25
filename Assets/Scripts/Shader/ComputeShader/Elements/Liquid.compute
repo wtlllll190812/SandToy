@@ -134,7 +134,7 @@ void updateOil(uint3 id)
     if(nearAir&&(nearFireSource||nearFire||temp>=25))
     {
         setKind(id.xy,F_FIRE_SOURCE);
-        setY(id.xy,10);
+        setY(id.xy,30);
     }
 }
 

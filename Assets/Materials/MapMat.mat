@@ -56,6 +56,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Temperature: 0
+    - _debugW: 0
+    - _debugY: 0
+    - _debugZ: 0
     - _oceanThreshold: 0.75
     m_Colors:
     - _Color1: {r: 0.27860448, g: 0.75415516, b: 0.8584906, a: 0}

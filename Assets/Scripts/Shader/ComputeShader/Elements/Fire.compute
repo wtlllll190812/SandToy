@@ -44,18 +44,26 @@ void updateFireSource(uint3 id)
 //y表示剩余火星数量
 void spawnFire(uint3 id)
 {
-    setTemperature(id.xy,int2float(31));
+    setTemperature(id.xy,int2float(32));
     uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
     float4 nbr=Result[nbrId];
+    uint number=float2int(Result[id.xy].y);
     if(isEmpty(nbr))
     {
-        uint number=float2int(Result[id.xy].y);
         setKind(nbrId,FIRE);
-        setY(nbrId,20);
+        setY(nbrId,40);
         setY(id.xy,number-1);
         if(number<=1)
         {
-            setKind(id.xy,EMPTY);
+            setKind(id.xy,FIRE);
+        }
+    }
+    else if(rand(seed,id)>0.5f)
+    {
+        setY(id.xy,number-1);
+        if(number<=1)
+        {
+            setKind(id.xy,FIRE);
         }
     }
 }
