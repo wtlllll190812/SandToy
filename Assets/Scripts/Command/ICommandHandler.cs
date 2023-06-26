@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Command
 {
-    public interface ICommandHandler
+    public abstract class CommandHandler
     {
-        public void HandleCommand(Command command);
-        public bool Match(Command command);
+        public abstract void HandleCommand(Command command);
+        public abstract bool Match(Command command);
     }
 }

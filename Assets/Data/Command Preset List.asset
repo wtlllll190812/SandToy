@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 8d46d5334f7046fd8b76c6da2e9f69fa, type: 3}
   m_Name: Command Preset List
-  m_EditorClassIdentifier: Assembly-CSharp:Data:CommandPresetList
+  m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -20,5 +20,47 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  commands: []
+    SerializationNodes:
+    - Name: commands
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Data.CommandPreset, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|Data.CommandPreset, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: SetTemp
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: Handler
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|Data.CommandPreset, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Clear
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: Handler
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
