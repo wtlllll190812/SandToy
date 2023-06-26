@@ -2198,6 +2198,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  path: Assets/Textures
   useNoiseGenerator: 0
   displayer: {fileID: 684775896}
   noiseGenerator: {fileID: 1304901912}
