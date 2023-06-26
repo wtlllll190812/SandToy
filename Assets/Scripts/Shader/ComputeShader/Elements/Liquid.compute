@@ -71,7 +71,7 @@ void updateLiquid(uint3 id,float viscosity)
     {
         if(dir!=DIR_KEEP)
         {
-            if(rand(seed,id)>0.9f)
+            if(rand(id,seed)>0.9f)
             {
                 setZ(id.xy,DIR_KEEP);
                 return;
