@@ -58,7 +58,7 @@ void spawnFire(uint3 id)
             setKind(id.xy,FIRE);
         }
     }
-    else if(rand(seed,id)>0.5f)
+    else if(rand(id,seed)>0.5f)
     {
         setY(id.xy,number-1);
         if(number<=1)
