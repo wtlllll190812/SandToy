@@ -7,7 +7,7 @@ int seed;
 
 void updateRuoShui(uint3 id)
 {
-    setTemperature(id.xy,0);
+    setTemperature(id.xy,-int2float(4));
 }
 
 [numthreads(8,8,1)]

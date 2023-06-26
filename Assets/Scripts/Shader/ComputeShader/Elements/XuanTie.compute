@@ -20,22 +20,14 @@ void updateXuanTie(uint3 id)
     float k2=getTemp(right(id),temp);
     float k3=getTemp(up(id),temp);
     float k4=getTemp(down(id),temp);
-    float k5=getTemp(leftUp(id),temp);
-    float k6=getTemp(rightUp(id),temp);
-    float k7=getTemp(leftDown(id),temp);
-    float k8=getTemp(rightDown(id),temp);
     
     temp=getTemp(id.xy,0);
 
     float max=abs(k1)>abs(k2)?k1:k2;
     max=abs(max)>abs(k3)?max:k3;
     max=abs(max)>abs(k4)?max:k4;
-    max=abs(max)>abs(k5)?max:k5;
-    max=abs(max)>abs(k6)?max:k6;
-    max=abs(max)>abs(k7)?max:k7;
-    max=abs(max)>abs(k8)?max:k8;
     
-    setTemperature(id.xy,(max+0.5f)*0.5f+temp*0.5f);
+    setTemperature(id.xy,(max+0.5f)*0.9f+temp*0.1f);
 }
 
 [numthreads(8,8,1)]
