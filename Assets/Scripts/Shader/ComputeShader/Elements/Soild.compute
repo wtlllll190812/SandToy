@@ -3,6 +3,7 @@
 
 #define SOAKDISTANCE 10
 RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
 int seed;
 
 //浸润
@@ -27,6 +28,16 @@ void soak(uint3 id,uint kind)
     }
 }
 
+void dry(uint3 id,uint kind)
+{
+    uint temp=Environment[id.xy].y*ELEMENT_NUMBER;
+
+    if(temp>25)
+    {
+        setKind(id.xy,kind);
+    }
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
@@ -34,6 +45,10 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         soak(id,WET_SAND);
     else if(checkKind(id.xy,MUD))
         soak(id,WET_MUD);
+    else if(checkKind(id.xy,WET_SAND))
+        soak(id,SAND);
+    else if(checkKind(id.xy,WET_MUD))
+        soak(id,MUD);
 }
 
 
