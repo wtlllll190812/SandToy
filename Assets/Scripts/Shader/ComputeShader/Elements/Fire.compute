@@ -33,8 +33,8 @@ uint flameTime(uint kind)
     case WOOD: return 20;
     case PLANT: return 15;
     case ROOT: return 15;
-    case FLOWER: return 10;
-    case SEED: return 5;
+    case FLOWER: return 3;
+    case SEED: return 3;
     default: return 32;
     }
 }

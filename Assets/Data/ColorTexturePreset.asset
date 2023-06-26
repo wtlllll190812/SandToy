@@ -21,6 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  path: Assets/Textures/species.tga
+  maxElementNum: 32
   colors:
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
   - {r: 0.2735849, g: 0.2694553, b: 0.2694553, a: 1}
@@ -42,7 +44,7 @@ MonoBehaviour:
   - {r: 0.26132074, g: 0.5, b: 0.31823632, a: 1}
   - {r: 0.33962262, g: 0.24158062, b: 0.24158062, a: 1}
   - {r: 0.4852549, g: 0.31564614, b: 0.6509434, a: 1}
-  - {r: 1.7169812, g: 1.3603829, b: 0.7029904, a: 1}
+  - {r: 1.6037736, g: 0.3991309, b: 0.17248121, a: 1}
   - {r: 0.03246703, g: 1.4339623, b: 0.95079124, a: 1}
   - {r: 3.865976, g: 0.51942015, b: 0.3063601, a: 1}
   - {r: 1.6226416, g: 1.4418685, b: 0.58782476, a: 1}
@@ -54,4 +56,3 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  maxElementNum: 32
