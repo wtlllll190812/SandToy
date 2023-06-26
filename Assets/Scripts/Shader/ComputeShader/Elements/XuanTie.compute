@@ -5,16 +5,32 @@ RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
 
-void updateXuanTie()
+float getTemp(uint2 id,float defaultValue)
 {
-    
+    // if(!checkKind(id,XUANTIE))
+        // return defaultValue;
+    return Environment[id.xy].x;
+}
+
+void updateXuanTie(uint3 id)
+{
+    float k1=getTemp(left(id),0);
+    float k2=getTemp(right(id),0);
+    float k3=getTemp(up(id),0);
+    float k4=getTemp(down(id),0);
+    float k5=getTemp(leftUp(id),0);
+    float k6=getTemp(rightUp(id),0);
+    float k7=getTemp(leftDown(id),0);
+    float k8=getTemp(rightDown(id),0);
+
+    setTemperature(id.xy,(k1+k2+k3+k4+k5+k6+k7+k8)/8);
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // if(checkKind(id.xy,SAND))
-        // updateSand(id);
+    if(checkKind(id.xy,XUANTIE))
+        updateXuanTie(id);
 }
 
 void setTemperature(uint2 id,float value)

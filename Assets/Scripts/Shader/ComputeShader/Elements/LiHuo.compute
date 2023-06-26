@@ -8,6 +8,17 @@ int seed;
 void updateLiHuo(uint3 id)
 {
     setTemperature(id.xy,32);
+    uint kindl=float2int(Result[left(id)].x);
+    uint kindr=float2int(Result[right(id)].x);
+    uint kindu=float2int(Result[up(id)].x);
+    uint kindd=float2int(Result[down(id)].x);
+
+    bool nearRuoShui=kindl==RUOSHUI||kindr==RUOSHUI||kindu==RUOSHUI||kindd==RUOSHUI;
+
+    if(nearRuoShui)
+    {
+        setKind(id,XUANTIE);
+    }
 }
 
 [numthreads(8,8,1)]

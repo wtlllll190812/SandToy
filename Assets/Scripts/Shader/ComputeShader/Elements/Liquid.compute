@@ -36,7 +36,8 @@ bool canMove(uint2 id,uint mKind)
             ||kind==ACID
             ||kind==WATER
             ||kind==MAGMA
-            ||kind==F_FIRE_SOURCE)
+            ||kind==F_FIRE_SOURCE
+            ||kind==RUOSHUI)
             &&kind!=mKind;
 }
 
