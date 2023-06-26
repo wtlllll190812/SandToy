@@ -33,7 +33,7 @@ Shader "Custom/MainMap"
             };
 
             sampler2D _MapTex;
-            sampler2D _ColorTex;
+            Texture2D _ColorTex;
             float4 _MapTex_ST;
             float4 _MapTex_TexelSize;
             bool _debugY;
@@ -50,14 +50,14 @@ Shader "Custom/MainMap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float kind=tex2D(_MapTex, i.uv).x;
+                int kind=tex2D(_MapTex, i.uv).x*32;
                 if(_debugY)
                     kind=tex2D(_MapTex, i.uv).y;
                 else if(_debugZ)
                     kind=tex2D(_MapTex, i.uv).z;
                 else if(_debugW)
                     kind=tex2D(_MapTex, i.uv).w;
-                float4 color=tex2D(_ColorTex, float2(kind+1/128.0,kind));
+                float4 color=_ColorTex[uint2(kind,0)];
                 return color;
             }
             ENDCG

@@ -9,7 +9,10 @@ public class Debugger: MonoBehaviour
     {
         #if UNITY_EDITOR
             IsDebug = true;
+        #else
+            ISDebug = false;
         #endif
+        
         if(Instance == null)
             Instance = this;
         else
