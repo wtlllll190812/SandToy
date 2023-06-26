@@ -14,7 +14,7 @@ public class LeftSidePanel : MonoBehaviour
     [SerializeField] private GameObject brushTypeButtonPref;
     [SerializeField] private SpeciesUiPreset speciesUiItems;
     
-    private void Awake()
+    private void Start()
     {
         foreach (int mode in Enum.GetValues(typeof(Displayer.DisplayMode)))
         {
@@ -34,10 +34,6 @@ public class LeftSidePanel : MonoBehaviour
             var obj = Instantiate(brushTypeButtonPref, brushType);
             obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
         }
-    }
-
-    private void Start()
-    {
         OnBrushSizeChange(2);
         OnBrushTypeChange((int) Species.Sand);
     }

@@ -1,56 +1,38 @@
 #include "../Utils.hlsl"
 #pragma kernel CSMain
 
-#define SOAKDISTANCE 10
 RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
 
-//浸润
-void soak(uint3 id,uint kind)
+void updateLiHuo(uint3 id)
 {
-    uint2 vec=randDir(id,seed,DIR_UP);
-    uint2 nbrId=id.xy+vec;
-    if(checkKind(nbrId,WATER))
-    {
-        // y表示潮湿度
-        setKind(id.xy,kind);
-        setY(id.xy,SOAKDISTANCE);
-    }
-    else if(checkKind(nbrId,kind))
-    {
-        uint wet=Result[nbrId].y*ELEMENT_NUMBER;
-        if(wet>0)
-        {
-            setKind(id.xy,kind);
-            setY(id.xy,wet-1);
-        }
-    }
-}
+    setTemperature(id.xy,int2float(32));
+    uint kindl=float2int(Result[left(id)].x);
+    uint kindr=float2int(Result[right(id)].x);
+    uint kindu=float2int(Result[up(id)].x);
+    uint kindd=float2int(Result[down(id)].x);
 
-void dry(uint3 id,uint kind)
-{
-    uint temp=Environment[id.xy].y*ELEMENT_NUMBER;
+    bool nearRuoShui=kindl==RUOSHUI||kindr==RUOSHUI||kindu==RUOSHUI||kindd==RUOSHUI;
 
-    if(temp>25)
+    if(nearRuoShui)
     {
-        setKind(id.xy,kind);
+        setKind(id,XUANTIE);
     }
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(checkKind(id.xy,SAND))
-        soak(id,WET_SAND);
-    else if(checkKind(id.xy,MUD))
-        soak(id,WET_MUD);
-    else if(checkKind(id.xy,WET_SAND))
-        soak(id,SAND);
-    else if(checkKind(id.xy,WET_MUD))
-        soak(id,MUD);
+    if(checkKind(id.xy,LIHUO))
+        updateLiHuo(id);
 }
 
+void setTemperature(uint2 id,float value)
+{
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(value,ori.yzw);
+}
 
 bool checkKind(uint2 id,uint kind)
 {

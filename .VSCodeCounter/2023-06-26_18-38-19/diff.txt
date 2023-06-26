@@ -1,0 +1,51 @@
+Date : 2023-06-26 18:38:19
+Directory : d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts
+Total : 16 files,  302 codes, 21 comments, 43 blanks, all 366 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| HLSL     |          6 |        174 |         21 |         24 |        219 |
+| C#       |         10 |        128 |          0 |         19 |        147 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                              | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                 |         16 |        302 |         21 |         43 |        366 |
+| . (Files)                                                                                         |          2 |         15 |          0 |          3 |         18 |
+| Data                                                                                              |          2 |         52 |          0 |          6 |         58 |
+| EvoLayers                                                                                         |          2 |          2 |          0 |          0 |          2 |
+| Shader                                                                                            |          6 |        174 |         21 |         24 |        219 |
+| Shader\ComputeShader                                                                              |          6 |        174 |         21 |         24 |        219 |
+| Shader\ComputeShader (Files)                                                                      |          1 |          7 |          0 |          0 |          7 |
+| Shader\ComputeShader\Elements                                                                     |          5 |        167 |         21 |         24 |        212 |
+| View                                                                                              |          4 |         59 |          0 |         10 |         69 |
+| View (Files)                                                                                      |          2 |         31 |          0 |          5 |         36 |
+| View\Binder                                                                                       |          2 |         28 |          0 |          5 |         33 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                          | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Data\ColorTexturePreset.cs                    | C#       |          1 |          0 |          0 |          1 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Data\SpeciesUiPreset.cs                       | C#       |         51 |          0 |          6 |         57 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Debuger.cs                                    | C#       |         16 |          0 |          3 |         19 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoBasicElements.cs                 | C#       |         -1 |          0 |          0 |         -1 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\EvoLayers\EvoBrush.cs                         | C#       |          3 |          0 |          0 |          3 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\MainMap.cs                                    | C#       |         -1 |          0 |          0 |         -1 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Brush.compute   | HLSL     |          4 |          0 |          0 |          4 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Fire.compute    | HLSL     |         55 |         21 |          7 |         83 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Flower.compute  | HLSL     |        124 |          0 |         20 |        144 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Gravity.compute | HLSL     |          2 |          0 |          0 |          2 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Elements\Liquid.compute  | HLSL     |        -18 |          0 |         -3 |        -21 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\Shader\ComputeShader\Temprature.compute       | HLSL     |          7 |          0 |          0 |          7 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\Binder\BrushBinder.cs                    | C#       |        -35 |          0 |         -7 |        -42 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\Binder\LeftSidePanel.cs                  | C#       |         63 |          0 |         12 |         75 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\Displayer.cs                             | C#       |          5 |          0 |          1 |          6 |
+| d:\TLProject\unity\Ongoing\Evolution\Assets\Scripts\View\UiItem.cs                                | C#       |         26 |          0 |          4 |         30 |
+| Total                                                                                             |          |        302 |         21 |         43 |        366 |
++---------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

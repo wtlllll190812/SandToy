@@ -1,0 +1,88 @@
+#include "../Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
+int seed;
+
+float getTemp(uint2 id,float defaultValue)
+{
+    // if(!checkKind(id,XUANTIE))
+        // return defaultValue;
+    return Environment[id.xy].x-defaultValue;
+}
+
+
+void updateXuanTie(uint3 id)
+{
+    float temp=0.5f;
+    float k1=getTemp(left(id),temp);
+    float k2=getTemp(right(id),temp);
+    float k3=getTemp(up(id),temp);
+    float k4=getTemp(down(id),temp);
+    float k5=getTemp(leftUp(id),temp);
+    float k6=getTemp(rightUp(id),temp);
+    float k7=getTemp(leftDown(id),temp);
+    float k8=getTemp(rightDown(id),temp);
+    
+    temp=getTemp(id.xy,0);
+
+    float max=abs(k1)>abs(k2)?k1:k2;
+    max=abs(max)>abs(k3)?max:k3;
+    max=abs(max)>abs(k4)?max:k4;
+    max=abs(max)>abs(k5)?max:k5;
+    max=abs(max)>abs(k6)?max:k6;
+    max=abs(max)>abs(k7)?max:k7;
+    max=abs(max)>abs(k8)?max:k8;
+    
+    setTemperature(id.xy,(max+0.5f)*0.5f+temp*0.5f);
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,XUANTIE))
+        updateXuanTie(id);
+}
+
+void setTemperature(uint2 id,float value)
+{
+    float4 ori=Environment[id.xy];
+    Environment[id.xy]=float4(value,ori.yzw);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}

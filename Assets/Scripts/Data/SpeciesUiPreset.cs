@@ -38,8 +38,7 @@ public class SpeciesUiPreset : SerializedScriptableObject
     public List<SpeciesUiItem> SpeciesUiItems => speciesUiItems;
 
 
-    [Button]
-    public void InitData()
+    public void Reset()
     {
         foreach (string specie in Enum.GetNames(typeof(Species)))
         {

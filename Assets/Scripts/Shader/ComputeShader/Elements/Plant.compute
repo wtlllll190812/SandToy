@@ -23,23 +23,15 @@ bool isPlant(uint kind)
 
 void updateSEED(uint3 id)
 {
-    uint2 vec=randDir(id,seed,DIR_KEEP);
-    uint2 nbrId=id.xy+vec;
+    uint2 nbrId=down(id);
     uint kind=float2int(Result[nbrId.xy].x);
     
-    if(kind==WET_SAND)
+    if(kind==WET_MUD)
     {
-        setKind(id.xy,PLANT);
-        setY(id.xy,7+rand(id,seed)*8);
-    }
-    if(kind==MUD)
-    {
-        setKind(id.xy,PLANT);
+        setKind(id.xy,WOOD);
         setY(id.xy,15+rand(id,seed)*10);
-    }
-    if(isPlant(kind))
-    {
-        setKind(id.xy,EMPTY);
+        setKind(nbrId,ROOT);
+        setY(id.xy,15+rand(id,seed)*10);
     }
 }
 
@@ -94,6 +86,16 @@ void updateFlower(uint3 id)
     }
 }
 
+void updateWOOD(uint3 id)
+{
+    
+}
+
+void updateROOT(uint3 id)
+{
+    
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
@@ -101,8 +103,10 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         updateSEED(id);
     else if(checkKind(id.xy,PLANT))
         updatePlant(id);
-    else if(checkKind(id.xy,FLOWER))
-        updateFlower(id);
+    else if(checkKind(id.xy,WOOD))
+        updateWOOD(id);
+    else if(checkKind(id.xy,ROOT))
+        updateROOT(id);
 }
 
 bool checkKind(uint2 id,uint kind)
