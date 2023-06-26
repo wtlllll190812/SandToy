@@ -1846,8 +1846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 0101060000006c00610079006500720073002f00000000014d000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004c00690073007400600031005b005b004900450076006f006c007500740065004c0061007900650072002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c006900620000000000060c00000000000000022f010000000121000000450076006f004200610073006900630045006c0065006d0065006e00740073002c00200041007300730065006d0062006c0079002d00430053006800610072007000010000000b010d00000063006f006d007000750074006500530068006100640065007200000000001701030000006600700073003c0000002b01050000007300650074004f006e000105023001000000020000000b010d00000063006f006d007000750074006500530068006100640065007200010000001701030000006600700073003c0000002b01050000007300650074004f006e000105023001000000030000000b010d00000063006f006d007000750074006500530068006100640065007200020000001701030000006600700073003c0000002b01050000007300650074004f006e000105023001000000040000000b010d00000063006f006d007000750074006500530068006100640065007200030000001701030000006600700073001e0000002b01050000007300650074004f006e000105023001000000050000000b010d00000063006f006d007000750074006500530068006100640065007200040000001701030000006600700073003c0000002b01050000007300650074004f006e000105023001000000060000000b010d00000063006f006d007000750074006500530068006100640065007200050000001701030000006600700073003c0000002b01050000007300650074004f006e000105022f02000000011a000000450076006f004c00690071007500690064002c00200041007300730065006d0062006c0079002d00430053006800610072007000070000000b010d00000063006f006d00700075007400650053006800610064006500720006000000170103000000660070007300780000002b01050000007300650074004f006e00011d010a0000006c00690071007500690064004b0069006e006400080000000000000005023002000000080000000b010d00000063006f006d00700075007400650053006800610064006500720006000000170103000000660070007300500000002b01050000007300650074004f006e00011d010a0000006c00690071007500690064004b0069006e0064000e0000000000000005023002000000090000000b010d00000063006f006d00700075007400650053006800610064006500720006000000170103000000660070007300500000002b01050000007300650074004f006e00011d010a0000006c00690071007500690064004b0069006e0064000d00000000000000050230020000000a0000000b010d00000063006f006d00700075007400650053006800610064006500720006000000170103000000660070007300500000002b01050000007300650074004f006e00011d010a0000006c00690071007500690064004b0069006e0064000f00000000000000050230020000000b0000000b010d00000063006f006d00700075007400650053006800610064006500720006000000170103000000660070007300500000002b01050000007300650074004f006e00011d010a0000006c00690071007500690064004b0069006e0064001b00000000000000050230010000000c0000000b010d00000063006f006d007000750074006500530068006100640065007200070000001701030000006600700073001e0000002b01050000007300650074004f006e0001050705
     ReferencedUnityObjects:
     - {fileID: 7200000, guid: 931c3a977ad449ce8c7e5630324a7fd0, type: 3}
     - {fileID: 7200000, guid: 9bf8a701971f4142bcc82dfc2d66c94b, type: 3}
@@ -1861,215 +1861,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: layers
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[IEvoluteLayer, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 12
-    - Name: 
-      Entry: 7
-      Data: 1|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 0
-    - Name: fps
-      Entry: 3
-      Data: 60
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 1
-    - Name: fps
-      Entry: 3
-      Data: 60
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 3|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 2
-    - Name: fps
-      Entry: 3
-      Data: 60
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 3
-    - Name: fps
-      Entry: 3
-      Data: 30
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 5|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 4
-    - Name: fps
-      Entry: 3
-      Data: 60
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 5
-    - Name: fps
-      Entry: 3
-      Data: 60
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|EvoLiquid, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 6
-    - Name: fps
-      Entry: 3
-      Data: 120
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: liquidKind
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 8|EvoLiquid, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 6
-    - Name: fps
-      Entry: 3
-      Data: 80
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: liquidKind
-      Entry: 3
-      Data: 14
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 9|EvoLiquid, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 6
-    - Name: fps
-      Entry: 3
-      Data: 80
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: liquidKind
-      Entry: 3
-      Data: 13
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 10|EvoLiquid, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 6
-    - Name: fps
-      Entry: 3
-      Data: 80
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: liquidKind
-      Entry: 3
-      Data: 15
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 11|EvoLiquid, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 6
-    - Name: fps
-      Entry: 3
-      Data: 80
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: liquidKind
-      Entry: 3
-      Data: 27
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 12|EvoBasicElements, Assembly-CSharp
-    - Name: computeShader
-      Entry: 10
-      Data: 7
-    - Name: fps
-      Entry: 3
-      Data: 30
-    - Name: setOn
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   useNoiseGenerator: 0
   displayer: {fileID: 684775896}
   noiseGenerator: {fileID: 1304901912}
@@ -2104,7 +1896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -2136,7 +1928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
