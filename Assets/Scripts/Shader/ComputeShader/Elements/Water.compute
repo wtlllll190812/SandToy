@@ -17,7 +17,7 @@ void updateWater(uint3 id)
         setKind(id.xy,ICE);
         setTemperature(id.xy,int2float(temp+1));
     }
-    else if(nbr!=WATER&&rand(id,seed)<((float)temp-16)/17)
+    else if(nbr!=WATER&&rand(id,seed)<((float)temp-16)/16)
     {
         init(id);
         setKind(id.xy,STEAM);
@@ -28,7 +28,7 @@ void updateWater(uint3 id)
 void updateSteam(uint3 id)
 {
     uint temp=float2int(Environment[id.xy].x);
-    if(rand(id,seed)<(20.0f-temp)/100.0f)
+    if(rand(id,seed)<(15.0f-temp)/100.0f)
     {
         init(id);
         setKind(id.xy,WATER);
@@ -42,7 +42,7 @@ void updateIce(uint3 id)
     uint temp=float2int(Environment[id.xy].x);
     uint nbr=float2int(Result[(id.xy+vec)].x);
 
-    if(temp>5&&nbr!=ICE)
+    if(temp>10&&nbr!=ICE)
     {
         init(id);
         setKind(id.xy,WATER);
