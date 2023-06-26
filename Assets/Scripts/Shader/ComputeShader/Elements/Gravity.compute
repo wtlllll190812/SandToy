@@ -10,6 +10,7 @@ uint fallPriority(uint2 id)
     switch (kind)
     {
     case SAND:return 25;
+    case SEED:return 24;
     case WATER:return 15;
     case OIL:return 14;
     case ACID:return 16;
@@ -28,6 +29,7 @@ bool canFall(uint3 id)
 {
     uint kind=float2int(Result[id.xy].x);
     return kind==SAND
+    ||kind==SEED
     ||kind==WATER
     ||kind==OIL
     ||kind==F_FIRE_SOURCE

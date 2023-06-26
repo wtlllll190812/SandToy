@@ -71,7 +71,7 @@ void updateLiquid(uint3 id,float viscosity)
     {
         if(dir!=DIR_KEEP)
         {
-            if(rand(seed,id)>0.9f)
+            if(rand(id,seed)>0.9f)
             {
                 setZ(id.xy,DIR_KEEP);
                 return;
@@ -119,25 +119,6 @@ void updateLiquid(uint3 id,float viscosity)
     }
 }
 
-void updateOil(uint3 id)
-{
-    uint kind1=float2int(Result[left(id)].x);
-    uint kind2=float2int(Result[right(id)].x);
-    uint kind3=float2int(Result[down(id)].x);
-    uint kind4=float2int(Result[up(id)].x);
-
-    bool nearFire=kind1==FIRE||kind2==FIRE||kind3==FIRE||kind4==FIRE;
-    bool nearFireSource=kind1==FIRE_SOURCE||kind2==FIRE_SOURCE||kind3==FIRE_SOURCE||kind4==FIRE_SOURCE;
-    bool nearAir=kind1==EMPTY||kind2==EMPTY||kind3==EMPTY||kind4==EMPTY;
-    uint temp=float2int(Environment[id.xy].x);
-    
-    if(nearAir&&(nearFireSource||nearFire||temp>=25))
-    {
-        setKind(id.xy,F_FIRE_SOURCE);
-        setY(id.xy,30);
-    }
-}
-
 float getViscosity(uint kind)
 {
     switch (kind)
@@ -163,8 +144,6 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         float viscosity=getViscosity(liquidKind);
         updateLiquid(id,viscosity);
     }
-    if(checkKind(id.xy,OIL))
-        updateOil(id);
 }
 
 void setTemperature(uint2 id,float value)

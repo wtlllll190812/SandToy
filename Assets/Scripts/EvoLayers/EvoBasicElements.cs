@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
@@ -10,14 +9,14 @@ public class EvoBasicElements: IEvoluteLayer
     [SerializeField] private bool setOn = true;
     protected int kernel;
     protected MainMap mainMap;
-    private float currentTime = 0;
+    private float currentTime;
     
     public virtual bool IsReady()
     {
         currentTime += Time.deltaTime;
         if (!(currentTime >= 1f / fps)) return false;
         currentTime = 0;
-        return true && setOn;
+        return setOn;
     }
     
     public virtual void Init(MainMap map)
@@ -30,7 +29,7 @@ public class EvoBasicElements: IEvoluteLayer
     
     public virtual void Execute(int seed)
     {
-        if (mainMap.onDebug)
+        if (Debugger.IsDebug)
         {
             computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
             computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);

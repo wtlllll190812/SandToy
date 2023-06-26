@@ -6,9 +6,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ColorTexturePreset : SerializedScriptableObject
 {
+    [SerializeField] private string path;
+    [SerializeField] private int maxElementNum = 32;
     [ColorUsage(true, true)]
     [SerializeField] private List<Color> colors;
-    [SerializeField] private int maxElementNum = 32;
 
     private void Reset()
     {
@@ -32,7 +33,7 @@ public class ColorTexturePreset : SerializedScriptableObject
     }
 
     [Button("Save")]
-    public void Save(string path)
+    public void Save()
     {
         var texture = GetTexture();
         byte[] bytes = texture.EncodeToTGA();

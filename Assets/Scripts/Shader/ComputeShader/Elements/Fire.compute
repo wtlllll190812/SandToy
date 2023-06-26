@@ -5,6 +5,43 @@ RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
 
+/**
+ * \brief 获取燃点
+ */
+uint flamePoint(uint kind)
+{
+    switch (kind)
+    {
+    case OIL: return 25;
+    case PLANT: return 26;
+    case FLOWER: return 26;
+    case WOOD: return 27;
+    case SEED: return 28;
+    case ROOT: return 28;
+    default: return 32;
+    }
+}
+
+/**
+ * \brief 获取燃烧时间
+ */
+uint flameTime(uint kind)
+{
+    switch (kind)
+    {
+    case OIL: return 30;
+    case WOOD: return 20;
+    case PLANT: return 15;
+    case ROOT: return 15;
+    case FLOWER: return 3;
+    case SEED: return 3;
+    default: return 32;
+    }
+}
+
+/**
+ * \brief 更新火焰
+ */
 void updateFire(uint3 id)
 {
     setTemperature(id.xy,int2float(31));
@@ -26,6 +63,9 @@ void updateFire(uint3 id)
     }
 }
 
+/**
+ * \brief 更新火源
+ */
 void updateFireSource(uint3 id)
 {
     uint kind1=float2int(Result[left(id)].x);
@@ -41,7 +81,32 @@ void updateFireSource(uint3 id)
     }
 }
 
-//y表示剩余火星数量
+/**
+ * \brief 更新可燃物
+ */
+void updateCombustible(uint3 id,uint kind)
+{
+    uint kind1=float2int(Result[left(id)].x);
+    uint kind2=float2int(Result[right(id)].x);
+    uint kind3=float2int(Result[down(id)].x);
+    uint kind4=float2int(Result[up(id)].x);
+
+    bool nearFire=kind1==FIRE||kind2==FIRE||kind3==FIRE||kind4==FIRE;
+    bool nearFireSource=kind1==FIRE_SOURCE||kind2==FIRE_SOURCE||kind3==FIRE_SOURCE||kind4==FIRE_SOURCE
+                        ||kind1==F_FIRE_SOURCE||kind2==F_FIRE_SOURCE||kind3==F_FIRE_SOURCE||kind4==F_FIRE_SOURCE;
+    bool nearAir=kind1==EMPTY||kind2==EMPTY||kind3==EMPTY||kind4==EMPTY;
+    uint temp=float2int(Environment[id.xy].x);
+    
+    if(nearAir&&(nearFireSource||nearFire||temp>=flamePoint(kind)))
+    {
+        setKind(id.xy,kind==OIL?F_FIRE_SOURCE:FIRE_SOURCE);
+        setY(id.xy,flameTime(kind));
+    }
+}
+
+/**
+ * \brief 生成火焰（y表示剩余火星数量）
+ */
 void spawnFire(uint3 id)
 {
     setTemperature(id.xy,int2float(32));
@@ -68,9 +133,25 @@ void spawnFire(uint3 id)
     }
 }
 
+/**
+ * \brief 判断是否可燃
+ * \param kind 种类
+ */
+bool ignitable( uint kind)
+{
+    return kind==WOOD
+            ||kind==SEED
+            ||kind==PLANT
+            ||kind==FLOWER
+            ||kind==OIL
+            ||kind==ROOT;
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
+    uint kind =float2int(Result[id.xy].x);
+
     if(checkKind(id.xy,FIRE_SOURCE)||checkKind(id.xy,F_FIRE_SOURCE))
     {
         updateFireSource(id);
@@ -78,6 +159,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     }
     else if(checkKind(id.xy,FIRE))
         updateFire(id);
+    else if(ignitable(kind))
+        updateCombustible(id,kind);
 }
 
 void setTemperature(uint2 id,float value)

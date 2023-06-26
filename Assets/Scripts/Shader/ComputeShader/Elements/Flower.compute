@@ -1,0 +1,143 @@
+#include "../Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
+int seed;
+
+
+bool canGrow(uint2 id)
+{
+    uint kind=float2int(Result[id].x);
+    return kind==EMPTY
+    ||kind==WATER
+    ||kind==SEED;
+}
+
+bool isPlant(uint kind)
+{
+    return kind==PLANT
+    ||kind==FLOWER
+    ||kind==ROOT
+    ||kind==WOOD;
+}
+
+void updateSEED(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint2 nbrId=id.xy+vec;
+    uint kind=float2int(Result[nbrId.xy].x);
+    
+    if(kind==WET_SAND)
+    {
+        setKind(id.xy,PLANT);
+        setY(id.xy,7+rand(id,seed)*8);
+    }
+    if(kind==MUD)
+    {
+        setKind(id.xy,PLANT);
+        setY(id.xy,15+rand(id,seed)*10);
+    }
+    if(isPlant(kind))
+    {
+        setKind(id.xy,EMPTY);
+    }
+}
+
+void updatePlant(uint3 id)
+{
+    uint number=float2int(Result[id.xy].y);
+
+    if(number>0)
+    {
+        uint2 nbrId=id.xy;
+        bool lu=canGrow(leftUp(id));
+        bool ru=canGrow(rightUp(id));
+
+        if(lu&&ru)
+        {
+            nbrId=rand(id,seed)>0.5f?leftUp(id):rightUp(id);
+        }
+        else if(lu)
+        {
+            nbrId=leftUp(id);
+        }
+        else if(ru)
+        {
+            nbrId=rightUp(id);
+        }
+        
+        setKind(nbrId.xy,PLANT);
+        setY(nbrId.xy,number-1);
+        setY(id.xy,0);
+        if(number==1)
+        {
+            setKind(nbrId.xy,FLOWER);
+            setY(nbrId.xy,5);
+        }
+    }
+}
+
+void updateFlower(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint2 nbrId=id.xy+vec;
+    uint number=float2int(Result[id.xy].y);
+
+    if(number>0)
+    {
+        if(canGrow(nbrId.xy))
+        {
+            setKind(nbrId.xy,FLOWER);
+            setY(nbrId.xy,number-1);
+            setY(id.xy,0);
+        }
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,SEED))
+        updateSEED(id);
+    else if(checkKind(id.xy,PLANT))
+        updatePlant(id);
+    else if(checkKind(id.xy,FLOWER))
+        updateFlower(id);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}
