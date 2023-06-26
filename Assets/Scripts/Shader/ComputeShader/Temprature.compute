@@ -8,6 +8,9 @@ int maxQ;
 #define K 1
 #define SQRT2 1.414213
 
+/**
+ * \brief 热传递系数
+ */
 float getHeatAttrK(uint2 id)
 {
     uint kind=float2int(Result[id.xy].x);
@@ -22,7 +25,8 @@ float getHeatAttrK(uint2 id)
 
     if(kind == GAS
         ||kind==POISON_GAS
-        ||kind==STEAM)
+        ||kind==STEAM
+        ||kind==LIHUO)
             return 1;
     
     if(kind==WATER
@@ -36,6 +40,9 @@ float getHeatAttrK(uint2 id)
     return 1;
 }
 
+/**
+ * \brief 获取某点温度
+ */
 float getTemperature(uint2 id,float t)
 {
     if(id.x==0||id.x>255||id.y==0||id.y>255)
@@ -43,6 +50,9 @@ float getTemperature(uint2 id,float t)
     return Environment[id].x-t;
 }
 
+/**
+ * \brief 热传递过程模拟
+ */
 void transferHeat(uint3 id)
 {
     float t=Environment[id.xy].x;

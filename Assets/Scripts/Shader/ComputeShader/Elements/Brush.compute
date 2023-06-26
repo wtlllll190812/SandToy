@@ -39,6 +39,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
             break;
         case LIHUO:
             setY(id.xy,10);
+            setTemperature(id.xy,32);
             break;
         case FIRE_SOURCE:
             setY(id.xy,10);

@@ -109,7 +109,6 @@ void updateCombustible(uint3 id,uint kind)
  */
 void spawnFire(uint3 id,bool isLiHuo)
 {
-    setTemperature(id.xy,int2float(32));
     uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
     float4 nbr=Result[nbrId];
     uint number=float2int(Result[id.xy].y);

@@ -8,7 +8,6 @@ int seed;
 void updateLiHuo(uint3 id)
 {
     setTemperature(id.xy,32);
-    setY(id.xy,10);
 }
 
 [numthreads(8,8,1)]
