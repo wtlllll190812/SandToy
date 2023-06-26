@@ -36,7 +36,7 @@ void ramble(uint3 id,uint kind,uint mode)
 
 void setHumidity(uint3 id,float value)
 {
-    float4 ori=Result[id.xy];
+    float4 ori=Environment[id.xy];
     Environment[id.xy]=float4(ori.x,value,ori.zw);
 }
 
@@ -47,8 +47,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         ramble(id,GAS,DIR_KEEP);
     else if(checkKind(id.xy,STEAM))
     {
+        setHumidity(id,Environment[id.xy].y+int2float(1)/10);
         ramble(id,STEAM,DIR_UP);
-        setHumidity(id,Environment[id.xy].y+int2float(1));
     }
     else if(checkKind(id.xy,POISON_GAS))
         ramble(id,POISON_GAS,DIR_DOWN);

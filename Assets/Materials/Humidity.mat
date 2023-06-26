@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Temperature
+  m_Name: Humidity
   m_Shader: {fileID: 4800000, guid: baed8c98c4ef4bd99953b892c9622bde, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -47,12 +47,12 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _showW: 0
-    - _showY: 0
+    - _showY: 1
     - _showZ: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _HighColor: {r: 0.8867924, g: 0.1873976, b: 0.1873976, a: 1}
-    - _LowColor: {r: 0.17493767, g: 0.29972264, b: 0.7924528, a: 1}
+    - _HighColor: {r: 0.10704873, g: 0.25670713, b: 0.5849056, a: 1}
+    - _LowColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

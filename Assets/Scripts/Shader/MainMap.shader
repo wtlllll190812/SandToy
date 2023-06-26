@@ -36,9 +36,9 @@ Shader "Custom/MainMap"
             Texture2D _ColorTex;
             float4 _MapTex_ST;
             float4 _MapTex_TexelSize;
-            bool _debugY;
-            bool _debugZ;
-            bool _debugW;
+            bool _showY;
+            bool _showZ;
+            bool _showW;
             
             v2f vert (appdata v)
             {
@@ -51,11 +51,11 @@ Shader "Custom/MainMap"
             fixed4 frag (v2f i) : SV_Target
             {
                 int kind=tex2D(_MapTex, i.uv).x*32;
-                if(_debugY)
+                if(_showY)
                     kind=tex2D(_MapTex, i.uv).y;
-                else if(_debugZ)
+                else if(_showZ)
                     kind=tex2D(_MapTex, i.uv).z;
-                else if(_debugW)
+                else if(_showW)
                     kind=tex2D(_MapTex, i.uv).w;
                 float4 color=_ColorTex[uint2(kind,0)];
                 return color;

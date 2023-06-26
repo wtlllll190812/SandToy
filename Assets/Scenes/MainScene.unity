@@ -714,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMaterial: {fileID: 2100000, guid: 11b1b3df078a80349b97087d2050084a, type: 2}
   temperatureMaterial: {fileID: 2100000, guid: bc4e42e67cae42644abb812a3f07e049, type: 2}
+  humidityMaterial: {fileID: 2100000, guid: f92ed3cf4acb23d459c01d8aec454fde, type: 2}
   spriteRenderer: {fileID: 684775895}
   colorTexturePreset: {fileID: 11400000, guid: fe3c964dace7566429a7aac29a7eebb2, type: 2}
 --- !u!1 &773294195

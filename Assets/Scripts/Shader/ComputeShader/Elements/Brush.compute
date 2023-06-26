@@ -57,7 +57,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 void Clear(uint3 id : SV_DispatchThreadID)
 {
     Result[id.xy]=0;
-    Environment[id.xy]=0.5f;
+    Environment[id.xy]=float4(0.5f,0,0,0);
     if(id.x==0||id.x==255||id.y==0||id.y==255)
         Result[id.xy]=float4(int2float(BEDROCK),0,0,0);
 }
