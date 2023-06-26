@@ -107,7 +107,7 @@ void updateCombustible(uint3 id,uint kind)
 /**
  * \brief 生成火焰（y表示剩余火星数量）
  */
-void spawnFire(uint3 id)
+void spawnFire(uint3 id,bool isLiHuo)
 {
     setTemperature(id.xy,int2float(32));
     uint2 nbrId=id.xy+randDir(id,seed,DIR_UP);
@@ -117,7 +117,7 @@ void spawnFire(uint3 id)
     {
         setKind(nbrId,FIRE);
         setY(nbrId,40);
-        setY(id.xy,number-1);
+        if(!isLiHuo)setY(id.xy,number-1);
         if(number<=1)
         {
             setKind(id.xy,FIRE);
@@ -125,7 +125,7 @@ void spawnFire(uint3 id)
     }
     else if(rand(id,seed)>0.5f)
     {
-        setY(id.xy,number-1);
+        if(!isLiHuo)setY(id.xy,number-1);
         if(number<=1)
         {
             setKind(id.xy,FIRE);
@@ -155,7 +155,11 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(checkKind(id.xy,FIRE_SOURCE)||checkKind(id.xy,F_FIRE_SOURCE))
     {
         updateFireSource(id);
-        spawnFire(id);
+        spawnFire(id,false);
+    }
+    else if(checkKind(id.xy,LIHUO))
+    {
+        spawnFire(id,true);
     }
     else if(checkKind(id.xy,FIRE))
         updateFire(id);

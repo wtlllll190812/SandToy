@@ -34,6 +34,18 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         case ICE:
             setTemperature(id.xy,int2float(ICE_TEMP));
             break;
+        case FIRE:
+            setY(id.xy,10);
+            break;
+        case LIHUO:
+            setY(id.xy,10);
+            break;
+        case FIRE_SOURCE:
+            setY(id.xy,10);
+            break;
+        case F_FIRE_SOURCE:
+            setY(id.xy,10);
+            break; 
         default:
             break;
         }
@@ -47,4 +59,10 @@ void Clear(uint3 id : SV_DispatchThreadID)
     Environment[id.xy]=0.5f;
     if(id.x==0||id.x==255||id.y==0||id.y==255)
         Result[id.xy]=float4(int2float(BEDROCK),0,0,0);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
 }
