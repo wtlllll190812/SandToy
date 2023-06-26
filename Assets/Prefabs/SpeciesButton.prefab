@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30.9072}
+  m_SizeDelta: {x: 26.7979, y: 25.827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4466073210024419162
 CanvasRenderer:
@@ -158,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 10.1639}
+  m_SizeDelta: {x: 36, y: 18.553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1309307138292936855
 CanvasRenderer:
@@ -190,8 +190,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: test
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b63af7fae43023e44bde6125e83c3a9f, type: 2}
-  m_sharedMaterial: {fileID: 7951409973259426749, guid: b63af7fae43023e44bde6125e83c3a9f,
+  m_fontAsset: {fileID: 11400000, guid: 2ffe9ccb3508f974086be596c6cf1fe9, type: 2}
+  m_sharedMaterial: {fileID: -7780643460859661199, guid: 2ffe9ccb3508f974086be596c6cf1fe9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -216,23 +216,23 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.1
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 5
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 14
+  m_fontSizeMax: 16
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 3.8
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
@@ -434,3 +434,4 @@ MonoBehaviour:
   button: {fileID: 2302281432066910563}
   mText: {fileID: 310197678872704811}
   iconImage: {fileID: 6878507325003723505}
+  index: 0

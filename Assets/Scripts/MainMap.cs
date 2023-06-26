@@ -5,6 +5,7 @@ using System.Linq;
 
 public class MainMap : SerializedMonoBehaviour
 {
+    [SerializeField] private string path;
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] private Displayer displayer;
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
@@ -48,5 +49,12 @@ public class MainMap : SerializedMonoBehaviour
             if (!item.IsReady()) continue;
             item.Execute(seed);
         }
+    }
+    
+    [Button]
+    public void SaveTexture()
+    {
+        RenderTextureUtils.SaveTexture(BasicTexture, path+"/basic.tga");
+        RenderTextureUtils.SaveTexture(EnvironmentTexture, path+"/environment.tga");
     }
 }

@@ -30,7 +30,7 @@ void soak(uint3 id,uint kind)
 
 void dry(uint3 id,uint kind)
 {
-    uint temp=Environment[id.xy].y*ELEMENT_NUMBER;
+    uint temp=Environment[id.xy].x*ELEMENT_NUMBER;
 
     if(temp>25)
     {
@@ -46,9 +46,9 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     else if(checkKind(id.xy,MUD))
         soak(id,WET_MUD);
     else if(checkKind(id.xy,WET_SAND))
-        soak(id,SAND);
+        dry(id,SAND);
     else if(checkKind(id.xy,WET_MUD))
-        soak(id,MUD);
+        dry(id,MUD);
 }
 
 

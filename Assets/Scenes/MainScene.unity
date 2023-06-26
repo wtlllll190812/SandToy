@@ -859,18 +859,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 510337351315642441, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 510337351315642441, guid: e2046cd1f32c9f645a504b96da1ba974,
-        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 510337351315642441, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19.4536
+      value: -16.9135
       objectReference: {fileID: 0}
     - target: {fileID: 1459837367301896715, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
@@ -884,18 +879,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459837367301896715, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459837367301896715, guid: e2046cd1f32c9f645a504b96da1ba974,
-        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1459837367301896715, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -39.98915
+      value: -39.1035
       objectReference: {fileID: 0}
     - target: {fileID: 6799100395611105958, guid: e2046cd1f32c9f645a504b96da1ba974,
         type: 3}
@@ -2198,6 +2188,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  path: Assets/Textures
   useNoiseGenerator: 0
   displayer: {fileID: 684775896}
   noiseGenerator: {fileID: 1304901912}
