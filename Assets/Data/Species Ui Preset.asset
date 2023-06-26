@@ -89,7 +89,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -860308341, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 3
     name:
       m_TableReference:
@@ -131,7 +131,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -1989296637, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 5
     name:
       m_TableReference:
@@ -278,7 +278,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -1487554553, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 12
     name:
       m_TableReference:
@@ -362,7 +362,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: 726788738, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 16
     name:
       m_TableReference:
@@ -383,7 +383,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -705924645, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 17
     name:
       m_TableReference:
@@ -404,7 +404,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -1046706212, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 18
     name:
       m_TableReference:
@@ -446,7 +446,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: -670156873, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 20
     name:
       m_TableReference:
@@ -572,7 +572,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: 723686337, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 26
     name:
       m_TableReference:
@@ -593,7 +593,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   - icon: {fileID: 738843098, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
+    show: 0
     kind: 27
     name:
       m_TableReference:

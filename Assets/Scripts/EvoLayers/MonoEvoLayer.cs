@@ -8,7 +8,7 @@ public class MonoEvoLayer : SerializedMonoBehaviour, IEvoluteLayer
     [SerializeField] private bool setOn = true;
     protected int kernel;
     protected MainMap mainMap;
-    private float currentTime = 0;
+    private float currentTime;
 
     public virtual bool IsReady()
     {
@@ -29,7 +29,7 @@ public class MonoEvoLayer : SerializedMonoBehaviour, IEvoluteLayer
 
     public virtual void Execute(int seed)
     {
-        if (mainMap.onDebug)
+        if (Debugger.IsDebug)
         {
             computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
             computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);

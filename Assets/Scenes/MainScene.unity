@@ -2051,7 +2051,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  onDebug: 1
   useNoiseGenerator: 0
   displayer: {fileID: 684775896}
   noiseGenerator: {fileID: 1304901912}

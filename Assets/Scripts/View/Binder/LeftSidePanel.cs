@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class LeftSidePanel : MonoBehaviour
@@ -31,7 +30,7 @@ public class LeftSidePanel : MonoBehaviour
 
         foreach (var item in speciesUiItems.SpeciesUiItems)
         {
-            if (!item.Show) continue;
+            if (!item.Show&&!Debugger.IsDebug) continue;
             var obj = Instantiate(brushTypeButtonPref, brushType);
             obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
         }

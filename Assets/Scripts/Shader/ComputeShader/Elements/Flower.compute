@@ -28,10 +28,15 @@ void updateSEED(uint3 id)
     uint2 nbrId=id.xy+vec;
     uint kind=float2int(Result[nbrId.xy].x);
     
-    if(kind==SAND)
+    if(kind==WET_SAND)
     {
         setKind(id.xy,PLANT);
-        setY(id.xy,10);
+        setY(id.xy,7+rand(id,seed)*8);
+    }
+    if(kind==MUD)
+    {
+        setKind(id.xy,PLANT);
+        setY(id.xy,15+rand(id,seed)*10);
     }
     if(isPlant(kind))
     {
