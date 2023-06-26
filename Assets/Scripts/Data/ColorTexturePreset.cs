@@ -35,8 +35,6 @@ public class ColorTexturePreset : SerializedScriptableObject
     [Button("Save")]
     public void Save()
     {
-        var texture = GetTexture();
-        byte[] bytes = texture.EncodeToTGA();
-        File.WriteAllBytes(path, bytes);
+        RenderTextureUtils.SaveTexture(GetTexture(), path);
     }
 }

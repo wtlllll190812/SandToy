@@ -49,4 +49,11 @@ public class MainMap : SerializedMonoBehaviour
             item.Execute(seed);
         }
     }
+    
+    [Button]
+    public void SaveTexture(string path)
+    {
+        RenderTextureUtils.SaveTexture(BasicTexture, path+"/basic.tga");
+        RenderTextureUtils.SaveTexture(EnvironmentTexture, path+"/environment.tga");
+    }
 }
