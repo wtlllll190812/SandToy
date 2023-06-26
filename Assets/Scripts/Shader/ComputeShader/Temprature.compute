@@ -57,6 +57,8 @@ float getTemperature(uint2 id,float t)
  */
 void transferHeat(uint3 id)
 {
+    if(checkKind(id,XUANTIE))
+        return;
     float t=Environment[id.xy].x;
     float tr=getTemperature(right(id),t)*getHeatAttrK(right(id));
     float tl=getTemperature(left(id),t)*getHeatAttrK(left(id));
@@ -66,7 +68,7 @@ void transferHeat(uint3 id)
     float tld=getTemperature(leftDown(id),t)*getHeatAttrK(leftDown(id))/SQRT2;
     float tru=getTemperature(rightUp(id),t)*getHeatAttrK(rightUp(id))/SQRT2;
     float trd=getTemperature(rightDown(id),t)*getHeatAttrK(rightDown(id))/SQRT2;
-    
+
     float q=t+(tr+tl+tu+td+tlu+tld+tru+trd)/8*getHeatAttrK(id.xy);
     float4 ori=Environment[id.xy];
     Environment[id.xy]=float4(q,ori.yzw);
@@ -76,4 +78,9 @@ void transferHeat(uint3 id)
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     transferHeat(id);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
 }

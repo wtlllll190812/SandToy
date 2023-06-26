@@ -44,7 +44,7 @@ uint flameTime(uint kind)
  */
 void updateFire(uint3 id)
 {
-    setTemperature(id.xy,int2float(31));
+    setTemperature(id.xy,int2float(30));
     uint2 vec=randDir(id,seed,DIR_UP);
     uint2 nbrId=id.xy+vec;
     uint number=Result[id.xy].y*ELEMENT_NUMBER;
