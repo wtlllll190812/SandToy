@@ -1837,6 +1837,7 @@ MonoBehaviour:
     - {fileID: 7200000, guid: caaeb05a77f3438aa06d1490d4a56b00, type: 3}
     - {fileID: 7200000, guid: 0c85632bf45246e0844d722b571dd5bf, type: 3}
     - {fileID: 7200000, guid: 09a50d962af342a4ad8159bf7c7c803b, type: 3}
+    - {fileID: 7200000, guid: bbdcf8123953459a82accbb7e4b720a6, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1848,7 +1849,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 7
       Data: 1|EvoBasicElements, Assembly-CSharp
@@ -2026,6 +2027,21 @@ MonoBehaviour:
     - Name: liquidKind
       Entry: 3
       Data: 27
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|EvoBasicElements, Assembly-CSharp
+    - Name: computeShader
+      Entry: 10
+      Data: 7
+    - Name: fps
+      Entry: 3
+      Data: 30
+    - Name: setOn
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 

@@ -1,0 +1,114 @@
+#include "../Utils.hlsl"
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Environment;
+int seed;
+
+
+void updateSEED(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint2 nbrId=id.xy+vec;
+    uint kind=float2int(Result[nbrId.xy].x);
+    
+    if(kind==SAND)
+    {
+        setKind(id.xy,PLANT);
+        setY(id.xy,20);
+    }
+    if(kind==PLANT)
+    {
+        setKind(id.xy,PLANT);
+        setY(id.xy,20);
+    }
+}
+
+void updatePlant(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_UP);
+    uint2 nbrId=id.xy+vec;
+    uint number=float2int(Result[id.xy].y);
+
+    if(number>0)
+    {
+        if(checkKind(nbrId.xy,EMPTY))
+        {
+            if(number==1)
+            {
+                setKind(nbrId.xy,FLOWER);
+                setY(nbrId.xy,5);
+            }
+            else
+            {
+                setKind(nbrId.xy,PLANT);
+                setY(nbrId.xy,number-1);
+            }
+            setY(id.xy,0);
+        }
+    }
+}
+
+void updateFlower(uint3 id)
+{
+    uint2 vec=randDir(id,seed,DIR_KEEP);
+    uint2 nbrId=id.xy+vec;
+    uint number=float2int(Result[id.xy].y);
+
+    if(number>0)
+    {
+        if(checkKind(nbrId.xy,EMPTY))
+        {
+            setKind(nbrId.xy,FLOWER);
+            setY(nbrId.xy,number-1);
+            setY(id.xy,0);
+        }
+    }
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(checkKind(id.xy,SEED))
+        updateSEED(id);
+    else if(checkKind(id.xy,PLANT))
+        updatePlant(id);
+    else if(checkKind(id.xy,FLOWER))
+        updateFlower(id);
+}
+
+bool checkKind(uint2 id,uint kind)
+{
+    return float2int(Result[id.xy].x)==kind;
+}
+
+void move(uint2 id,uint2 nbrId)
+{
+    float4 temp=Result[id.xy];
+    Result[id.xy]=Result[nbrId];
+    Result[nbrId]=temp;
+}
+
+void setKind(uint2 id,uint kind)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(int2float(kind),ori.yzw);
+}
+
+void setY(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,int2float(value),ori.zw);
+}
+
+void setZ(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,int2float(value),ori.w);
+}
+
+void setW(uint2 id,uint value)
+{
+    float4 ori=Result[id.xy];
+    Result[id.xy]=float4(ori.x,ori.y,ori.z,int2float(value));
+}
