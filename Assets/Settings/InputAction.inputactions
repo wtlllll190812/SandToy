@@ -33,11 +33,11 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectBrush",
+                    "name": "Zoom",
                     "type": "Value",
-                    "id": "cf37f561-bc67-4b95-95b8-8c039a805969",
-                    "expectedControlType": "Integer",
-                    "processors": "",
+                    "id": "e74b5930-b313-4a89-965e-0c5210846a79",
+                    "expectedControlType": "Axis",
+                    "processors": "Normalize(max=1)",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -100,12 +100,23 @@
                 },
                 {
                     "name": "",
-                    "id": "54a116e3-7406-4659-9c68-d6bb85654114",
-                    "path": "",
+                    "id": "a87fdcf4-738f-4ba0-b57f-6a472f4e116d",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dad9344-3e5a-4938-863a-aa11f1f33f54",
+                    "path": "<Touchscreen>/primaryTouch/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectBrush",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

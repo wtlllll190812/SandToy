@@ -16,5 +16,13 @@ namespace Command
                 commandPreset.Handler.HandleCommand(command);
             }
         }
+        
+        [Button]
+        public Command CreateCommand(string commandString)
+        {
+            var com=commandString.Split(' ');
+            var command = new Command(com[0], com.Skip(1).ToList());
+            return command;
+        }
     }
 }
