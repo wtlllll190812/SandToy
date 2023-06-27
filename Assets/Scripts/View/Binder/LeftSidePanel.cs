@@ -10,17 +10,20 @@ public class LeftSidePanel : MonoBehaviour
     [SerializeField] private RectTransform brushSize;
     [SerializeField] private RectTransform brushType;
     [SerializeField] private RectTransform displayerMode;
+    
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
+    
     [SerializeField] private SpeciesUiPreset speciesUiItems;
     [SerializeField] private BrushSizePreset brushSizePreset;
+    [SerializeField] private ViewModePreset viewModePreset;
     
     private void Start()
     {
-        foreach (int mode in Enum.GetValues(typeof(Displayer.DisplayMode)))
+        foreach (var mode in viewModePreset.Presets)
         {
             var obj = Instantiate(brushSizeButtonPref, displayerMode);
-            obj.GetComponent<UiItem>().Init(mode, OnViewModeChange);
+            obj.GetComponent<UiItem>().Init((int)mode.Mode, OnViewModeChange, mode.Icon);
         }
 
         foreach (var item in brushSizePreset.Presets)

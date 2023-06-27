@@ -15,7 +15,12 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: -542228647, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    - {fileID: -2043335056, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    - {fileID: -283209064, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    - {fileID: -860308341, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    - {fileID: -1488329191, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -35,8 +40,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: Icon
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -47,8 +52,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: Icon
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -59,8 +64,8 @@ MonoBehaviour:
       Entry: 3
       Data: 8
     - Name: Icon
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -71,8 +76,8 @@ MonoBehaviour:
       Entry: 3
       Data: 15
     - Name: Icon
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -83,8 +88,8 @@ MonoBehaviour:
       Entry: 3
       Data: 30
     - Name: Icon
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 

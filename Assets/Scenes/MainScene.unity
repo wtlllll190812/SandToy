@@ -269,6 +269,7 @@ MonoBehaviour:
     type: 3}
   speciesUiItems: {fileID: 11400000, guid: b794412c50687a647af300bd3887f657, type: 2}
   brushSizePreset: {fileID: 11400000, guid: 07ec9cf56e7aeb64c95b3be7b69e21c4, type: 2}
+  viewModePreset: {fileID: 11400000, guid: 937822d94490da849b288e4f72ac4c89, type: 2}
 --- !u!114 &90803490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,7 +2233,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   computeShader: {fileID: 7200000, guid: b84255fdd502413796ef7243e0bed45d, type: 3}
-  fps: 120
+  fps: 60
   setOn: 1
   ppu: 100
   brushSize: 0
