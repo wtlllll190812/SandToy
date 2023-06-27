@@ -1,18 +1,19 @@
 using System;
+using Data;
 using UnityEngine;
 
 public class LeftSidePanel : MonoBehaviour
 {
-    private static Action<float> OnBrushSizeChangeAction;
+    private static Action<int> OnBrushSizeChangeAction;
     private static Action<int> OnBrushTypeChangeAction;
     private static Action<int> OnViewModeChangeAction;
-    [SerializeField] private int sizeLevel;
     [SerializeField] private RectTransform brushSize;
     [SerializeField] private RectTransform brushType;
     [SerializeField] private RectTransform displayerMode;
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
     [SerializeField] private SpeciesUiPreset speciesUiItems;
+    [SerializeField] private BrushSizePreset brushSizePreset;
     
     private void Start()
     {
@@ -21,11 +22,11 @@ public class LeftSidePanel : MonoBehaviour
             var obj = Instantiate(brushSizeButtonPref, displayerMode);
             obj.GetComponent<UiItem>().Init(mode, OnViewModeChange);
         }
-        
-        for (var i = 1; i <= sizeLevel; i++)
+
+        foreach (var item in brushSizePreset.Presets)
         {
             var obj = Instantiate(brushSizeButtonPref, brushSize);
-            obj.GetComponent<UiItem>().Init(i, OnBrushSizeChange);
+            obj.GetComponent<UiItem>().Init(item.Size, OnBrushSizeChange,item.Icon);
         }
 
         foreach (var item in speciesUiItems.SpeciesUiItems)
@@ -38,7 +39,7 @@ public class LeftSidePanel : MonoBehaviour
         OnBrushTypeChange((int) Species.Sand);
     }
 
-    public static void RegisterOnBrushSizeChange(Action<float> action)
+    public static void RegisterOnBrushSizeChange(Action<int> action)
     {
         OnBrushSizeChangeAction += action;
     }
@@ -55,7 +56,7 @@ public class LeftSidePanel : MonoBehaviour
     
     private void OnBrushSizeChange(int index)
     {
-        OnBrushSizeChangeAction?.Invoke((float) index / sizeLevel);
+        OnBrushSizeChangeAction?.Invoke(index);
     }
 
     private void OnBrushTypeChange(int index)

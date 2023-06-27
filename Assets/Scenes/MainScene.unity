@@ -260,7 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f104ade26149b59dea1f34d98481d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeLevel: 6
   brushSize: {fileID: 1522673067}
   brushType: {fileID: 683886441}
   displayerMode: {fileID: 1112168360}
@@ -269,6 +268,7 @@ MonoBehaviour:
   brushTypeButtonPref: {fileID: 7104556806798940397, guid: e2046cd1f32c9f645a504b96da1ba974,
     type: 3}
   speciesUiItems: {fileID: 11400000, guid: b794412c50687a647af300bd3887f657, type: 2}
+  brushSizePreset: {fileID: 11400000, guid: 07ec9cf56e7aeb64c95b3be7b69e21c4, type: 2}
 --- !u!114 &90803490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,8 +2235,6 @@ MonoBehaviour:
   fps: 120
   setOn: 1
   ppu: 100
-  brushOffset: {x: 0, y: 0}
-  maxBrushSize: 20
   brushSize: 0
   inputSetting: {fileID: -944628639613478452, guid: 36f39149ed9f30045849d0434e2b30ef,
     type: 3}

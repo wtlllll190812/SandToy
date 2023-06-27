@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 public class EvoBrush : MonoEvoLayer
 {
     [SerializeField] private int ppu = 100;
-    [SerializeField] private Vector2 brushOffset;
-    [SerializeField] private int maxBrushSize;
     [SerializeField] private int brushSize;
     [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private Collider2D col;
@@ -19,7 +17,7 @@ public class EvoBrush : MonoEvoLayer
 
     private void Awake()
     {
-        LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = (int) (size * maxBrushSize));
+        LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = size);
         LeftSidePanel.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
     }
 
