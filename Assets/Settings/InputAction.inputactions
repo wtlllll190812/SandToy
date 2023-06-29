@@ -45,9 +45,9 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "245b693d-1c80-43a4-8369-b880b5fc8814",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=2)",
+                    "id": "2645a74d-1bf0-4b51-8016-4d508e02ba17",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "StartPaint",
@@ -56,9 +56,9 @@
                 },
                 {
                     "name": "",
-                    "id": "2645a74d-1bf0-4b51-8016-4d508e02ba17",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Press(behavior=2)",
+                    "id": "0a6d3e8e-4d77-4656-addd-776ad4c22cce",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "StartPaint",
