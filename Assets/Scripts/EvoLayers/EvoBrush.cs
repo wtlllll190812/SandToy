@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class EvoBrush : MonoEvoLayer
 {
     [SerializeField] private int ppu = 100;
-    [SerializeField] private int brushSize;
     [SerializeField] private InputActionAsset inputSetting;
     [SerializeField] private BoxCollider2D col;
     [SerializeField] private Camera cam;
@@ -14,10 +13,17 @@ public class EvoBrush : MonoEvoLayer
     private bool pressed;
     private bool clear;
     private int kernelClear;
+    private int brushSize;
+
+    public int BrushSize
+    {
+        get => brushSize * mainMap.BasicTexture.width / 256;
+        set => brushSize = value;
+    }
 
     private void Awake()
     {
-        LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = size);
+        LeftSidePanel.RegisterOnBrushSizeChange(size => BrushSize = size);
         LeftSidePanel.RegisterOnBrushTypeChange(species => currentSpecie = (Species) species);
     }
 
@@ -49,8 +55,9 @@ public class EvoBrush : MonoEvoLayer
         if (!pressed) return;
 
         var pixelId = GetPixelID(mainMap.BasicTexture.width, mainMap.BasicTexture.height);
+        Debug.Log(pixelId);
         computeShader.SetInt("kind", (int) currentSpecie);
-        computeShader.SetInt("size", brushSize * mainMap.BasicTexture.width / 256);
+        computeShader.SetInt("size", BrushSize);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
         base.Execute(seed);
     }

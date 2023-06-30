@@ -422,6 +422,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1700093730344239623, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
+      propertyPath: generation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2915166783777636513, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: m_Name
@@ -484,16 +489,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702456028652757098, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
+      propertyPath: size
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702456028652757098, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 7702456028652757098, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218893343994563867, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2021601203}
     - target: {fileID: 8218893343994563867, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 8218893343994563867, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8329920483519538191, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1468,6 +1481,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6244266452362187600, guid: 444e28d26300bc248a4e862e57f86c7b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2021601203}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1564,6 +1582,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692337977}
   m_CullTransparentMesh: 1
+--- !u!20 &2021601203 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7991209968956587002, guid: 123d65556c6253b48a09f9629fbf67cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 688702909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2045540740
 GameObject:
   m_ObjectHideFlags: 0
