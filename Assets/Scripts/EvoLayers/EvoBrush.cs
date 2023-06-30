@@ -55,7 +55,6 @@ public class EvoBrush : MonoEvoLayer
         if (!pressed) return;
 
         var pixelId = GetPixelID(mainMap.BasicTexture.width, mainMap.BasicTexture.height);
-        Debug.Log(pixelId);
         computeShader.SetInt("kind", (int) currentSpecie);
         computeShader.SetInt("size", BrushSize);
         computeShader.SetInts("pos", pixelId.x, pixelId.y);
