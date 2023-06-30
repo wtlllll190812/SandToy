@@ -5,6 +5,7 @@ RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 int seed;
 int maxQ;
+int texSize;
 #define K 1
 #define SQRT2 1.414213
 
@@ -47,7 +48,7 @@ float getHeatAttrK(uint2 id)
  */
 float getTemperature(uint2 id,float t)
 {
-    if(id.x==0||id.x>255||id.y==0||id.y>255)
+    if(id.x==0||id.x>texSize-1||id.y==0||id.y>texSize-1)
         return 0;
     return Environment[id].x-t;
 }

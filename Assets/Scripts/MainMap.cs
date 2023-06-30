@@ -14,7 +14,9 @@ public class MainMap : SerializedMonoBehaviour
     private int size;
     [SerializeField][TableList] private List<IEvoluteLayer> layers;
     private RenderTexture texture;
-
+    
+    
+    public int Size => size;
     public RenderTexture BasicTexture
     {
         get
