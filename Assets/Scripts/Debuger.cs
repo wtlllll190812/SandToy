@@ -8,7 +8,7 @@ public class Debugger: MonoBehaviour
     private void Awake()
     {
         #if UNITY_EDITOR
-            IsDebug = true;
+            IsDebug = false;
         #else
             IsDebug = false;
         #endif
