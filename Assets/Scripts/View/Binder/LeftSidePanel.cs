@@ -23,12 +23,14 @@ public class LeftSidePanel : MonoBehaviour
         foreach (var mode in viewModePreset.Presets)
         {
             var obj = Instantiate(brushSizeButtonPref, displayerMode);
+            obj.SetActive(true);
             obj.GetComponent<UiItem>().Init((int)mode.Mode, OnViewModeChange, mode.Icon);
         }
 
         foreach (var item in brushSizePreset.Presets)
         {
             var obj = Instantiate(brushSizeButtonPref, brushSize);
+            obj.SetActive(true);
             obj.GetComponent<UiItem>().Init(item.Size, OnBrushSizeChange,item.Icon);
         }
 
@@ -36,6 +38,7 @@ public class LeftSidePanel : MonoBehaviour
         {
             if (!item.Show&&!Debugger.IsDebug) continue;
             var obj = Instantiate(brushTypeButtonPref, brushType);
+            obj.SetActive(true);
             obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
         }
         OnBrushSizeChange(2);

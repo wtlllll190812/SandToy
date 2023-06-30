@@ -6,6 +6,7 @@ RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
 #define MAGMA_TEMP 32
 #define ICE_TEMP 5
+int texSize;
 int seed;
 
 int size;
@@ -21,7 +22,7 @@ void setTemperature(uint2 id,float value)
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    if(id.x==0||id.x==255||id.y==0||id.y==255)
+    if(id.x==0||id.x==texSize-1||id.y==0||id.y==texSize-1)
         return;
     if(distance(id.xy,pos)<size)
     {
@@ -59,7 +60,7 @@ void Clear(uint3 id : SV_DispatchThreadID)
 {
     Result[id.xy]=0;
     Environment[id.xy]=float4(0.5f,0,0,0);
-    if(id.x==0||id.x==255||id.y==0||id.y==255)
+    if(id.x==0||id.x==texSize-1||id.y==0||id.y==texSize-1)
         Result[id.xy]=float4(int2float(BEDROCK),0,0,0);
 }
 

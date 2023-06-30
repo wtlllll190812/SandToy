@@ -33,11 +33,11 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectBrush",
+                    "name": "Zoom",
                     "type": "Value",
-                    "id": "cf37f561-bc67-4b95-95b8-8c039a805969",
-                    "expectedControlType": "Integer",
-                    "processors": "",
+                    "id": "e74b5930-b313-4a89-965e-0c5210846a79",
+                    "expectedControlType": "Axis",
+                    "processors": "Normalize(max=1)",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -45,8 +45,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "245b693d-1c80-43a4-8369-b880b5fc8814",
-                    "path": "<Mouse>/leftButton",
+                    "id": "0a6d3e8e-4d77-4656-addd-776ad4c22cce",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
@@ -56,30 +56,19 @@
                 },
                 {
                     "name": "",
-                    "id": "2645a74d-1bf0-4b51-8016-4d508e02ba17",
-                    "path": "<Touchscreen>/Press",
+                    "id": "189a5013-9b15-4391-a568-5031879ccc27",
+                    "path": "<Touchscreen>/touch*/press",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "StartPaint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4e4d65e0-1371-491d-99bd-829ccd176170",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Paint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d3fea8a7-e1bc-48cb-b41f-c3ae7d00f36c",
-                    "path": "<Touchscreen>/position",
+                    "path": "<Touchscreen>/touch*/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -100,12 +89,34 @@
                 },
                 {
                     "name": "",
-                    "id": "54a116e3-7406-4659-9c68-d6bb85654114",
-                    "path": "",
+                    "id": "a87fdcf4-738f-4ba0-b57f-6a472f4e116d",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dad9344-3e5a-4938-863a-aa11f1f33f54",
+                    "path": "<Touchscreen>/primaryTouch/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectBrush",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e4d65e0-1371-491d-99bd-829ccd176170",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
