@@ -14,7 +14,7 @@ public class EvoBrush : MonoEvoLayer
     private bool pressed;
     private bool clear;
     private int kernelClear;
-
+    
     private void Awake()
     {
         LeftSidePanel.RegisterOnBrushSizeChange(size => brushSize = size);
@@ -65,7 +65,12 @@ public class EvoBrush : MonoEvoLayer
     {
         pressed = !pressed;
     }
-
+    
+    public void SetPressed(bool pressed)
+    {
+        this.pressed = pressed;
+    }
+    
     /// <summary>
     /// 获取点击点
     /// </summary>
@@ -75,6 +80,7 @@ public class EvoBrush : MonoEvoLayer
         pos.z = 0;
         var hit = Physics2D.Raycast(cam.ScreenToWorldPoint(pos), Vector2.zero);
         hitPoint = hit.collider == col ? hit.point : Vector2.zero;
+        
         return hit.collider == col;
     }
 
