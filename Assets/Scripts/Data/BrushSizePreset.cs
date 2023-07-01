@@ -20,7 +20,8 @@ namespace Data
         public int GetSize(float value)
         {
             var index = (int) (value * presets.Count);
-            Debug.Log(index);
+            if (index >= presets.Count)
+                index = presets.Count - 1;
             return presets[index].Size;
         }
     }
