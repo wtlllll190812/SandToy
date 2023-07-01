@@ -14,37 +14,19 @@ public class LeftSidePanel : MonoBehaviour
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
     
-    [SerializeField] private SpeciesUiPreset speciesUiItems;
-    [SerializeField] private BrushSizePreset brushSizePreset;
-    [SerializeField] private ViewModePreset viewModePreset;
+    [SerializeField] protected SpeciesUiPreset speciesUiItems;
+    [SerializeField] protected BrushSizePreset brushSizePreset;
+    [SerializeField] protected ViewModePreset viewModePreset;
     
-    private void Start()
+    protected void Start()
     {
-        foreach (var mode in viewModePreset.Presets)
-        {
-            var obj = Instantiate(brushSizeButtonPref, displayerMode);
-            obj.SetActive(true);
-            obj.GetComponent<UiItem>().Init((int)mode.Mode, OnViewModeChange, mode.Icon);
-        }
-
-        foreach (var item in brushSizePreset.Presets)
-        {
-            var obj = Instantiate(brushSizeButtonPref, brushSize);
-            obj.SetActive(true);
-            obj.GetComponent<UiItem>().Init(item.Size, OnBrushSizeChange,item.Icon);
-        }
-
-        foreach (var item in speciesUiItems.SpeciesUiItems)
-        {
-            if (!item.Show&&!Debugger.IsDebug) continue;
-            var obj = Instantiate(brushTypeButtonPref, brushType);
-            obj.SetActive(true);
-            obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
-        }
+        CreateBrushTypeButton();
+        CreateBrushSizeButton();
+        CreateViewModeButton();
         OnBrushSizeChange(2);
         OnBrushTypeChange((int) Species.Sand);
     }
-
+    
     public static void RegisterOnBrushSizeChange(Action<int> action)
     {
         OnBrushSizeChangeAction += action;
@@ -60,18 +42,50 @@ public class LeftSidePanel : MonoBehaviour
         OnViewModeChangeAction += action;
     }
     
-    private void OnBrushSizeChange(int index)
+    protected void OnBrushSizeChange(int index)
     {
         OnBrushSizeChangeAction?.Invoke(index);
     }
 
-    private void OnBrushTypeChange(int index)
+    protected void OnBrushTypeChange(int index)
     {
         OnBrushTypeChangeAction?.Invoke(index);
     }
     
-    private void OnViewModeChange(int index)
+    protected void OnViewModeChange(int index)
     {
         OnViewModeChangeAction?.Invoke(index);
+    }
+    
+    protected virtual void CreateBrushSizeButton()
+    {
+        
+        foreach (var item in brushSizePreset.Presets)
+        {
+            var obj = Instantiate(brushSizeButtonPref, brushSize);
+            obj.SetActive(true);
+            obj.GetComponent<UiItem>().Init(item.Size, OnBrushSizeChange,item.Icon);
+        }
+    }
+    
+    protected virtual void CreateBrushTypeButton()
+    {
+        foreach (var item in speciesUiItems.SpeciesUiItems)
+        {
+            if (!item.Show&&!Debugger.IsDebug) continue;
+            var obj = Instantiate(brushTypeButtonPref, brushType);
+            obj.SetActive(true);
+            obj.GetComponent<UiItem>().Init((int) item.Kind, OnBrushTypeChange, item.Icon, item.Name);
+        }
+    }
+    
+    protected virtual void CreateViewModeButton()
+    {
+        foreach (var mode in viewModePreset.Presets)
+        {
+            var obj = Instantiate(brushSizeButtonPref, displayerMode);
+            obj.SetActive(true);
+            obj.GetComponent<UiItem>().Init((int)mode.Mode, OnViewModeChange, mode.Icon);
+        }
     }
 }

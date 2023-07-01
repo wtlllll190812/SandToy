@@ -16,5 +16,13 @@ namespace Data
         [TableList] [SerializeField] private List<BrushSizePresetData> presets;
 
         public List<BrushSizePresetData> Presets => presets;
+
+        public int GetSize(float value)
+        {
+            var index = (int) (value * presets.Count);
+            if (index >= presets.Count)
+                index = presets.Count - 1;
+            return presets[index].Size;
+        }
     }
 }
