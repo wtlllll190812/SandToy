@@ -10,13 +10,16 @@ public class LeftSidePanel : MonoBehaviour
     [SerializeField] private RectTransform brushSize;
     [SerializeField] private RectTransform brushType;
     [SerializeField] private RectTransform displayerMode;
+    [SerializeField] private RectTransform funcButton;
     
     [SerializeField] private GameObject brushSizeButtonPref;
     [SerializeField] private GameObject brushTypeButtonPref;
+    [SerializeField] private GameObject funcButtonPref;
     
     [SerializeField] protected SpeciesUiPreset speciesUiItems;
     [SerializeField] protected BrushSizePreset brushSizePreset;
     [SerializeField] protected ViewModePreset viewModePreset;
+    [SerializeField] protected FuncButtonPreset funcButtonPreset;
     
     protected void Start()
     {
@@ -86,6 +89,18 @@ public class LeftSidePanel : MonoBehaviour
             var obj = Instantiate(brushSizeButtonPref, displayerMode);
             obj.SetActive(true);
             obj.GetComponent<UiItem>().Init((int)mode.Mode, OnViewModeChange, mode.Icon);
+        }
+    }
+    
+    protected virtual void CreateFuncButton()
+    {
+        var index = 0;
+        foreach (var func in funcButtonPreset.Presets)
+        {
+            var obj = Instantiate(funcButtonPref, funcButton);
+            obj.SetActive(true);
+            obj.GetComponent<UiItem>().Init((int)index, OnViewModeChange, func.Icon);
+            index++;
         }
     }
 }

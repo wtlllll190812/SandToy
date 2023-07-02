@@ -22,7 +22,7 @@ namespace DefaultNamespace.View.Binder
 
         private void Update()
         {
-            brushSizeScrollbar.value = Mathf.Lerp(brushSizeScrollbar.value, targetValue, Time.deltaTime * 10);
+            brushSizeScrollbar.value = Mathf.Lerp(brushSizeScrollbar.value, targetValue, Time.deltaTime * 50);
         }
     }
 }
