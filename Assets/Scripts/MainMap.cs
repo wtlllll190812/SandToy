@@ -41,6 +41,10 @@ public class MainMap : SerializedMonoBehaviour
     {
         EnvironmentTexture = RenderTextureUtils.CreateRT(size);
         brush = GetComponent<EvoBrush>();
+        if(instance==null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
     [Button]

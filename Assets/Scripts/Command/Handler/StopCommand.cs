@@ -4,7 +4,7 @@ namespace Command
     {
         public override void HandleCommand(Command command)
         {
-            throw new System.NotImplementedException();
+            MainMap.Instance.Stop();
         }
 
         public override bool Match(Command command)

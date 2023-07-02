@@ -33,13 +33,13 @@ MonoBehaviour:
       Data: 1|Data.CommandPreset, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: SetTemp
+      Data: stop
     - Name: Description
       Entry: 6
       Data: 
     - Name: Handler
       Entry: 7
-      Data: 2|Command.SetTemperatureCommand, Assembly-CSharp
+      Data: 2|Command.StopCommand, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -51,13 +51,13 @@ MonoBehaviour:
       Data: 3|Data.CommandPreset, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Clear
+      Data: clear
     - Name: Description
       Entry: 6
       Data: 
     - Name: Handler
       Entry: 7
-      Data: 4|Command.SetTemperatureCommand, Assembly-CSharp
+      Data: 4|Command.ClearCommand, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

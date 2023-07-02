@@ -1295,7 +1295,8 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7702456028652757098, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
     - target: {fileID: 8218893343994563867, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: cam
