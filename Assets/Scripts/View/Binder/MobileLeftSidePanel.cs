@@ -7,10 +7,22 @@ namespace DefaultNamespace.View.Binder
     {
         [SerializeField] private Scrollbar brushSizeScrollbar;
 
+        private float targetValue;
+
         protected override void CreateBrushSizeButton()
         {
             brushSizeScrollbar.onValueChanged.AddListener(
-                value => OnBrushSizeChange(brushSizePreset.GetSize(value)));
+                value =>
+                {
+                    int index = (int) Mathf.Round(value * brushSizePreset.Presets.Count);
+                    targetValue = index / (float) brushSizePreset.Presets.Count;
+                    OnBrushSizeChange(brushSizePreset.GetSize(index));
+                });
+        }
+
+        private void Update()
+        {
+            brushSizeScrollbar.value = Mathf.Lerp(brushSizeScrollbar.value, targetValue, Time.deltaTime * 10);
         }
     }
 }

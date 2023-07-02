@@ -17,9 +17,8 @@ namespace Data
 
         public List<BrushSizePresetData> Presets => presets;
 
-        public int GetSize(float value)
+        public int GetSize(int index)
         {
-            var index = (int) (value * presets.Count);
             if (index >= presets.Count)
                 index = presets.Count - 1;
             return presets[index].Size;
