@@ -1,15 +1,15 @@
 namespace Command
 {
-    public class ClearCommand : CommandHandler
+    public class StopCommand: CommandHandler
     {
         public override void HandleCommand(Command command)
         {
-            MainMap.Instance.Clear();
+            throw new System.NotImplementedException();
         }
 
         public override bool Match(Command command)
         {
-            return command.Name == "clear" && command.Parmas.Count == 0;
+            return command.Name=="stop"&&command.Parmas.Count==0;
         }
     }
 }

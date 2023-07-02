@@ -1,4 +1,5 @@
 using System;
+using Command;
 using Data;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class LeftSidePanel : MonoBehaviour
     private static Action<int> OnBrushSizeChangeAction;
     private static Action<int> OnBrushTypeChangeAction;
     private static Action<int> OnViewModeChangeAction;
+
     [SerializeField] private RectTransform brushSize;
     [SerializeField] private RectTransform brushType;
     [SerializeField] private RectTransform displayerMode;
@@ -26,6 +28,7 @@ public class LeftSidePanel : MonoBehaviour
         CreateBrushTypeButton();
         CreateBrushSizeButton();
         CreateViewModeButton();
+        CreateFuncButton();
         OnBrushSizeChange(2);
         OnBrushTypeChange((int) Species.Sand);
     }
@@ -99,7 +102,11 @@ public class LeftSidePanel : MonoBehaviour
         {
             var obj = Instantiate(funcButtonPref, funcButton);
             obj.SetActive(true);
-            obj.GetComponent<UiItem>().Init((int)index, OnViewModeChange, func.Icon);
+            obj.GetComponent<UiItem>().Init((int)index, (i) =>
+            {
+                var function = funcButtonPreset.Presets[i];
+                CommandSystem.Instance.HandleCommand(function.command);
+            }, func.Icon);
             index++;
         }
     }
