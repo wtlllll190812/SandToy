@@ -241,7 +241,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   computeShader: {fileID: 7200000, guid: 40c8030159a646568427abc7b4419be3, type: 3}
-  fps: 10
+  fps: 60
   setOn: 1
 --- !u!114 &205412167
 MonoBehaviour:
@@ -995,6 +995,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2265695807140107221, guid: 444e28d26300bc248a4e862e57f86c7b,
+        type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3642621173530872120, guid: 444e28d26300bc248a4e862e57f86c7b,
         type: 3}
       propertyPath: m_Name
@@ -1231,6 +1236,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1267660378069016778, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1679546144263109553, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: fluidMaterial

@@ -36,6 +36,7 @@ public class Displayer : MonoBehaviour
         mainMaterial.SetTexture(ColorTex, colorTexturePreset.GetTexture());
         temperatureMaterial.SetTexture(MapTex, mainMap.EnvironmentTexture);
         humidityMaterial.SetTexture(MapTex, mainMap.EnvironmentTexture);
+        fluidMaterial.SetTexture(MapTex, mainMap.EnvironmentTexture);
     }
 
     [Button]

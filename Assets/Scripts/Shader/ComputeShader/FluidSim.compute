@@ -3,8 +3,61 @@
 
 RWTexture2D<float4> Result;
 RWTexture2D<float4> Environment;
+uint texSize;
+
+void setXY(uint2 id,float2 value)
+{
+    Environment[id.xy]=float4(value,Environment[id.xy].zw);
+}
+
+void setZ(uint2 id,float value)
+{
+    Environment[id.xy]=float4(Environment[id.xy].xy,value,Environment[id.xy].w);
+}
+
+void setW(uint2 id,float value)
+{
+    Environment[id.xy]=float4(Environment[id.xy].xyz,value);
+}
+
+/**
+ * \brief 扩散实现
+ */
+void diffusion(uint3 id)
+{
+    float lv=Environment[left(id)].z;
+    float rv=Environment[right(id)].z;
+    float uv=Environment[up(id)].z;
+    float dv=Environment[down(id)].z;
+    float cv=Environment[id.xy].z;
+
+    float newValue=cv+0.25f*(lv+rv+uv+dv-4*cv);
+    setZ(id.xy,newValue);
+}
+
+/**
+ * \brief 平流模拟
+ */
+void advection(uint3 id)
+{
+    uint2 newPos=uint2(id.xy+float2(Environment[id.xy].xy));
+    // if(newPos.x<0||newPos.x>texSize-1||newPos.y<0||newPos.y>texSize-1)
+    //     return;
+    setZ(newPos,Environment[id.xy].z);
+}
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
+    if(id.x==0||id.x==texSize-1||id.y==0||id.y==texSize-1)
+    {
+        Environment[id.xy]=float4(10,1,1,0);
+        return;
+    }
+    else
+    {
+        // diffusion(id);
+        advection(id);
+    }
 }
+
