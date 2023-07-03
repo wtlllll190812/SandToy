@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,7 +7,18 @@ namespace Command
 {
     public class CommandSystem : MonoBehaviour
     {
+        private static CommandSystem instance;
         [SerializeField] private Data.CommandPresetList commandPresetList;
+
+        public static CommandSystem Instance => instance;
+
+        private void Awake()
+        {
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(gameObject);
+        }
 
         [Button]
         public void HandleCommand(Command command)

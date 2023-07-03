@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class EvoBasicElements: IEvoluteLayer
+public class EvoBasicElements : IEvoluteLayer
 {
     [SerializeField] protected ComputeShader computeShader;
     [SerializeField] protected int fps = 1;
@@ -10,7 +10,7 @@ public class EvoBasicElements: IEvoluteLayer
     protected int kernel;
     protected MainMap mainMap;
     private float currentTime;
-    
+
     public virtual bool IsReady()
     {
         currentTime += Time.deltaTime;
@@ -18,7 +18,7 @@ public class EvoBasicElements: IEvoluteLayer
         currentTime = 0;
         return setOn;
     }
-    
+
     public virtual void Init(MainMap map)
     {
         mainMap = map;
@@ -26,16 +26,21 @@ public class EvoBasicElements: IEvoluteLayer
         computeShader.SetTexture(kernel, "Result", map.BasicTexture);
         computeShader.SetTexture(kernel, "Environment", map.EnvironmentTexture);
     }
-    
+
     public virtual void Execute(int seed)
     {
         if (Debugger.IsDebug)
         {
-            computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
-            computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
+            OnDebug();
         }
 
         computeShader.SetInt("seed", seed);
         computeShader.Dispatch(kernel, mainMap.BasicTexture.width / 8, mainMap.BasicTexture.height / 8, 1);
+    }
+
+    public virtual void OnDebug()
+    {
+        computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
+        computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
     }
 }

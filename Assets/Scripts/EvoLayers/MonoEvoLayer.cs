@@ -31,11 +31,16 @@ public class MonoEvoLayer : SerializedMonoBehaviour, IEvoluteLayer
     {
         if (Debugger.IsDebug)
         {
-            computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
-            computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
+            OnDebug();
         }
 
         computeShader.SetInt("seed", seed);
         computeShader.Dispatch(kernel, mainMap.BasicTexture.width / 8, mainMap.BasicTexture.height / 8, 1);
+    }
+
+    public virtual void OnDebug()
+    {
+        computeShader.SetTexture(kernel, "Result", mainMap.BasicTexture);
+        computeShader.SetTexture(kernel, "Environment", mainMap.EnvironmentTexture);
     }
 }

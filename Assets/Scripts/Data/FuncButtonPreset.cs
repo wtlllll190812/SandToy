@@ -8,7 +8,7 @@ namespace Data
     [Serializable]
     public class FuncButtonPresetData
     {
-        public string Name;
+        public Command.Command command;
         public Sprite Icon;
     }
     

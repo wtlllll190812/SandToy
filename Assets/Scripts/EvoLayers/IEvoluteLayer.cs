@@ -7,4 +7,6 @@ public interface IEvoluteLayer
     public void Init(MainMap map);
 
     public void Execute(int seed);
+
+    public void OnDebug();
 }

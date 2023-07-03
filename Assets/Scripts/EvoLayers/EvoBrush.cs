@@ -33,7 +33,6 @@ public class EvoBrush : MonoEvoLayer
         //Action
         paint = inputSetting.FindActionMap("Player").FindAction("Paint");
         inputSetting.FindActionMap("Player").FindAction("StartPaint").performed += OnPaint;
-        inputSetting.FindActionMap("Player").FindAction("Clear").performed += OnClear;
         //Shader
         kernelClear = computeShader.FindKernel("Clear");
         computeShader.SetInt("texSize", mainMap.BasicTexture.width);
@@ -64,7 +63,7 @@ public class EvoBrush : MonoEvoLayer
     /// <summary>
     /// 清屏
     /// </summary>
-    private void OnClear(InputAction.CallbackContext context)
+    public void Clear()
     {
         clear = true;
     }

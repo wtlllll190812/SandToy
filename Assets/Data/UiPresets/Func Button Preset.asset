@@ -22,11 +22,11 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   Presets:
-  - Name: Clear
-    Icon: {fileID: 0}
-  - Name: Stop
-    Icon: {fileID: 0}
-  - Name: Save
-    Icon: {fileID: 0}
-  - Name: Load
-    Icon: {fileID: 0}
+  - command:
+      Name: clear
+      Parmas: []
+    Icon: {fileID: 21300000, guid: 3c8cf3a19fd12b543bfb317e0a01e017, type: 3}
+  - command:
+      Name: stop
+      Parmas: []
+    Icon: {fileID: 21300000, guid: e356d3fb19876324cbae3a2939e7c43e, type: 3}

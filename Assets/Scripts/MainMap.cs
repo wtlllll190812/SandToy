@@ -5,18 +5,26 @@ using System.Linq;
 
 public class MainMap : SerializedMonoBehaviour
 {
+    private static MainMap instance;
+    public static MainMap Instance => instance;
+
     [SerializeField] private string path;
     [SerializeField] private bool useNoiseGenerator;
     [SerializeField] private Displayer displayer;
+
     [SerializeField] [ShowIf("@useNoiseGenerator==true")]
     private GenNoise noiseGenerator;
+
     [SerializeField] [ShowIf("@useNoiseGenerator==false")]
     private int size;
-    [SerializeField][TableList] private List<IEvoluteLayer> layers;
+
+    [SerializeField] [TableList] private List<IEvoluteLayer> layers;
     private RenderTexture texture;
-    
-    
+    private EvoBrush brush;
+    private bool isStop;
+
     public int Size => size;
+
     public RenderTexture BasicTexture
     {
         get
@@ -32,6 +40,28 @@ public class MainMap : SerializedMonoBehaviour
     private void Awake()
     {
         EnvironmentTexture = RenderTextureUtils.CreateRT(size);
+        brush = GetComponent<EvoBrush>();
+        if(instance==null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
+    [Button]
+    public void SaveTexture()
+    {
+        RenderTextureUtils.SaveTexture(BasicTexture, path + "/basic.tga");
+        RenderTextureUtils.SaveTexture(EnvironmentTexture, path + "/environment.tga");
+    }
+
+    public void Clear()
+    {
+        brush.Clear();
+    }
+
+    public void Stop()
+    {
+        isStop = !isStop;
     }
 
     private void Start()
@@ -46,17 +76,9 @@ public class MainMap : SerializedMonoBehaviour
     private void Update()
     {
         var seed = Random.Range(0, 10000);
-        foreach (var item in layers)
+        foreach (var item in layers.Where(item => item.IsReady() && (item is EvoBrush || !isStop)))
         {
-            if (!item.IsReady()) continue;
             item.Execute(seed);
         }
-    }
-    
-    [Button]
-    public void SaveTexture()
-    {
-        RenderTextureUtils.SaveTexture(BasicTexture, path+"/basic.tga");
-        RenderTextureUtils.SaveTexture(EnvironmentTexture, path+"/environment.tga");
     }
 }
