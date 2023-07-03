@@ -9,6 +9,7 @@ public class Displayer : MonoBehaviour
         Basic,
         Temperature,
         Humidity,
+        Fluid
     }
 
     private static readonly int MapTex = Shader.PropertyToID("_MapTex");
@@ -17,6 +18,7 @@ public class Displayer : MonoBehaviour
     [SerializeField] private Material mainMaterial;
     [SerializeField] private Material temperatureMaterial;
     [SerializeField] private Material humidityMaterial;
+    [SerializeField] private Material fluidMaterial;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ColorTexturePreset colorTexturePreset;
 
@@ -49,6 +51,9 @@ public class Displayer : MonoBehaviour
                 break;
             case DisplayMode.Humidity:
                 spriteRenderer.material = humidityMaterial;
+                break;
+            case DisplayMode.Fluid:
+                spriteRenderer.material = fluidMaterial;
                 break;
             default:
                 break;
