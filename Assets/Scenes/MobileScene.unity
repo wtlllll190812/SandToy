@@ -213,6 +213,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 36f39149ed9f30045849d0434e2b30ef, type: 3}
   m_ActionId: a5c7de40-1cfd-4b6e-b013-c26ccb15d033
+--- !u!1 &160761229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2915166783777636513, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+    type: 3}
+  m_PrefabInstance: {fileID: 2785858145444692328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &160761234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160761229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c5e24b021a4c459e3cefef2e1605d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  computeShader: {fileID: 7200000, guid: 40c8030159a646568427abc7b4419be3, type: 3}
+  fps: 10
+  setOn: 1
 --- !u!114 &205412167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,6 +1231,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1679546144263109553, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
+      propertyPath: fluidMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ab781240b262bf242909b674b1e3f99f, type: 2}
     - target: {fileID: 1700093730344239623, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: renderTexture
@@ -1211,6 +1246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMap
       objectReference: {fileID: 0}
+    - target: {fileID: 3403326756082665706, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab781240b262bf242909b674b1e3f99f, type: 2}
     - target: {fileID: 4705526617309932249, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
       propertyPath: m_RootOrder
@@ -1285,6 +1325,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8329920483519538191, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
         type: 3}
+      propertyPath: setOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329920483519538191, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 8329920483519538191, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
@@ -1292,7 +1337,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2915166783777636513, guid: 6f47eb3d522ee9f4c9f9197316fd3418,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 160761234}
   m_SourcePrefab: {fileID: 100100000, guid: 6f47eb3d522ee9f4c9f9197316fd3418, type: 3}
 --- !u!224 &2898647278943490422
 RectTransform:
