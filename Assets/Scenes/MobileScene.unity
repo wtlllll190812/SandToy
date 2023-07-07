@@ -241,7 +241,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   computeShader: {fileID: 7200000, guid: 40c8030159a646568427abc7b4419be3, type: 3}
-  fps: 60
+  fps: 10
   setOn: 1
 --- !u!114 &205412167
 MonoBehaviour:

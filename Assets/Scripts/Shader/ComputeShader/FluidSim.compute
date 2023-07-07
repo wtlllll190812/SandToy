@@ -25,14 +25,14 @@ void setW(uint2 id,float value)
  */
 void diffusion(uint3 id)
 {
-    float lv=Environment[left(id)].z;
-    float rv=Environment[right(id)].z;
-    float uv=Environment[up(id)].z;
-    float dv=Environment[down(id)].z;
-    float cv=Environment[id.xy].z;
+    float4 lv=Environment[left(id)];
+    float4 rv=Environment[right(id)];
+    float4 uv=Environment[up(id)];
+    float4 dv=Environment[down(id)];
+    float4 cv=Environment[id.xy];
 
-    float newValue=cv+0.25f*(lv+rv+uv+dv-4*cv);
-    setZ(id.xy,newValue);
+    float4 newValue=cv+0.25f*(lv+rv+uv+dv-4*cv);
+    Environment[id.xy]=newValue;
 }
 
 /**
@@ -40,24 +40,62 @@ void diffusion(uint3 id)
  */
 void advection(uint3 id)
 {
-    uint2 newPos=uint2(id.xy+float2(Environment[id.xy].xy));
-    // if(newPos.x<0||newPos.x>texSize-1||newPos.y<0||newPos.y>texSize-1)
-    //     return;
-    setZ(newPos,Environment[id.xy].z);
+    uint2 newPos=uint2(id.xy+uint2(1,0));
+    Environment[newPos]=Environment[id.xy];
+}
+
+/**
+ * \brief 散度计算
+ */
+float divergence(uint3 id)
+{
+    float2 lv=Environment[left(id)].xy;
+    float2 rv=Environment[right(id)].xy;
+    float2 uv=Environment[up(id)].xy;
+    float2 dv=Environment[down(id)].xy;
+
+    return rv.x-lv.x+dv.y-uv.y;
+}
+
+/**
+ * \brief 计算压强
+ */
+float4 presure(uint3 id)
+{
+    float l=Environment[left(id)].w;
+    float r=Environment[right(id)].w;
+    float u=Environment[up(id)].w;
+    float d=Environment[down(id)].w;
+    float c=Environment[id.xy].w;
+
+    float p = (l+r+u+d-divergence(id))/4;
+    setW(id,p);
+}
+
+void gradient(uint3 id)
+{
+    float l=Environment[left(id)].w;
+    float r=Environment[right(id)].w;
+    float u=Environment[up(id)].w;
+    float d=Environment[down(id)].w;
+    
+    float2 bC=Environment[id.xy]-  0.5f* float2(r - l, u - d)/2;
+    setXY(id,bC);
 }
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
+    if(id.x==128&&id.y==128)
+    {
+        Environment[id.xy]=float4(1,0,1,0);
+    }
     if(id.x==0||id.x==texSize-1||id.y==0||id.y==texSize-1)
     {
-        Environment[id.xy]=float4(10,1,1,0);
         return;
     }
-    else
-    {
-        // diffusion(id);
-        advection(id);
-    }
+    diffusion(id);
+    advection(id);
+    gradient(id);
 }
 
