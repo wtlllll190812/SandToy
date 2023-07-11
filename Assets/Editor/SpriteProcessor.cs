@@ -14,7 +14,6 @@ namespace Editor
             importer.textureType = TextureImporterType.Sprite;
             importer.spritePixelsPerUnit = 100;
             importer.filterMode = FilterMode.Point;
-            importer.spriteImportMode = SpriteImportMode.Single;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
         }
     }

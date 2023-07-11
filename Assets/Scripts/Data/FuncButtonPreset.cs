@@ -10,6 +10,7 @@ namespace Data
     {
         public Command.Command command;
         public Sprite Icon;
+        public bool OnlyForDebug;
     }
     
     [CreateAssetMenu]

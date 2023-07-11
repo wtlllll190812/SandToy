@@ -39,6 +39,9 @@ MonoBehaviour:
     - Name: Icon
       Entry: 10
       Data: 0
+    - Name: OnlyForDebug
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -51,6 +54,9 @@ MonoBehaviour:
     - Name: Icon
       Entry: 10
       Data: 1
+    - Name: OnlyForDebug
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -63,6 +69,9 @@ MonoBehaviour:
     - Name: Icon
       Entry: 10
       Data: 0
+    - Name: OnlyForDebug
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 

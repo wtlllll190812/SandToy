@@ -8,6 +8,7 @@ namespace Data
     {
         public int Size;
         public Sprite Icon;
+        public bool OnlyForDebug;
     }
 
     [CreateAssetMenu]

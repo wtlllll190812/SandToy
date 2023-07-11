@@ -11,6 +11,7 @@ namespace Data
         public string Name;
         public string Description;
         public CommandHandler Handler;
+        public bool OnlyForDebug;
 
         public bool Match(Command.Command command)
         {

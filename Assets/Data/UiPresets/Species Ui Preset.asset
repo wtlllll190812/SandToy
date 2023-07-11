@@ -46,27 +46,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: -2043335056, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
-    kind: 1
-    name:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: BedRock
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: BedRock_Description
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
   - icon: {fileID: -283209064, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 2
@@ -172,27 +151,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  - icon: {fileID: -2036852089, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
-    kind: 7
-    name:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: Ice
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: Ice_Description
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
   - icon: {fileID: -2132823494, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 8
@@ -214,6 +172,27 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  - icon: {fileID: -2036852089, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 1
+    kind: 7
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Ice
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Ice_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - icon: {fileID: -85352807, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
     show: 1
     kind: 9
@@ -232,48 +211,6 @@ MonoBehaviour:
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: Steam_Description
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - icon: {fileID: 1637161185, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
-    kind: 10
-    name:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: Gas
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: Gas_Description
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - icon: {fileID: 1787408544, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
-    show: 1
-    kind: 11
-    name:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: PoisonGas
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: PoisonGas_Description
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -316,6 +253,69 @@ MonoBehaviour:
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: Oil_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: -2043335056, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 1
+    kind: 1
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: BedRock
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: BedRock_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 1637161185, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
+    kind: 10
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Gas
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: Gas_Description
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - icon: {fileID: 1787408544, guid: 9838efbe182a3f44aae9d58d5d2f636b, type: 3}
+    show: 0
+    kind: 11
+    name:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: PoisonGas
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:13f6967a8a51ad94b875157d081ffbbe
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: PoisonGas_Description
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []

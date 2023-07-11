@@ -12,12 +12,12 @@ namespace DefaultNamespace.View.Binder
         protected override void CreateBrushSizeButton()
         {
             brushSizeScrollbar.onValueChanged.AddListener(
-                value =>
-                {
-                    int index = (int) Mathf.Round(value * brushSizePreset.Presets.Count);
-                    targetValue = index / (float) brushSizePreset.Presets.Count;
-                    OnBrushSizeChange(brushSizePreset.GetSize(index));
-                });
+            value =>
+            {
+                int index = (int) Mathf.Round(value * brushSizePreset.Presets.Count);
+                targetValue = index / (float) brushSizePreset.Presets.Count;
+                OnBrushSizeChange(brushSizePreset.GetSize(index));
+            });
         }
 
         private void Update()

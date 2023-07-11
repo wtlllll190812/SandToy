@@ -8,6 +8,7 @@ namespace Data
     {
         public Displayer.DisplayMode Mode;
         public Sprite Icon;
+        public bool OnlyForDebug;
     }
     
     [CreateAssetMenu]
